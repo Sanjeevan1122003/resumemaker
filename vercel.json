@@ -17,15 +17,11 @@
     },
     {
       "src": "/signup",
-      "dest": "/api/app.js"
+      "dest": "/public/sign.html"
     },
     {
       "src": "/login",
-      "dest": "/api/app.js"
-    },
-    {
-      "src": "/public/(.*)",
-      "dest": "/public/$1"
+      "dest": "/public/login.html"
     },
     {
       "src": "/api/(.*)",
@@ -33,3 +29,4 @@
     }
   ]
 }
+
