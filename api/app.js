@@ -44,7 +44,7 @@ app.get("/login/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
-app.post("/usersignup/", async (req, res) => {
+app.post("/usersignup", async (req, res) => {
     const data = req.body;
     const { firstname, surname, username, gender, email, password } = data;
     const hashedPassword = await bcrypt.hash(password, 10);
