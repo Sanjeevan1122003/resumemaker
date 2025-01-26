@@ -44,7 +44,7 @@ app.get("/login/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
-app.post("/signup/", async (req, res) => {
+app.post("/api/signup/", async (req, res) => {
     const data = req.body;
     const { firstname, surname, username, gender, email, password } = data;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -54,7 +54,7 @@ app.post("/signup/", async (req, res) => {
     res.send("Signup successful!");
 })
 
-app.post("/login/", async (req, res) => {
+app.post("/api/login/", async (req, res) => {
     const data = req.body;
     const { username, password } = data;
     const query = `SELECT * FROM users_credentials WHERE username = ?`;
