@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9af4e0e813.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta name="theme-color" content="#000000">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Maker</title>
+    <link rel="icon" src="https://github.com/Sanjeevan1122003/resume-maker/blob/main/Resume-maker-logo.jpg?raw=true"
+        sizes="25x25" type="image/png">
+    <link rel="icon" href="https://github.com/Sanjeevan1122003/resume-maker/blob/main/Resume-maker-logo.jpg?raw=true"
+        sizes="32x32" type="image/x-icon">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .welcome-page {
+            height: 100vh;
+        }
+
+        .welcome-page-container {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: -50px;
+        }
+
+        .welcome-page-image {
+            width: 200px;
+            height: 200px
+        }
+
+        .welcome-page-tittle {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 40px;
+            margin-top: -50px;
+        }
+
+        .my-button {
+            background-color: black;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            width: 200px;
+            height: 30px;
+            padding: 0;
+        }
+
+        .my-button a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .my-button:hover {
+            color: #ffffff;
+        }
+
+        .nav-container {
+            width: 100%;
+            position: fixed;
+        }
+
+        .navbar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .navbar-brand {
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            height: auto;
+            width: 60%;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: 50px;
+            border-radius: 20%;
+            align-self: center;
+        }
+
+        .navbar-brand p {
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+            font-weight: 700;
+            align-self: center;
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+
+        .navbar-buttons-container {
+            display: flex;
+            justify-content: space-evenly;
+            flex-grow: 1;
+        }
+
+        .navbar-button {
+            background-color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 5px;
+            border: none;
+            height: 30px;
+            width: 80px;
+        }
+
+        .navbar-button a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .navbar-button a:hover {
+            text-decoration: none;
+        }
+
+        .home-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .home-tittle-container {
+            height: 400px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 70px;
+        }
+
+        .home-tittle {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .home-description {
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .home-button {
+            height: 30px;
+            width: 140px;
+            margin-top: 30px;
+            background-color: black;
+            color: #ffffff;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .about-resume-container {
+            background-color: black;
+            height: 100vh;
+            padding: 50px;
+            padding-top: 100px;
+            display: flex;
+        }
+
+        .about-resume-container-left {
+            height: 100%;
+            width: 60%;
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .about-resume-container-left-heading {
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+        }
+
+        .about-resume-container-left-defination {
+            color: #ffffffdb;
+        }
+
+        .about-resume-container-left-defination span {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .about-resume-container-right {
+            height: 100%;
+            width: 40%;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-resume-container-right img {
+            height: 600px;
+            width: 600px;
+            background: none;
+        }
+
+        .do-and-dont-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 30px;
+            padding-top: 80px;
+        }
+
+        .do-container {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .do-container h2 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .dont-container {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .dont-container h2 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body id="welcomePage">
+    <div id="sectionWelcome">
+        <div class="welcome-page d-lg-none d-xl-none d-sm-block d-md-block">
+            <div class="welcome-page-container">
+                <div id="welcomePageImageContainer">
+                </div>
+                <p id="welcomePageTittle" class="welcome-page-tittle"></p>
+                <button id="welcomePageSignButton" class="my-button btn" style="display: none;"><a
+                        href="./sign.html">Sign Up
+                    </a></button>
+                <button id="welcomePageLoginButton" class="my-button btn mt-3" style="display: none;"><a
+                        href="./login.html">Login
+                    </a></button>
+            </div>
+        </div>
+        <div class="welcome-page d-lg-block d-xl-block d-sm-none d-md-none d-none">
+            <div class="nav-container">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: black;">
+                    <div class="navbar-brand">
+                        <img
+                            src="https://github.com/Sanjeevan1122003/resume-maker/blob/main/Resume-maker-logo.jpg?raw=true">
+                        <p>Resume Maker</p>
+                    </div>
+                    <div class="navbar-buttons-container">
+                        <button class="navbar-button" style="background-color: transparent;"><a href="#sectionHome"
+                                style="color: #ffffff;">Home</a></button>
+                        <button class="navbar-button" style="background-color: transparent; width: auto;"><a
+                                href="#sectionAboutResume" style="color: #ffffff;">About Resume</a></button>
+                        <button class="navbar-button" style="background-color: transparent; width: auto;"><a
+                                href="#sectionDosAndDonts" style="color: #ffffff;">Do's & Don'ts</a></button>
+                        <button class="navbar-button"><a href="./login/">Login</a></button>
+                        <button class="navbar-button"><a href="./signup/">Sing Up</a></button>
+                    </div>
+                </nav>
+            </div>
+            <section id="sectionHome">
+                <div class="home-container">
+                    <div class="home-tittle-container">
+                        <p class="home-tittle" id="homeTittle">
+                        </p>
+                        <p class="home-description" id="homeDescription">
+                        </p>
+                        <p class="home-description" id="homeDescription2">
+                        </p>
+                        <button class="home-button" style="display: none; "
+                            id="homeButton"><a href="./signup/" style="text-decoration: none; color: #ffffff;">Get Started</a></button>
+                    </div>
+                </div>
+            </section>
+            <section id="sectionAboutResume">
+                <div class="about-resume-container">
+                    <div class="about-resume-container-left">
+                        <h3 class="about-resume-container-left-heading">About Resume</h3>
+                        <p class="about-resume-container-left-defination">A <span>resume</span> is a powerful tool that
+                            showcases your
+                            professional journey, skills, and accomplishments.It's more than just a document—it's your
+                            personal marketing brochure designed to make a strong first impression on potential
+                            employers.<br>Resumes are the foundation of any job application process. Whether you’re a
+                            seasoned professional or just starting your career, a resume provides hiring managers with a
+                            concise overview of who you are and what you bring to the table.</p>
+                        <h5 class="about-resume-container-left-heading">Why Is a Resume Important?</h5>
+                        <ul class="about-resume-container-left-unorderlist">
+                            <li class="about-resume-container-left-defination"><span>Highlight Your Strengths:</span> A
+                                resume summarizes your
+                                qualifications, expertise, and unique value in a professional format.</li>
+                            <li class="about-resume-container-left-defination"><span>Open Opportunities:</span> It acts
+                                as your ticket to
+                                interviews, helping you stand out in competitive job markets.</li>
+                            <li class="about-resume-container-left-defination"><span>Showcase Your Personality:</span>
+                                Beyond skills, a
+                                well-crafted resume reflects your attention to detail, organization, and
+                                professionalism.</li>
+                        </ul>
+                        <h5 class="about-resume-container-left-heading">Uses of a Resume</h5>
+                        <ul class="about-resume-container-left-unorderlist">
+                            <li class="about-resume-container-left-defination">Applying for jobs or internships.
+                            </li>
+                            <li class="about-resume-container-left-defination">Demonstrating your qualifications
+                                to clients or collaborators.</li>
+                            <li class="about-resume-container-left-defination">Networking during professional
+                                events or career fairs.</li>
+                            <li class="about-resume-container-left-defination">Gaining visibility in online
+                                professional platforms.</li>
+                        </ul>
+                        <p class="about-resume-container-left-defination">A great resume tells <span>your story</span>
+                            effectively, leaving a lasting impression
+                            and opening doors to exciting opportunities!</p>
+                    </div>
+                    <div class="about-resume-container-right">
+                        <img
+                            src="https://raw.githubusercontent.com/Sanjeevan1122003/resume-maker/refs/heads/main/animated_resume_maker.png">
+                    </div>
+                </div>
+            </section>
+            <section id="sectionDosAndDonts">
+                <div class="do-and-dont-container">
+                    <div class="do-container">
+                        <h2>Do's for Your Resume:</h2>
+                        <ul>
+                            <li><strong>Use a Clear Layout:</strong> Choose a professional and clean format with clear
+                                headings,
+                                bullet points, and consistent font styles and sizes.</li>
+                            <li><strong>Tailor Your Resume:</strong> Customize it for the job you’re applying for,
+                                emphasizing
+                                relevant skills, experiences, and achievements.</li>
+                            <li><strong>Start with a Strong Summary:</strong> Write a concise summary or objective that
+                                highlights your skills, experience, and career goals.</li>
+                            <li><strong>Focus on Achievements:</strong> Use quantifiable accomplishments (e.g.,
+                                "Increased sales
+                                by 20% in six months") rather than just listing job responsibilities.</li>
+                            <li><strong>Include Keywords:</strong> Use keywords from the job description to align your
+                                resume
+                                with the employer's requirements.</li>
+                            <li><strong>Keep it Concise:</strong> Limit it to one or two pages, depending on your
+                                experience
+                                level. Focus on the most relevant and recent information.</li>
+                            <li><strong>Highlight Skills:</strong> List both technical and soft skills relevant to the
+                                role,
+                                especially those in demand in your industry.</li>
+                            <li><strong>Use Action Verbs:</strong> Start bullet points with action verbs like "Led,"
+                                "Developed," "Achieved," or "Implemented."</li>
+                            <li><strong>Provide Contact Information:</strong> Include your full name, phone number,
+                                email
+                                address, and LinkedIn profile (if available).</li>
+                            <li><strong>Proofread:</strong> Check for spelling, grammar, and formatting errors. Have
+                                someone
+                                else review it for you as well.</li>
+                        </ul>
+                    </div>
+
+                    <div class="dont-container">
+                        <h2>Don'ts for Your Resume:</h2>
+                        <ul>
+                            <li><strong>Avoid Unnecessary Personal Information:</strong> Don’t include details like your
+                                photo,
+                                age, marital status, or religious beliefs unless required.</li>
+                            <li><strong>Don’t Use Generic Templates:</strong> Avoid overly common or outdated templates.
+                                A
+                                unique but professional design can help you stand out.</li>
+                            <li><strong>Avoid Including Irrelevant Information:</strong> Exclude hobbies, interests, or
+                                experiences that don’t relate to the job.</li>
+                            <li><strong>Don’t Lie or Exaggerate:</strong> Be honest about your skills, experiences, and
+                                achievements.</li>
+                            <li><strong>Avoid Overloading with Text:</strong> Use bullet points instead of paragraphs
+                                and keep
+                                descriptions concise.</li>
+                            <li><strong>Don’t Use Jargon or Acronyms:</strong> Avoid industry jargon or acronyms that
+                                may not be
+                                understood by the recruiter.</li>
+                            <li><strong>Avoid Overly Artistic Formats:</strong> Unless applying for a design-related
+                                job, keep
+                                the format professional and avoid excessive colors, graphics, or unconventional fonts.
+                            </li>
+                            <li><strong>Don’t List References:</strong> Simply state "References available upon request"
+                                if
+                                needed. Including them takes up valuable space.</li>
+                            <li><strong>Don’t Use Unprofessional Contact Information:</strong> Ensure your email address
+                                is
+                                professional (e.g., yourname@example.com).</li>
+                            <li><strong>Don’t Neglect Consistency:</strong> Ensure formatting, dates, and tense are
+                                consistent
+                                throughout the resume.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        function typeText(element, text, time, callback) {
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    element.textContent = text.slice(0, index + 1) + "|";
+                    index++;
+                    setTimeout(type, time);
+                } else {
+                    element.textContent = text;
+                    if (callback) callback();
+                }
+            }
+
+            type();
+        }
+        const homeSection = document.getElementById("sectionHome");
+        if (homeSection) {
+            const homeTttle = document.getElementById("homeTittle");
+            const homeTitleText = " Welcome to Resume Maker!";
+
+            const homeDescription = document.getElementById("homeDescription");
+            const homeDescriptionText = " Craft a resume that sets you apart! Our platform empowers you to design professional, eye-catching resumes tailored to your dream career. Whether you're a seasoned professional or just starting, create a resume that highlights your skills, showcases your achievements, and opens doors to new opportunities.";
+
+            const homeDescription2 = document.getElementById("homeDescription2");
+            const homeDescriptionText2 = "Let’s build your future, one page at a time!";
+
+            const homeButton = document.getElementById("homeButton");
+
+            if (homeTttle && homeDescription && homeDescription2) {
+                typeText(homeTttle, homeTitleText, 200, () => {
+                    typeText(homeDescription, homeDescriptionText, 50, () => {
+                        typeText(homeDescription2, homeDescriptionText2, 50, () => {
+                            homeButton.style.display = "block";
+                        });
+                    });
+                });
+            }
+        }
+
+        const welcomTittleEl = document.getElementById("welcomePageTittle");
+        const welcomText = "Resume Maker";
+
+        const welcomePageSignButton = document.getElementById("welcomePageSignButton");
+        const welcomePageLoginButton = document.getElementById("welcomePageLoginButton");
+        const welcomePageImageContainer = document.getElementById("welcomePageImageContainer");
+
+        if (welcomTittleEl && welcomePageSignButton && welcomePageLoginButton && welcomePageImageContainer) {
+            typeText(welcomTittleEl, welcomText, 300, () => {
+                welcomePageSignButton.style.display = "inline-block";
+                welcomePageLoginButton.style.display = "inline-block";
+                const welcomePageImage = document.createElement("img");
+                welcomePageImage.id = "welcomePageImage";
+                welcomePageImage.setAttribute(
+                    "src",
+                    "https://github.com/Sanjeevan1122003/resume-maker/blob/main/Resume-maker-logo.jpg?raw=true"
+                );
+                welcomePageImage.style.width = "400px";
+                welcomePageImage.style.height = "200px";
+                welcomePageImage.style.marginTop = "-50px";
+                welcomePageImageContainer.appendChild(welcomePageImage);
+            });
+        }
+    </script>
+</body>
+
+</html>
