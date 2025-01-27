@@ -1,12 +1,9 @@
-// Load environment variables from .env file
-require('dotenv').config();
-
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 
 // MongoDB connection URI from environment variables
-const dbURI = process.env.MONGO_URI;
+const dbURI = "mongodb+srv://sanjeevan1122003:Sandy@4253@cluster0.dmejc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // Connect to MongoDB
 mongoose.connect(dbURI, {
@@ -71,7 +68,7 @@ app.post("/usersignup/", async (req, res) => {
     res.sendFile(path.join(__dirname, "public/successful.html"));
   } catch (error) {
     console.error("Error signing up user:", error);
-    res.status(500).send(error);
+    res.status(500).send("Error signing up user");
   }
 });
 
