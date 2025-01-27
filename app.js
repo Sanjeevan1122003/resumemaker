@@ -3,6 +3,17 @@ const argon2 = require("argon2");
 const path = require("path");
 const mysql = require("mysql2");
 
+const express = require('express');
+const app = express();
+
+const PORT = process.env.PORT || 30000; // Fallback to 3000 if PORT is not set
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+
 // Create a connection pool to the MySQL database
 const db = mysql.createPool({
   host: "localhost", // Replace with your MySQL host
@@ -94,6 +105,10 @@ app.post("/userlogin/", (req, res) => {
       return res.status(500).send("Error logging in");
     }
   });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
