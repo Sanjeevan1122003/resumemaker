@@ -21,9 +21,6 @@ const connectToDatabase = async () => {
             filename: dbPath,
             driver: sqlite3.Database,
         });
-        app.listen(3000, () => {
-            console.log("Server Running on http://localhost:3000/");
-        });
         console.log("Connected to the database and ensured users table exists.");
     } catch (e) {
         console.log(`Database connection error: ${e.message}`);
