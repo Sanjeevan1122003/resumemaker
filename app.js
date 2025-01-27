@@ -1,32 +1,22 @@
 const express = require("express");
 const path = require("path");
-const mongoose = require("mongoose");
+const mysql = require("mysql2");
 
-// MongoDB connection URI from environment variables
-const dbURI = "mongodb+srv://sanjeevan1122003:Sandy@4253@cluster0.dmejc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
-// Connect to MongoDB
-mongoose.connect(dbURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+// Create a connection pool to the MySQL database
+const db = mysql.createPool({
+  host: "%", // Replace with your MySQL host
+  user: "sanjeevan", // Replace with your MySQL username
+  password: "Sandy@4253", // Replace with your MySQL password
+  database: "users_credentials", // Replace with your MySQL database name
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
-
-// User schema for MongoDB
-const userSchema = new mongoose.Schema({
-  firstname: String,
-  surname: String,
-  username: { type: String, unique: true },
-  gender: String,
-  email: { type: String, unique: true },
-  password: String, // Plain text password (for demo purposes)
-});
-
-const User = mongoose.model("User", userSchema);
 
 // Route to render the index page
 app.get("/", (req, res) => {
@@ -44,61 +34,60 @@ app.get("/login/", (req, res) => {
 });
 
 // Signup route
-app.post("/usersignup/", async (req, res) => {
+app.post("/usersignup/", (req, res) => {
   const { firstname, surname, username, gender, email, password } = req.body;
 
-  try {
-    // Check if username or email already exists
-    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-    if (existingUser) {
+  // Check if username or email already exists
+  const checkQuery = "SELECT * FROM users WHERE username = ? OR email = ?";
+  db.query(checkQuery, [username, email], (err, results) => {
+    if (err) {
+      console.error("Error checking existing user:", err);
+      return res.status(500).send("Error signing up user");
+    }
+
+    if (results.length > 0) {
       return res.status(400).send("Username or Email already exists");
     }
 
-    // Create a new user with the plain text password
-    const newUser = new User({
-      firstname,
-      surname,
-      username,
-      gender,
-      email,
-      password, // Storing password as plain text (not secure for production)
-    });
+    // Insert new user into the database
+    const insertQuery = "INSERT INTO users (firstname, surname, username, gender, email, password) VALUES (?, ?, ?, ?, ?, ?)";
+    db.query(insertQuery, [firstname, surname, username, gender, email, password], (err) => {
+      if (err) {
+        console.error("Error inserting new user:", err);
+        return res.status(500).send("Error signing up user");
+      }
 
-    await newUser.save();  // Save the user to MongoDB
-    res.sendFile(path.join(__dirname, "public/successful.html"));
-  } catch (error) {
-    console.error("Error signing up user:", error);
-    res.status(500).send("Error signing up user");
-  }
+      res.sendFile(path.join(__dirname, "public/successful.html"));
+    });
+  });
 });
 
 // Login route
-app.post("/userlogin/", async (req, res) => {
+app.post("/userlogin/", (req, res) => {
   const { username, password } = req.body;
 
-  try {
-    const user = await User.findOne({ username });
+  const loginQuery = "SELECT * FROM users WHERE username = ?";
+  db.query(loginQuery, [username], (err, results) => {
+    if (err) {
+      console.error("Error during login:", err);
+      return res.status(500).send("Error logging in");
+    }
 
-    if (!user) {
+    if (results.length === 0) {
       return res.status(401).send("The username doesn't exist");
     }
 
-    // Check if the password matches (plain text comparison)
+    const user = results[0];
+
+    // Check if the password matches
     if (user.password !== password) {
       return res.status(401).send("Invalid password");
     }
 
     res.sendFile(path.join(__dirname, "public/successful.html"));
-  } catch (error) {
-    console.error("Error during login:", error);
-    res.status(500).send("Error logging in");
-  }
+  });
 });
 
-// Start the server
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
 
 module.exports = app;
 
