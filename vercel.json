@@ -14,8 +14,8 @@
     { "src": "/", "dest": "/public/index.html" },
     { "src": "/signup", "dest": "/public/sign.html" },
     { "src": "/login", "dest": "/public/login.html" },
-    { "src": "/api/usersignup", "dest": "/api/app.js" },
-    { "src": "/api/userlogin", "dest": "/api/app.js" }
+    { "src": "/usersignup", "dest": "/api/app.js" },
+    { "src": "/userlogin", "dest": "/api/app.js" }
   ]
 }
 
