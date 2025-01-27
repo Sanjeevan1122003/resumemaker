@@ -1,21 +1,17 @@
 {
-  "version": 2,
   "builds": [
     {
-      "src": "api/app.js",
+      "src": "app.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "public/*",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
-    { "src": "/",  "methods": ["GET"], "dest": "app.js" },
     { "src": "/usersignup", "methods": ["POST"], "dest": "app.js" },
     { "src": "/userlogin", "methods": ["POST"], "dest": "app.js" },
     { "src": "/signup", "methods": ["GET"], "dest": "app.js" },
-    { "src": "/login", "methods": ["GET"], "dest": "app.js" }
+    { "src": "/login", "methods": ["GET"], "dest": "app.js" },
+    { "src": "/", "methods": ["GET"], "dest": "app.js" }
   ]
+}
 }
 
