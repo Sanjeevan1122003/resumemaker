@@ -1,11 +1,11 @@
 const express = require("express");
+const argon2 = require("argon2");
 const path = require("path");
 const mysql = require("mysql2");
-const bcrypt = require("bcrypt")
 
 // Create a connection pool to the MySQL database
 const db = mysql.createPool({
-  host: "%", // Replace with your MySQL host
+  host: "localhost", // Replace with your MySQL host
   user: "sanjeevan", // Replace with your MySQL username
   password: "Sandy@4253", // Replace with your MySQL password
   database: "resume_maker", // Replace with your MySQL database name
@@ -37,7 +37,7 @@ app.get("/login/", (req, res) => {
 // Signup route
 app.post("/usersignup/", async (req, res) => {
   const { firstname, surname, username, gender, email, password } = req.body;
-  const hasedPassword = await bcrypt.hash(password, 10);
+  const hasedPassword = await argon2.hash(password);
   // Check if username or email already exists
   const checkQuery = "SELECT * FROM users_credentials WHERE username = ? OR email = ?";
   db.query(checkQuery, [username, email], (err, results) => {
@@ -82,7 +82,7 @@ app.post("/userlogin/", (req, res) => {
 
     try {
       // Compare the plaintext password with the hashed password
-      const isPasswordValid = await bcrypt.compare(password, user.password);
+      const isPasswordValid = await argon2.verify(user.password, password);
 
       if (!isPasswordValid) {
         return res.status(401).send("Invalid password");
@@ -95,7 +95,6 @@ app.post("/userlogin/", (req, res) => {
     }
   });
 });
-
 
 module.exports = app;
 
