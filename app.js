@@ -3,14 +3,14 @@ const argon2 = require("argon2");
 const path = require("path");
 const mysql = require("mysql2");
 
-const PORT = process.env.PORT || 10506; // Fallback to 3000 if PORT is not set
+const PORT = process.env.PORT || 1050; // Fallback to 3000 if PORT is not set
 
 // Create a connection pool to the MySQL database
 const db = mysql.createPool({
-  host: "localhost", // Replace with your MySQL host
-  user: "sanjeevan", // Replace with your MySQL username
-  password: "Sandy@4253", // Replace with your MySQL password
-  database: "resume_maker", // Replace with your MySQL database name
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
