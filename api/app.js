@@ -52,7 +52,7 @@ app.post("/usersignup/", async (req, res) => {
     const query = `INSERT INTO users_credentials (firstname, surname, username, gender, email, password) VALUES
     (?, ? ,? ,?, ? ,?)`;
     const result = await db.run(query, [firstname, surname, username, gender, email, hashedPassword ]);
-    res.send("Signup successful!");
+    res.sendFile(path.join(__dirname, "../public/successful.html"));
 })
 
 app.post("/userlogin/", async (req, res) => {
@@ -68,7 +68,7 @@ app.post("/userlogin/", async (req, res) => {
         if (!isValidPassword) {
             res.status(401).send("Invalid password");
         } else {
-            res.send("Login successful");
+            res.sendFile(path.join(__dirname, "../public/successful.html"));
         }
     }
 })
