@@ -22,7 +22,7 @@ const connectToDatabase = async () => {
             driver: sqlite3.Database,
         });
         app.listen(3000, () => {
-            console.log("Server Running on https://resume-maker-sanjeevantech.vercel.app/");
+            console.log("Server Running on http://localhost:3000/");
         });
         console.log("Connected to the database and ensured users table exists.");
     } catch (e) {
@@ -44,7 +44,8 @@ app.get("/login/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/login.html"));
 });
 
-app.post("/usersignup", async (req, res) => {
+app.post("/usersignup/", async (req, res) => {
+    console.log("Received data:", req.body);
     const data = req.body;
     const { firstname, surname, username, gender, email, password } = data;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -55,6 +56,7 @@ app.post("/usersignup", async (req, res) => {
 })
 
 app.post("/userlogin/", async (req, res) => {
+    console.log("request data:", req.body)
     const data = req.body;
     const { username, password } = data;
     const query = `SELECT * FROM users_credentials WHERE username = ?`;
