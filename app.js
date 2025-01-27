@@ -10,7 +10,7 @@ let db = null;
 const app = express();
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "./public")));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,9 +21,6 @@ const connectToDatabase = async () => {
             filename: dbPath,
             driver: sqlite3.Database,
         });
-        app.listen(3000, () => {
-            console.log("Server Running on http://localhost:3000/");
-        });
         console.log("Connected to the database and ensured users table exists.");
     } catch (e) {
         console.log(`Database connection error: ${e.message}`);
@@ -33,15 +30,15 @@ const connectToDatabase = async () => {
 connectToDatabase();
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 app.get("/signup/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/sign.html"));
+    res.sendFile(path.join(__dirname, "./public/sign.html"));
 });
 
 app.get("/login/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/login.html"));
+    res.sendFile(path.join(__dirname, "./public/login.html"));
 });
 
 app.post("/usersignup/", async (req, res) => {
@@ -52,7 +49,7 @@ app.post("/usersignup/", async (req, res) => {
     const query = `INSERT INTO users_credentials (firstname, surname, username, gender, email, password) VALUES
     (?, ? ,? ,?, ? ,?)`;
     const result = await db.run(query, [firstname, surname, username, gender, email, hashedPassword ]);
-    res.sendFile(path.join(__dirname, "../public/successful.html"));
+    res.sendFile(path.join(__dirname, "./public/successful.html"));
 })
 
 app.post("/userlogin/", async (req, res) => {
@@ -68,7 +65,7 @@ app.post("/userlogin/", async (req, res) => {
         if (!isValidPassword) {
             res.status(401).send("Invalid password");
         } else {
-            res.sendFile(path.join(__dirname, "../public/successful.html"));
+            res.sendFile(path.join(__dirname, "./public/successful.html"));
         }
     }
 })
