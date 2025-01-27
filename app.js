@@ -1,13 +1,14 @@
 const express = require("express");
 const path = require("path");
 const mysql = require("mysql2");
+const bcrypt = require("bcrypt")
 
 // Create a connection pool to the MySQL database
 const db = mysql.createPool({
   host: "%", // Replace with your MySQL host
   user: "sanjeevan", // Replace with your MySQL username
   password: "Sandy@4253", // Replace with your MySQL password
-  database: "users_credentials", // Replace with your MySQL database name
+  database: "resume_maker", // Replace with your MySQL database name
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -34,11 +35,11 @@ app.get("/login/", (req, res) => {
 });
 
 // Signup route
-app.post("/usersignup/", (req, res) => {
+app.post("/usersignup/", async (req, res) => {
   const { firstname, surname, username, gender, email, password } = req.body;
-
+  const hasedPassword = await bcrypt.hash(password, 10);
   // Check if username or email already exists
-  const checkQuery = "SELECT * FROM users WHERE username = ? OR email = ?";
+  const checkQuery = "SELECT * FROM users_credentials WHERE username = ? OR email = ?";
   db.query(checkQuery, [username, email], (err, results) => {
     if (err) {
       console.error("Error checking existing user:", err);
@@ -50,8 +51,8 @@ app.post("/usersignup/", (req, res) => {
     }
 
     // Insert new user into the database
-    const insertQuery = "INSERT INTO users (firstname, surname, username, gender, email, password) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(insertQuery, [firstname, surname, username, gender, email, password], (err) => {
+    const insertQuery = "INSERT INTO users_credentials (firstname, surname, username, gender, email, password) VALUES (?, ?, ?, ?, ?, ?)";
+    db.query(insertQuery, [firstname, surname, username, gender, email, hasedPassword], (err) => {
       if (err) {
         console.error("Error inserting new user:", err);
         return res.status(500).send("Error signing up user");
@@ -66,8 +67,8 @@ app.post("/usersignup/", (req, res) => {
 app.post("/userlogin/", (req, res) => {
   const { username, password } = req.body;
 
-  const loginQuery = "SELECT * FROM users WHERE username = ?";
-  db.query(loginQuery, [username], (err, results) => {
+  const loginQuery = "SELECT * FROM users_credentials WHERE username = ?";
+  db.query(loginQuery, [username], async (err, results) => {
     if (err) {
       console.error("Error during login:", err);
       return res.status(500).send("Error logging in");
@@ -79,12 +80,19 @@ app.post("/userlogin/", (req, res) => {
 
     const user = results[0];
 
-    // Check if the password matches
-    if (user.password !== password) {
-      return res.status(401).send("Invalid password");
-    }
+    try {
+      // Compare the plaintext password with the hashed password
+      const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    res.sendFile(path.join(__dirname, "public/successful.html"));
+      if (!isPasswordValid) {
+        return res.status(401).send("Invalid password");
+      }
+
+      res.sendFile(path.join(__dirname, "public/successful.html"));
+    } catch (err) {
+      console.error("Error verifying password:", err);
+      return res.status(500).send("Error logging in");
+    }
   });
 });
 
