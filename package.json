@@ -3,20 +3,13 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "postinstall": "npm rebuild sqlite3"
+    "start": "node app.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "better-sqlite3": "^11.8.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "path": "^0.12.7",
-    "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "mongoose": "^6.13.8",
+    "path": "^0.12.7"
   }
 }
