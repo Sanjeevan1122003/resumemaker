@@ -11,11 +11,11 @@
     }
   ],
   "routes": [
-    { "src": "/",  "methods": ["GET"], "dest": "/api/app.js" },
-    { "src": "/usersignup", "methods": ["POST"], "dest": "/api/app.js" },
-    { "src": "/userlogin", "methods": ["POST"], "dest": "/api/app.js" },
-    { "src": "/signup", "methods": ["GET"], "dest": "/api/app.js" },
-    { "src": "/login", "methods": ["GET"], "dest": "/api/app.js" }
+    { "src": "/",  "methods": ["GET"], "dest": "app.js" },
+    { "src": "/usersignup", "methods": ["POST"], "dest": "app.js" },
+    { "src": "/userlogin", "methods": ["POST"], "dest": "app.js" },
+    { "src": "/signup", "methods": ["GET"], "dest": "app.js" },
+    { "src": "/login", "methods": ["GET"], "dest": "app.js" }
   ]
 }
 
