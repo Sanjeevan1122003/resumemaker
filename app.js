@@ -1,8 +1,10 @@
+require("dotenv").config();
 const express = require("express");
-const argon2 = require("argon2");
 const path = require("path");
 const mysql = require("mysql2");
 const jwt = require("jsonwebtoken");
+const argon2 = require("argon2");
+const cookieParser = require("cookie-parser");
 
 // const PORT = process.env.PORT || 1050; 
 
@@ -25,12 +27,24 @@ const db = mysql.createPool({
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
 
-// const authentication = async (res, req, next) => {
-//   let
-// }
+const authenticate = (req, res, next) => {
+  const token = req.cookies.auth_token;
+  if (!token) {
+      return res.redirect("/login");
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+          return res.redirect("/login");
+      }
+      req.username = decoded.username;
+      next();
+  });
+};
 
 // Route to render the index page
 app.get("/", (req, res) => {
@@ -44,14 +58,25 @@ app.get("/signup/", (req, res) => {
 
 // Route to render login page
 app.get("/login/", (req, res) => {
+  const token = req.cookies.auth_token;
+  if (token) {
+      jwt.verify(token, process.env.JWT_SECRET, (err) => {
+          if (!err) {
+              return res.redirect("/dashboard/");
+          }
+      });
+  }
   res.sendFile(path.join(__dirname, "public/login.html"));
+});
+
+app.get("/dashboard/", authenticate, (req, res) => {
+  res.sendFile(path.join(__dirname, "public/successful.html"));
 });
 
 // Signup route
 app.post("/usersignup/", async (req, res) => {
   const { firstname, surname, username, gender, email, password } = req.body;
   const hasedPassword = await argon2.hash(password);
-  // Check if username or email already exists
   const checkQuery = "SELECT * FROM users_credentials WHERE username = ? OR email = ?";
   db.query(checkQuery, [username, email], (err, results) => {
     if (err) {
@@ -60,76 +85,48 @@ app.post("/usersignup/", async (req, res) => {
     }
 
     if (results.length > 0) {
-      return res.status(400).send("Username or Email already exists");
-    }
-
-    // Insert new user into the database
-    const insertQuery = "INSERT INTO users_credentials (firstname, surname, username, gender, email, password) VALUES (?, ?, ?, ?, ?, ?)";
+      res.sendFile(path.join(__dirname, "public/login.html"));
+    }else{
+      const insertQuery = "INSERT INTO users_credentials (firstname, surname, username, gender, email, password) VALUES (?, ?, ?, ?, ?, ?)";
     db.query(insertQuery, [firstname, surname, username, gender, email, hasedPassword], (err) => {
       if (err) {
         console.error("Error inserting new user:", err);
         return res.status(500).send("Error signing up user");
+      }else{
+        res.redirect("/dashboard/");
       }
-
-      res.sendFile(path.join(__dirname, "public/successful.html"));
     });
+    }
   });
 });
 
 // Login route
 app.post("/userlogin/", (req, res) => {
-  const { username, email, password, rememberme } = req.body;
-  console.log(rememberme)
-  const loginQuery = "SELECT * FROM users_credentials WHERE username = ?";
-  db.query(loginQuery, [username], async(err, results) => {
-    const user = results[0];
-    console.log(user.email);
-  console.log(user.password);
-  if (!user.username) {
-    return res.status(401).send("The username doesn't exist, Please signup the user");
-  }
+  const { username, email, password } = req.body;
+    const query = "SELECT * FROM users_credentials WHERE username = ?";
+    db.query(query, [username], async (err, results) => {
+        if (err || results.length === 0) {
+            return res.status(401).send("Invalid username or email");
+        }
 
-  if (user.email !== email) {
-    return res.status(401).send("Invalid email");
-  }
+        const user = results[0];
+        const isPasswordValid = await argon2.verify(user.password, password);
 
-  const isPasswordValid = await argon2.verify(user.password, password);
+        if (!isPasswordValid) {
+            return res.status(401).send("Invalid password");
+        }else{
+          const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET);
 
-  if (!isPasswordValid) {
-    return res.status(401).send("Invalid password");
-  }
-
-  if (rememberme === "rememberme") {
-    const jwtToken = jwt.sign(user.username, "SECRET_KEY");
-    console.log({ jwtToken });
-    res.send({ jwtToken });
-  }
-
-  res.sendFile(path.join(__dirname, "public/successful.html"));
+        // Set cookie
+        res.cookie("auth_token", token, {
+            httpOnly: true,
+            secure: false,
+        });
+        
+        res.redirect("/dashboard");
+      } 
+    });       
 });
-  });
-
-  const authentication = async (req, res, next) => {
-    const authHeader = req.headers["authorization"];
-    if (!authHeader) {
-      return res.status(401).send("Invalid JWT Token");
-    }
-  
-    const token = authHeader.split(" ")[1]; // Extract token
-    jwt.verify(token, "SECRET_KEY", (err, payload) => {
-      if (err) {
-        return res.status(401).send("Invalid JWT Token");
-      }
-      req.username = payload.username; // Save userId for further use
-      next(); // Proceed to the next middleware or route
-    });
-  };
-  
-  // Route protected with authentication middleware
-  app.get("/user/", authentication, async (req, res) => {
-    res.sendFile(path.join(__dirname, "public/successful.html")); // Send the successful.html file
-  });
-  
   
 app.listen(3000, () => {
   console.log(`Server is running on http://localhost:3000/`);
