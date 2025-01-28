@@ -6,23 +6,23 @@ const jwt = require("jsonwebtoken");
 const argon2 = require("argon2");
 const cookieParser = require("cookie-parser");
 
-// const PORT = process.env.PORT || 1050; 
+const PORT = process.env.PORT || 1050; 
 
 const db = mysql.createPool({
-  // host: process.env.DB_HOST,
-  // user: process.env.DB_USER,
-  // password: process.env.DB_PASSWORD,
-  // database: process.env.DB_NAME,
-  // waitForConnections: true,
-  // connectionLimit: 10,
-  // queueLimit: 0,
-  host: "sql12.freesqldatabase.com",
-  user: "sql12759887",
-  password: "9YhMvsnxPt",
-  database: "sql12759887",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  // host: "sql12.freesqldatabase.com",
+  // user: "sql12759887",
+  // password: "9YhMvsnxPt",
+  // database: "sql12759887",
+  // waitForConnections: true,
+  // connectionLimit: 10,
+  // queueLimit: 0,
 });
 
 const app = express();
@@ -127,10 +127,7 @@ app.post("/userlogin/", (req, res) => {
       } 
     });       
 });
-  
-app.listen(3000, () => {
-  console.log(`Server is running on http://localhost:3000/`);
-});
+
 
 module.exports = app;
 
