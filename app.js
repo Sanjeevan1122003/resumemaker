@@ -70,7 +70,7 @@ app.get("/login/", (req, res) => {
 });
 
 app.get("/dashboard/", authenticate, (req, res) => {
-  res.sendFile(path.join(__dirname, "public/successful.html"));
+  res.sendFile(path.join(__dirname, "public/dashboard.html"));
 });
 
 // Signup route
