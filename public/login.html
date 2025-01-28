@@ -20,10 +20,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Resume Maker</title>
-    <link rel="icon" src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <title>Resume Maker</title>
+    <link rel="icon"
+        src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="25x25" type="image/png">
-    <link rel="icon" href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <link rel="icon"
+        href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="32x32" type="image/x-icon">
     <style>
         body {
@@ -175,11 +177,7 @@
                 <form class="login-card-from-form" action="/userlogin/" method="post">
                     <input type="text" id="username" name="username" placeholder="Username" required><br><br>
                     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
-                    <input type="password" id="password" name="password" placeholder="Password" required><br><br>
-                    <div class="login-card-from-remember-container">
-                        <input type="checkbox" id="rememberMe" name="rememberme" value="rememberme">
-                        <p>Remember me for next time!</p>
-                    </div>
+                    <input type="password" id="password" name="password" placeholder="Password" required><br><br><br>
                     <p class="note"><span>Note:</span> The information that you provide will be used to Login your
                         account in resume
                         maker.</p>
@@ -214,7 +212,8 @@
             }
 
             type();
-        }
+        };
+        
         const loginPosterTittleEl = document.getElementById("loginPosterTittle");
         const loginPosterText = "Welcome Back to Resume Maker!";
 
@@ -226,7 +225,7 @@
         typeText(loginPosterTittleEl, loginPosterText, 150, () => {
             typeText(loginPosterDescription, loginPosterDescriptionText, 100);
         });
-        
+    
     </script>
 </body>
 
