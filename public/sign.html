@@ -21,9 +21,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Maker</title>
-    <link rel="icon" src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <link rel="icon"
+        src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="25x25" type="image/png">
-    <link rel="icon" href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <link rel="icon"
+        href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="32x32" type="image/x-icon">
     <style>
         body {
@@ -140,6 +142,22 @@
             font-weight: bold;
         }
 
+        .password-container {
+            position: relative;
+            width: 100%;
+            
+        }
+
+        .icon {
+            position: absolute;
+            right: 10px;
+            top: 30%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+        }
+
         .sign-card-from .note {
             font-size: 14px;
         }
@@ -194,9 +212,11 @@
                 </div>
                 <div class="sign-card-from">
                     <p class="signup-card-from-tittle">Sign Up</p>
-                   <form id="signupForm" class="signup-form" method="post" action="/usersignup/" enctype="application/x-www-form-urlencoded">
+                    <form id="signupForm" class="signup-form" method="post" action="/usersignup/"
+                        enctype="application/x-www-form-urlencoded">
                         <div class="signup-card-from-name-container">
-                            <input type="text" id="firstName" name="firstname" placeholder="First Name" required><br><br>
+                            <input type="text" id="firstName" name="firstname" placeholder="First Name"
+                                required><br><br>
                             <input type="text" id="surname" name="surname" placeholder="Surname" required><br><br>
                         </div>
                         <input type="text" id="username" name="username" placeholder="Username" required><br><br>
@@ -210,8 +230,12 @@
                             </div>
                         </div>
                         <input type="email" id="email" name="email" placeholder="Email" required><br><br>
-                        <input type="password" id="password" name="password" placeholder="Enter password" required><br><br>
-                        <p class="note"><span>Note:</span> The information that you provide will be used to create your account in resume maker.</p>
+                       <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="Enter password" required> <i
+                        class="fas fa-file-zipper icon" id="toggle-password"></i><br><br>
+                       </div>
+                        <p class="note"><span>Note:</span> The information that you provide will be used to create your
+                            account in resume maker.</p>
                         <div class="d-flex flex-row justify-content-center">
                             <button type="submit" class="signup-card-button btn">Sign Up</button>
                         </div>
@@ -248,6 +272,18 @@
             typeText(signupPosterDescription, signupPosterDescriptionText, 100);
         });
 
+        document.getElementById("toggle-password").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            const isPasswordHidden = passwordField.type === "password";
+
+            // Toggle the type attribute between "password" and "text"
+            passwordField.type = isPasswordHidden ? "text" : "password";
+
+            // Change the icon class accordingly
+            this.className = isPasswordHidden ? "fas fa-folder-open icon" : "fas fa-file-zipper icon";
+        });
+
     </script>
 </body>
+
 </html>

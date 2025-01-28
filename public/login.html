@@ -141,6 +141,21 @@
         .login-card-from span {
             font-weight: bold;
         }
+        .password-container {
+            position: relative;
+            width: 100%;
+            
+        }
+
+        .icon {
+            position: absolute;
+            right: 10px;
+            top: 30%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+        }
 
         .login-card-from .note {
             font-size: 14px;
@@ -177,7 +192,10 @@
                 <form class="login-card-from-form" action="/userlogin/" method="post">
                     <input type="text" id="username" name="username" placeholder="Username" required><br><br>
                     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
-                    <input type="password" id="password" name="password" placeholder="Password" required><br><br><br>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="Enter password" required> <i
+                        class="fas fa-file-zipper icon" id="toggle-password"></i><br><br>
+                       </div><br><br><br>
                     <p class="note"><span>Note:</span> The information that you provide will be used to Login your
                         account in resume
                         maker.</p>
@@ -224,6 +242,17 @@
 
         typeText(loginPosterTittleEl, loginPosterText, 150, () => {
             typeText(loginPosterDescription, loginPosterDescriptionText, 100);
+        });
+
+        document.getElementById("toggle-password").addEventListener("click", function () {
+            const passwordField = document.getElementById("password");
+            const isPasswordHidden = passwordField.type === "password";
+
+            // Toggle the type attribute between "password" and "text"
+            passwordField.type = isPasswordHidden ? "text" : "password";
+
+            // Change the icon class accordingly
+            this.className = isPasswordHidden ? "fas fa-folder-open icon" : "fas fa-file-zipper icon";
         });
     
     </script>
