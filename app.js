@@ -76,7 +76,7 @@ app.get("/dashboard/", authenticate, (req, res) => {
 // Signup route
 app.post("/usersignup/", async (req, res) => {
   const { firstname, surname, username, gender, email, password } = req.body;
-  const hasedPassword = await argon2.hash(password);
+  const hashedPassword = await argon2.hash(password);
   const checkQuery = "SELECT * FROM users_credentials WHERE username = ? OR email = ?";
   db.query(checkQuery, [username, email], (err, results) => {
     if (err) {
@@ -88,7 +88,7 @@ app.post("/usersignup/", async (req, res) => {
       res.sendFile(path.join(__dirname, "public/login.html"));
     }else{
       const insertQuery = "INSERT INTO users_credentials (firstname, surname, username, gender, email, password) VALUES (?, ?, ?, ?, ?, ?)";
-    db.query(insertQuery, [firstname, surname, username, gender, email, hasedPassword], (err) => {
+    db.query(insertQuery, [firstname, surname, username, gender, email, hashedPassword], (err) => {
       if (err) {
         console.error("Error inserting new user:", err);
         return res.status(500).send("Error signing up user");
@@ -128,9 +128,9 @@ app.post("/userlogin/", (req, res) => {
     });       
 });
 
-app.listen(PORT , () => {
+app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
-)};
+});
 
 module.exports = app;
 
