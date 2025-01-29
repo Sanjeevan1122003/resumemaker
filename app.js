@@ -34,12 +34,12 @@ app.use(cookieParser());
 const authenticate = (req, res, next) => {
   const token = req.cookies.auth_token;
   if (!token) {
-      return res.redirect("/login");
+      return res.redirect("/login/");
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
-          return res.redirect("/login");
+          return res.redirect("/login/");
       }
       req.username = decoded.username;
       next();
@@ -58,19 +58,23 @@ app.get("/signup/", (req, res) => {
 
 // Route to render login page
 app.get("/login/", (req, res) => {
-  const token = req.cookies.auth_token;
-  if (token) {
-      jwt.verify(token, process.env.JWT_SECRET, (err) => {
-          if (!err) {
-              return res.redirect("/dashboard/");
-          }
-      });
-  }
-  res.sendFile(path.join(__dirname, "public/login.html"));
+    const token = req.cookies.auth_token;
+    
+    if (!token) {
+        return res.sendFile(path.join(__dirname, "public/login.html"));
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, (err) => {
+        if (err) {
+            return res.sendFile(path.join(__dirname, "public/login.html")); // Invalid token, show login page
+        } else {
+            return res.redirect("/dashboard/"); // Valid token, redirect to dashboard
+        }
+    });
 });
 
 app.get("/dashboard/", authenticate, (req, res) => {
-  res.sendFile(path.join(__dirname, "public/dashboard.html"));
+    res.sendFile(path.join(__dirname, "public/dashboard.html"));
 });
 
 // Signup route
