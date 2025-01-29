@@ -263,12 +263,12 @@
 
 <body id="welcomePage">
     <div id="sectionWelcome">
-        <div class="welcome-page d-lg-none d-xl-none d-sm-block d-md-block">
+        <div class="welcome-page d-lg-none d-xl-none d-sm-block d-md-block d-block">
             <div class="welcome-page-container">
                 <div id="welcomePageImageContainer">
                 </div>
                 <p id="welcomePageTittle" class="welcome-page-tittle"></p>
-                <button id="welcomePageSignButton" class="my-button btn" style="display: none;"><a href="/signup/" style="text-decoration: none; color: #ffffff;">Get Started</a></button>
+                <button id="welcomePageGetstartedButton" class="my-button btn" style="display: none;"><a href="/signup/" style="text-decoration: none; color: #ffffff;">Get Started</a></button>
             </div>
         </div>
         <div class="welcome-page d-lg-block d-xl-block d-sm-none d-md-none d-none">
@@ -468,14 +468,12 @@
         const welcomTittleEl = document.getElementById("welcomePageTittle");
         const welcomText = "Resume Maker";
 
-        const welcomePageSignButton = document.getElementById("welcomePageSignButton");
-        const welcomePageLoginButton = document.getElementById("welcomePageLoginButton");
+        const welcomePageGetstartedButton = document.getElementById("welcomePageGetstartedButton");
         const welcomePageImageContainer = document.getElementById("welcomePageImageContainer");
 
-        if (welcomTittleEl && welcomePageSignButton && welcomePageLoginButton && welcomePageImageContainer) {
+        if (welcomTittleEl && welcomePageGetstartedButton && welcomePageImageContainer) {
             typeText(welcomTittleEl, welcomText, 300, () => {
-                welcomePageSignButton.style.display = "inline-block";
-                welcomePageLoginButton.style.display = "inline-block";
+                welcomePageGetstartedButton.style.display = "inline-block";
                 const welcomePageImage = document.createElement("img");
                 welcomePageImage.id = "welcomePageImage";
                 welcomePageImage.setAttribute(
