@@ -2,48 +2,213 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/9af4e0e813.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://kit.fontawesome.com/9af4e0e813.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Maker</title>
-    <link rel="icon" src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
-        sizes="25x25" type="image/png">
-    <link rel="icon" href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <link rel="icon"
+        href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="32x32" type="image/x-icon">
-<style>
-    body{
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        width: 100vw;
-    }
-    h1{
-        font-weight: bold;
-        font-size: 60px;
-        color: #ffffff;
-    }
-</style>
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>SUCCESSFUL!</h1>
+    <div id="sectionDashboard" style="display: block;">
+        <div class="dashboard">
+            <div class="dashboard-menu">
+                <div class="dashboard-menu-tittle">
+                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+                        class="dashboard-menu-tittle-image">
+                    <p class="dashboard-menu-tittle-name" id="tittle"></p>
+                </div>
+                <div class="dashboard-menu-userdetails">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <p class="dashboard-menu-userdetails-name" id="username">Sanjeevan</p>
+                </div>
+                <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                <div class="dashboard-menu-items">
+                    <div class="dashboard-menu-items-item">
+                        <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
+                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown1')">
+                                <span>Templates</span>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                            <div class="dashboard-menu-items-item-dropdown-menu">
+                                <a href="#">Template 1</a>
+                                <a href="#">Template 2</a>
+                                <a href="#">Template 3</a>
+                                <a href="#">Template 4</a>
+                                <a href="#">Template 5</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-menu-items-item">
+                        <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
+                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown2')">
+                                <span>Your Resumes</span>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                            <div class="dashboard-menu-items-item-dropdown-menu">
+                                <a href="#">Resume 1</a>
+                                <a href="#">Resume 2</a>
+                                <a href="#">Resume 3</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-menu-bottom">
+                    <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                    <div>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="#">Settings</a>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-address-card"></i>
+                        <a href="#">Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-container">
+                <div class="create-resume-container">
+                    <p class="create-resume-container-tittle">Generate Your Resume</p>
+                    <div class="create-resume-container-options">
+                        <p class="create-resume-container-options-tittle">There are two wasy to Generate Reume: </p>
+                        <div class="option-container">
+                            <div class="generate-resume-container">
+                                <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/resumemaker_aboutresume_image.png?raw=true"
+                                    class="generate-resume-container-image"></img>
+                                <p class="generate-resume-container-tittle">You can start from scratch !</p>
+                                <p class="generate-resume-container-description">We’ll help you create a new resume from
+                                    scratch to pro.</p>
+                                <!-- <a href="/generate/" class="generate-resume-container-button">Generate</a> -->
+                                <button class="generate-resume-container-button"
+                                    onclick="display('sectionLoader')">Generate</button>
+                            </div>
+                            <div class="generate-resume-container">
+                                <p class="generate-resume-container-tittle">Upload your resume</p>
+                                <p class="generate-resume-container-description">Edit the contents of your current resume
+                                    into a fresh, new design.</p>
+                                <p class="generate-resume-container-description"
+                                    style="font-size: 14px; margin-bottom:-10px">
+                                    This accepts only pdf or docs!
+                                <div class="dropZone" id="dropZone">Drag and drop your file or Click to upload</div>
+                                <input type="file" id="pdfFile" accept="application/pdf" hidden>
+                                <span id="fileName"></span>
+                                <label for="pdfFile" class="custom-file-upload">Upload PDF</label>
+                                <input type="file" id="pdfFileBtn" accept="application/pdf" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <div id="sectionLoader" style="display: none;">
+        <div  class="generate-loader">
+            <div class="loader">
+                <p class="loader-tittle">Your Workspace is loading<span id="blink"></span></p>
+                <div class="loader-constent">
+                    <div id="load1" style="display: none;">
+                        <div class="loader-description">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick1"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line">Creating your database</p>
+                        </div>
+                    </div>
+                    <div id="load2" style="display: none;">
+                        <div class="loader-description" id="load2">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick2"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Choosing your template</p>
+                        </div>
+                    </div>
+                    <div id="load3" style="display: none;">
+                        <div class="loader-description" id="load3">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick3"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Designing your resume</p>
+                        </div>
+                    </div>
+                    <div id="load4" style="display: none;">
+                        <div class="loader-description" id="load4">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick4"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Finalizing your resume</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="get-started-btn" id="getStartedBtn" style="display: none;"
+                    onclick="display('sectionGenerateResume')">Get started !</button>
+            </div>
+        </div>
+    </div>
+    <div class="generate-resume" id="sectionGenerateResume" style="display: none;">
+        <div class="dashboard">
+            <div class="dashboard-menu">
+                <div class="dashboard-menu-tittle">
+                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+                        class="dashboard-menu-tittle-image">
+                    <p class="dashboard-menu-tittle-name" id="tittle"></p>
+                </div>
+                <div class="dashboard-menu-userdetails">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <p class="dashboard-menu-userdetails-name" id="username">Sanjeevan</p>
+                </div>
+                <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                <div class="dashboard-menu-items">
+                    <div class="dashboard-menu-items-item">
+                        <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
+                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown1')">
+                                <span>Templates</span>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                            <div class="dashboard-menu-items-item-dropdown-menu">
+                                <a href="#">Template 1</a>
+                                <a href="#">Template 2</a>
+                                <a href="#">Template 3</a>
+                                <a href="#">Template 4</a>
+                                <a href="#">Template 5</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-menu-items-item">
+                        <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
+                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown2')">
+                                <span>Your Resumes</span>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                            <div class="dashboard-menu-items-item-dropdown-menu">
+                                <a href="#">Resume 1</a>
+                                <a href="#">Resume 2</a>
+                                <a href="#">Resume 3</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-menu-bottom">
+                    <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                    <div>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="#">Settings</a>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-address-card"></i>
+                        <a href="#">Account</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-container">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="./dashboard.js"></script>
 </body>
+
 </html>
