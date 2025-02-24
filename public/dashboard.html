@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div id="sectionDashboard" style="display: block;">
+   <div id="sectionDashboard" style="display: block;">
         <div class="dashboard">
             <div class="dashboard-menu">
                 <div class="dashboard-menu-tittle">
@@ -23,15 +23,16 @@
                         class="dashboard-menu-tittle-image">
                     <p class="dashboard-menu-tittle-name" id="tittle"></p>
                 </div>
-                <div class="dashboard-menu-userdetails">
+                <div class="dashboard-menu-userdetails" id="userData">
                     <i class="fa-solid fa-user-tie"></i>
-                    <p class="dashboard-menu-userdetails-name" id="username">Sanjeevan</p>
+                    <p class="dashboard-menu-userdetails-name" id="username1"></p>
                 </div>
                 <hr style="border: 1px solid #ccc; margin: 20px 0;" />
                 <div class="dashboard-menu-items">
                     <div class="dashboard-menu-items-item">
                         <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
-                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown1')">
+                            <div class="dashboard-menu-items-item-dropdown-toggle"
+                                onclick="toggleDropdown('dropdown1')">
                                 <span>Templates</span>
                                 <i class="fa-solid fa-angle-right"></i>
                             </div>
@@ -46,7 +47,8 @@
                     </div>
                     <div class="dashboard-menu-items-item">
                         <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
-                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown2')">
+                            <div class="dashboard-menu-items-item-dropdown-toggle"
+                                onclick="toggleDropdown('dropdown2')">
                                 <span>Your Resumes</span>
                                 <i class="fa-solid fa-angle-right"></i>
                             </div>
@@ -62,7 +64,7 @@
                     <hr style="border: 1px solid #ccc; margin: 20px 0;" />
                     <div>
                         <i class="fa-solid fa-gear"></i>
-                        <a href="#">Settings</a>
+                        <a href="#sectionSettings">Settings</a>
                     </div>
                     <div>
                         <i class="fa-solid fa-address-card"></i>
@@ -88,7 +90,8 @@
                             </div>
                             <div class="generate-resume-container">
                                 <p class="generate-resume-container-tittle">Upload your resume</p>
-                                <p class="generate-resume-container-description">Edit the contents of your current resume
+                                <p class="generate-resume-container-description">Edit the contents of your current
+                                    resume
                                     into a fresh, new design.</p>
                                 <p class="generate-resume-container-description"
                                     style="font-size: 14px; margin-bottom:-10px">
@@ -106,7 +109,7 @@
         </div>
     </div>
     <div id="sectionLoader" style="display: none;">
-        <div  class="generate-loader">
+        <div class="generate-loader">
             <div class="loader">
                 <p class="loader-tittle">Your Workspace is loading<span id="blink"></span></p>
                 <div class="loader-constent">
@@ -156,15 +159,16 @@
                         class="dashboard-menu-tittle-image">
                     <p class="dashboard-menu-tittle-name" id="tittle">Resume Maker</p>
                 </div>
-                <div class="dashboard-menu-userdetails">
+                <div class="dashboard-menu-userdetails" id="userData">
                     <i class="fa-solid fa-user-tie"></i>
-                    <p class="dashboard-menu-userdetails-name" id="username">Sanjeevan</p>
+                    <p class="dashboard-menu-userdetails-name" id="username2"></p>
                 </div>
                 <hr style="border: 1px solid #ccc; margin: 20px 0;" />
                 <div class="dashboard-menu-items">
                     <div class="dashboard-menu-items-item">
                         <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
-                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown1')">
+                            <div class="dashboard-menu-items-item-dropdown-toggle"
+                                onclick="toggleDropdown('dropdown1')">
                                 <span>Templates</span>
                                 <i class="fa-solid fa-angle-right"></i>
                             </div>
@@ -179,7 +183,8 @@
                     </div>
                     <div class="dashboard-menu-items-item">
                         <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
-                            <div class="dashboard-menu-items-item-dropdown-toggle" onclick="toggleDropdown('dropdown2')">
+                            <div class="dashboard-menu-items-item-dropdown-toggle"
+                                onclick="toggleDropdown('dropdown2')">
                                 <span>Your Resumes</span>
                                 <i class="fa-solid fa-angle-right"></i>
                             </div>
@@ -199,7 +204,7 @@
                     </div>
                     <div>
                         <i class="fa-solid fa-address-card"></i>
-                        <a href="#">Account</a>
+                        <a href="/logout/">Account</a>
                     </div>
                 </div>
             </div>
