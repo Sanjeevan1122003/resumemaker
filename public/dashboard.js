@@ -1,3 +1,5 @@
+console.log("dashboard.js is loaded!");
+
 async function fetchUserData() {
     try {
         const response = await fetch("/api/userdata");
