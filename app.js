@@ -23,55 +23,81 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
+app.use((err, req, res, next) => {
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500).send("Something went wrong. Please try again.");
+});
+
+// ✅ Authentication Middleware
 const authenticate = (req, res, next) => {
   const token = req.cookies.auth_token;
   if (!token) {
-    return res.redirect("/login");
+    return res.status(401).send("Unauthorized: No token provided");
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      return res.redirect("/login");
+      console.error("JWT Verification Error:", err);
+      return res.status(403).send("Unauthorized: Invalid token");
     }
-    req.userId = decoded.userId;
+    req.email = decoded.email;
     next();
   });
 };
 
-// Route to render the index page
+// ✅ Serve Home Page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-// Route to render signup page
+// ✅ Serve Signup Page
 app.get("/signup/", (req, res) => {
   res.sendFile(path.join(__dirname, "public/sign.html"));
 });
 
-// Route to render login page
+// ✅ Serve Login Page (Fix: Add return after res.redirect)
 app.get("/login/", (req, res) => {
   const token = req.cookies.auth_token;
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, (err) => {
       if (!err) {
-        return res.redirect("/dashboard/");
+        return res.redirect("/dashboard/"); 
       }
     });
   }
-  res.sendFile(path.join(__dirname, "public/login.html"));
+  return res.sendFile(path.join(__dirname, "public/login.html")); 
 });
 
-app.get("/dashboard/", authenticate, (req, res) => {
+// ✅ Serve Dashboard Page
+app.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname, "public/dashboard.html"));
 });
 
-// Signup route
+// ✅ Fetch User Data (Ensuring Only One Response)
+app.get("/userdata", authenticate, async (req, res) => {
+  try {
+    const query = "SELECT * FROM users_credentials WHERE email = $1";
+    const result = await db.query(query, [req.email]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ error: "Error fetching user data" });
+  }
+});
+
+// ✅ Signup Route (Fix: Ensure Only One Response is Sent)
 app.post("/usersignup/", async (req, res) => {
   const { firstname, secondname, username, gender, email, password } = req.body;
   const hashedPassword = await argon2.hash(password);
 
   try {
-    // Check if the email already exists (since email is unique)
     const checkQuery = "SELECT * FROM users_credentials WHERE email = $1";
     const checkResult = await db.query(checkQuery, [email]);
 
@@ -79,37 +105,29 @@ app.post("/usersignup/", async (req, res) => {
       return res.status(400).send("Email is already registered. Please login.");
     }
 
-    // Insert the new user
     const insertQuery = `
       INSERT INTO users_credentials (firstname, secondname, username, gender, email, password) 
-      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id
+      VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, email
     `;
     const newUser = await db.query(insertQuery, [firstname, secondname, username, gender, email, hashedPassword]);
 
-    const userId = newUser.rows[0].id;
+    const { id, email: userEmail } = newUser.rows[0];
+    const token = jwt.sign({ id, email: userEmail }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
-    // Generate token with user ID
-    const token = jwt.sign({ userId }, process.env.JWT_SECRET);
+    res.cookie("auth_token", token, { httpOnly: true, secure: false });
 
-    // Set cookie
-    res.cookie("auth_token", token, {
-      httpOnly: true,
-      secure: false,
-    });
-
-    res.redirect("/dashboard/");
+    return res.redirect("/dashboard/");
   } catch (err) {
     console.error("Error signing up user:", err);
-    res.status(500).send("Error signing up user");
+    return res.status(500).send("Error signing up user"); 
   }
 });
 
-// Login route
+// ✅ Login Route (Fix: Ensure Only One Response)
 app.post("/userlogin/", async (req, res) => {
-  const { email, password } = req.body;
-
   try {
-    // Use email to find user since it's unique
+    const { email, password } = req.body;
+
     const query = "SELECT * FROM users_credentials WHERE email = $1";
     const result = await db.query(query, [email]);
 
@@ -124,26 +142,26 @@ app.post("/userlogin/", async (req, res) => {
       return res.status(401).send("Invalid password");
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "30d" });
 
-    // Set cookie
-    res.cookie("auth_token", token, {
-      httpOnly: true,
-      secure: false,
-    });
+    res.cookie("auth_token", token, { httpOnly: true, secure: false });
 
-    res.redirect("/dashboard");
+    return res.redirect("/dashboard/");
   } catch (err) {
     console.error("Error during login:", err);
-    res.status(500).send("Error logging in user");
+    return res.status(500).send("Error logging in user");
   }
 });
 
+// ✅ Logout Route
+app.get("/logout/", (req, res) => {
+  res.clearCookie("auth_token");
+  res.redirect("/login/");
+});
+
+// ✅ Start Server
 app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}/`);
 });
 
 module.exports = app;
-
-
-
