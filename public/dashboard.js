@@ -1,4 +1,4 @@
-
+console.log("Js assessed");
 
 async function fetchUserData() {
     try {
