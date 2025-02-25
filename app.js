@@ -86,7 +86,7 @@ app.post("/usersignup/", async (req, res) => {
 
 // Login route
 app.post("/userlogin", (req, res) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
   const query = "SELECT * FROM users_credentials WHERE email = $1";
   db.query(query, [email], async (err, results) => {
     if (err || results.rows.length === 0) {
