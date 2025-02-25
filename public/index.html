@@ -23,242 +23,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Maker</title>
-    <link rel="icon" src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <link rel="icon"
+        src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="25x25" type="image/png">
-    <link rel="icon" href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+    <link rel="icon"
+        href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         sizes="32x32" type="image/x-icon">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .welcome-page {
-            height: 100vh;
-        }
-
-        .welcome-page-container {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-top: -50px;
-        }
-
-        .welcome-page-image {
-            width: 200px;
-            height: 200px
-        }
-
-        .welcome-page-tittle {
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            font-size: 40px;
-            margin-top: -50px;
-        }
-
-        .my-button {
-            background-color: black;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 14px;
-            width: 200px;
-            height: 30px;
-            padding: 0;
-        }
-
-        .my-button a {
-            text-decoration: none;
-            color: #ffffff;
-        }
-
-        .my-button:hover {
-            color: #ffffff;
-        }
-
-        .nav-container {
-            width: 100%;
-            position: fixed;
-        }
-
-        .navbar {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-            flex-wrap: wrap;
-        }
-
-        .navbar-brand {
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
-            height: auto;
-            width: 60%;
-        }
-
-        .navbar-brand img {
-            height: 40px;
-            width: 50px;
-            border-radius: 20%;
-            align-self: center;
-        }
-
-        .navbar-brand p {
-            color: #ffffff;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 24px;
-            font-weight: 700;
-            align-self: center;
-            margin-top: 15px;
-            margin-left: 10px;
-        }
-
-        .navbar-buttons-container {
-            display: flex;
-            justify-content: space-evenly;
-            flex-grow: 1;
-        }
-
-        .navbar-button {
-            background-color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 5px;
-            border: none;
-            height: 30px;
-            width: 80px;
-        }
-
-        .navbar-button a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .navbar-button a:hover {
-            text-decoration: none;
-        }
-
-        .home-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .home-tittle-container {
-            height: 400px;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 70px;
-        }
-
-        .home-tittle {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-
-        .home-description {
-            font-size: 16px;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-
-        .home-button {
-            height: 30px;
-            width: 140px;
-            margin-top: 30px;
-            background-color: black;
-            color: #ffffff;
-            border-radius: 5px;
-            border: none;
-        }
-
-        .about-resume-container {
-            background-color: black;
-            height: 100vh;
-            padding: 50px;
-            padding-top: 100px;
-            display: flex;
-        }
-
-        .about-resume-container-left {
-            height: 100%;
-            width: 50%;
-            padding-left: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .about-resume-container-left-heading {
-            color: #ffffff;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-        }
-
-        .about-resume-container-left-defination {
-            color: #ffffffdb;
-        }
-
-        .about-resume-container-left-defination span {
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .about-resume-container-right {
-            height: 100%;
-            width: 50%;
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .about-resume-container-right img {
-            height: 500px;
-            width: 650px;
-            background: none;
-        }
-
-        .do-and-dont-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100%;
-            flex-wrap: wrap;
-            padding: 30px;
-            padding-top: 80px;
-        }
-
-        .do-container {
-            width: 50%;
-            padding: 20px;
-        }
-
-        .do-container h2 {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        .dont-container {
-            width: 50%;
-            padding: 20px;
-        }
-
-        .dont-container h2 {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 30px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body id="welcomePage">
@@ -268,7 +39,8 @@
                 <div id="welcomePageImageContainer">
                 </div>
                 <p id="welcomePageTittle" class="welcome-page-tittle"></p>
-                <button id="welcomePageGetstartedButton" class="my-button btn" style="display: none;"><a href="/signup/" style="text-decoration: none; color: #ffffff;">Get Started</a></button>
+                <button id="welcomePageGetstartedButton" class="my-button btn" style="display: none;"><a href="/signup/"
+                        style="text-decoration: none; color: #ffffff;">Get Started</a></button>
             </div>
         </div>
         <div class="welcome-page d-lg-block d-xl-block d-sm-none d-md-none d-none">
@@ -300,8 +72,8 @@
                         </p>
                         <p class="home-description" id="homeDescription2">
                         </p>
-                        <button class="home-button" style="display: none; "
-                            id="homeButton"><a href="/signup" style="text-decoration: none; color: #ffffff;">Get Started</a></button>
+                        <button class="home-button" style="display: none; " id="homeButton"><a href="/signup"
+                                style="text-decoration: none; color: #ffffff;">Get Started</a></button>
                     </div>
                 </div>
             </section>
@@ -424,69 +196,7 @@
             </section>
         </div>
     </div>
-    <script>
-        function typeText(element, text, time, callback) {
-            let index = 0;
-
-            function type() {
-                if (index < text.length) {
-                    element.textContent = text.slice(0, index + 1) + "|";
-                    index++;
-                    setTimeout(type, time);
-                } else {
-                    element.textContent = text;
-                    if (callback) callback();
-                }
-            }
-
-            type();
-        }
-        const homeSection = document.getElementById("sectionHome");
-        if (homeSection) {
-            const homeTttle = document.getElementById("homeTittle");
-            const homeTitleText = " Welcome to Resume Maker!";
-
-            const homeDescription = document.getElementById("homeDescription");
-            const homeDescriptionText = " Craft a resume that sets you apart! Our platform empowers you to design professional, eye-catching resumes tailored to your dream career. Whether you're a seasoned professional or just starting, create a resume that highlights your skills, showcases your achievements, and opens doors to new opportunities.";
-
-            const homeDescription2 = document.getElementById("homeDescription2");
-            const homeDescriptionText2 = "Let’s build your future, one page at a time!";
-
-            const homeButton = document.getElementById("homeButton");
-
-            if (homeTttle && homeDescription && homeDescription2) {
-                typeText(homeTttle, homeTitleText, 200, () => {
-                    typeText(homeDescription, homeDescriptionText, 50, () => {
-                        typeText(homeDescription2, homeDescriptionText2, 50, () => {
-                            homeButton.style.display = "block";
-                        });
-                    });
-                });
-            }
-        }
-
-        const welcomTittleEl = document.getElementById("welcomePageTittle");
-        const welcomText = "Resume Maker";
-
-        const welcomePageGetstartedButton = document.getElementById("welcomePageGetstartedButton");
-        const welcomePageImageContainer = document.getElementById("welcomePageImageContainer");
-
-        if (welcomTittleEl && welcomePageGetstartedButton && welcomePageImageContainer) {
-            typeText(welcomTittleEl, welcomText, 300, () => {
-                welcomePageGetstartedButton.style.display = "inline-block";
-                const welcomePageImage = document.createElement("img");
-                welcomePageImage.id = "welcomePageImage";
-                welcomePageImage.setAttribute(
-                    "src",
-                    "https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
-                );
-                welcomePageImage.style.width = "400px";
-                welcomePageImage.style.height = "200px";
-                welcomePageImage.style.marginTop = "-50px";
-                welcomePageImageContainer.appendChild(welcomePageImage);
-            });
-        }
-    </script>
+    <script src="home.js"></script>
 </body>
 
 </html>

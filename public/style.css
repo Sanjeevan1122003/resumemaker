@@ -1,5 +1,603 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: black;
+}
+
+.welcome-page {
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.welcome-page-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50px;
+}
+
+.welcome-page-image {
+    width: 200px;
+    height: 200px
+}
+
+.welcome-page-tittle {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 40px;
+    margin-top: -50px;
+}
+
+.my-button {
+    background-color: black;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    width: 200px;
+    height: 30px;
+    padding: 0;
+}
+
+.my-button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.my-button:hover {
+    color: #ffffff;
+}
+
+.nav-container {
+    width: 100%;
+    position: fixed;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    height: auto;
+    width: 60%;
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: 50px;
+    border-radius: 20%;
+    align-self: center;
+}
+
+.navbar-brand p {
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    font-weight: 700;
+    align-self: center;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.navbar-buttons-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.navbar-button {
+    background-color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    width: 80px;
+}
+
+.navbar-button a {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar-button a:hover {
+    text-decoration: none;
+}
+
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.home-tittle-container {
+    height: 400px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+}
+
+.home-tittle {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.home-description {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.home-button {
+    height: 30px;
+    width: 140px;
+    margin-top: 30px;
+    background-color: black;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+}
+
+.about-resume-container {
+    background-color: black;
+    height: 100vh;
+    padding: 50px;
+    padding-top: 100px;
+    display: flex;
+}
+
+.about-resume-container-left {
+    height: 100%;
+    width: 50%;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.about-resume-container-left-heading {
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.about-resume-container-left-defination {
+    color: #ffffffdb;
+}
+
+.about-resume-container-left-defination span {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.about-resume-container-right {
+    height: 100%;
+    width: 50%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-resume-container-right img {
+    height: 500px;
+    width: 650px;
+    background: none;
+}
+
+.do-and-dont-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 30px;
+    padding-top: 80px;
+    background-color: #ffffff;
+}
+
+.do-container {
+    width: 50%;
+    padding: 20px;
+}
+
+.do-container h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.dont-container {
+    width: 50%;
+    padding: 20px;
+}
+
+.dont-container h2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 50%;
+    height: 500px;
+}
+
+.signup-card-poster {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 30px 20px;
+    border: 2px solid #ffffff;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-right-color: transparent;
+}
+
+.signup-card-poster-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.signup-card-poster-description {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-card-poster-description p {
+    color: #ffffffd7;
+}
+
+.sign-card-from {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    border: 2px solid rgb(0, 0, 0);
+    width: 50%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.sign-card-from input {
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding-left: 5px;
+}
+
+.signup-card-from-tittle {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.signup-card-from-name-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.signup-card-from-name-container input {
+    border-radius: 5px;
+    border: 2px solid #000000;
+    height: 35px;
+    width: 48%;
+    padding-left: 5px;
+}
+
+.signup-card-from-gender-container div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.signup-card-from-gender-container input {
+    width: 15px;
+    margin-top: -5px;
+    cursor: pointer;
+}
+
+.signup-card-from-gender-container label {
+    font-weight: 700;
+}
+
+.sign-card-from span {
+    font-weight: bold;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+
+}
+
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+}
+
+.sign-card-from .note {
+    font-size: 14px;
+}
+
+.signup-card-button {
+    background-color: black;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    width: 40%;
+    height: 30px;
+    padding: 0;
+}
+
+.signup-card-button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.signup-card-button:hover {
+    color: black;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+}
+
+.blinking-cursor::after {
+    content: "|";
+    display: inline-block;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width:786px) {
+    .signup-container {
+        padding: 30px;
+    }
+
+    .signup-card {
+        width: 100%;
+    }
+
+    .sign-card-from {
+        width: 100%;
+    }
+
+    .signup-card-poster {
+        display: none;
+    }
+
+    .signup-card-from-name-container {
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .signup-card-from-name-container input {
+        width: 100%;
+        margin-bottom: -30px;
+    }
+
+    .note {
+        display: none;
+    }
+}
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border-radius: 10px;
+    width: 50%;
+    height: 500px;
+}
+
+.login-card-poster {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 30px 20px;
+    border: 2px solid #ffffff;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left-color: transparent;
+}
+
+.login-card-poster-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.login-card-poster-description {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-card-poster-description p {
+    color: #ffffffd7;
+}
+
+.login-card-from {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    border: 2px solid rgb(0, 0, 0);
+    width: 50%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.login-card-from input {
+    height: 35px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    padding-left: 5px;
+}
+
+.login-card-from-tittle {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.login-card-from-name-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.login-card-from-name-container input {
+    border-radius: 5px;
+    border: 2px solid #000000;
+    height: 35px;
+    width: 48%;
+    padding-left: 5px;
+}
+
+.login-card-from-remember-container {
+    display: flex;
+    justify-content: start;
+}
+
+.login-card-from-remember-container input {
+    width: 15px;
+    margin-top: -8px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.login-card-from-remember-container p {
+    font-weight: 700;
+    margin-top: -5px;
+}
+
+.login-card-from span {
+    font-weight: bold;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+
+}
+
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+}
+
+.login-card-from .note {
+    font-size: 14px;
+}
+
+.login-card-button {
+    background-color: black;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    width: 40%;
+    height: 30px;
+    padding: 0;
+}
+
+.login-card-button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.login-card-button:hover {
+    color: black;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+}
+
+@media (max-width:786px) {
+    .login-container {
+        padding: 30px;
+    }
+
+    .login-card {
+        width: 100%;
+    }
+
+    .login-card-from {
+        width: 100%;
+        padding: auto;
+    }
+
+    .login-card-poster {
+        display: none;
+    }
 }
 
 .dashboard {
@@ -282,7 +880,8 @@ body {
     font-weight: bold;
     border: none;
 }
-.generate-resume-container-button:hover{
+
+.generate-resume-container-button:hover {
     background-color: black;
     color: white;
     border: 2px solid #ffffff;
@@ -323,7 +922,7 @@ body {
     color: #000000;
 }
 
-.generate-loader{
+.generate-loader {
     background-color: #ffffff;
     display: flex;
     justify-content: center;
@@ -331,7 +930,8 @@ body {
     height: 100vh;
     width: 100%;
 }
-.loader{
+
+.loader {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -341,33 +941,36 @@ body {
     /* background-color: aqua; */
 }
 
-.loader-tittle{
+.loader-tittle {
     font-size: 30px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
 }
 
-#blink{
+#blink {
     display: inline-block;
     padding-top: 20px;
     height: 3ch;
-    width: 3ch; 
-    font-family: monospace; 
+    width: 3ch;
+    font-family: monospace;
     text-align: left;
-    overflow: hidden; 
-    white-space: nowrap; 
+    overflow: hidden;
+    white-space: nowrap;
 }
-.loader-description{
+
+.loader-description {
     display: flex;
     /* animation: moveDown 1.5s ease forwards;
     animation-delay: 1s; */
 }
-.loader-tick{
+
+.loader-tick {
     height: 50px;
     width: 50px;
     margin-right: -20px;
 }
-.checked{
+
+.checked {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -378,7 +981,8 @@ body {
     color: #ffffff;
     border-radius: 50%;
 }
-.tick{
+
+.tick {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -387,11 +991,13 @@ body {
     border: 3px solid #000000;
     border-radius: 50%;
 }
-.loader-description-line{
+
+.loader-description-line {
     font-size: 18px;
     font-weight: 600;
 }
-.get-started-btn{
+
+.get-started-btn {
     margin-top: 20px;
     background-color: #000000;
     color: #ffffff;
@@ -400,7 +1006,8 @@ body {
     border-radius: 30px;
     border: 2px solid #000000;
 }
-.get-started-btn:hover{
+
+.get-started-btn:hover {
     background-color: #ffffff;
     color: #000000;
     border: 3px solid #000000;
