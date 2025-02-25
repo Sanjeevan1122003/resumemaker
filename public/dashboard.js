@@ -70,42 +70,41 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function display(sectionId) {
-    const sections = ['sectionDashboard', 'sectionLoader', 'sectionGenerateResume'];
+    document.getElementById("sectionDashboardContainer").style.display = "none";
+    document.getElementById("sectionLoader").style.display = "none";
+    document.getElementById("sectionGenerateResume").style.display = "none";
 
-    sections.forEach(section => {
-        const element = document.getElementById(section);
-        element.style.display = 'none';
+    document.getElementById(sectionId).style.display = "block";
 
-        if (section === 'sectionLoader') {
-            const blinkElement = document.getElementById('blink');
-            let dots = 0;
+    if (sectionId === "sectionLoader") {
+        document.querySelector(".dashboard-menu-container").style.display = "none";
+        const blinkElement = document.getElementById('blink');
+        let dots = 0;
 
-            setInterval(() => {
-                dots = (dots + 1) % 4;
-                blinkElement.textContent = '.'.repeat(dots);
-            }, 500);
+        setInterval(() => {
+            dots = (dots + 1) % 4;
+            blinkElement.textContent = '.'.repeat(dots);
+        }, 500);
 
 
-            let num = 1;
+        let num = 1;
 
-            function loadAndTick() {
+        function loadAndTick() {
+            setTimeout(() => {
+                document.getElementById("load" + num).style.display = "block";
                 setTimeout(() => {
-                    document.getElementById("load" + num).style.display = "block";
-                    setTimeout(() => {
-                        document.getElementById("tick" + num).classList.add("checked");
-                        num++;
-                        setTimeout(loadAndTick, 1000);
-                    }, 2000);
-                }, 1000);
-                if (num > 4) {
-                    document.getElementById("getStartedBtn").style.display = "block";
-                }
+                    document.getElementById("tick" + num).classList.add("checked");
+                    num++;
+                    setTimeout(loadAndTick, 1000);
+                }, 2000);
+            }, 1000);
+            if (num > 4) {
+                document.getElementById("getStartedBtn").style.display = "block";
             }
-
-            loadAndTick();
         }
-    });
 
-    const selectedSection = document.getElementById(sectionId);
-    selectedSection.style.display = 'block';
+        loadAndTick();
+    } else {
+        document.querySelector(".dashboard-menu-container").style.display = "block";
+    }
 }

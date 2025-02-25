@@ -791,13 +791,17 @@ body {
         opacity: 1;
     }
 }
-
+.dashboard-content{
+    overflow-y: scroll;
+    height: 100vh;
+    flex-grow: 1;
+}
 .dashboard-container {
     flex-grow: 1;
     background-color: #ffffff;
     border-top-left-radius: 30px;
     padding: 20px;
-    overflow-y: hidden;
+    height: 100%;
 }
 
 .create-resume-container {
@@ -848,7 +852,7 @@ body {
     width: 50%;
     margin: 20px;
     border-radius: 20px;
-    box-shadow: 0px 8px 15px (#000000);
+    box-shadow: 10px 8px 20px #3f3e3ec3;
 }
 
 .generate-resume-container-image {
@@ -931,6 +935,20 @@ body {
     width: 100%;
 }
 
+#sectionLoader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
 .loader {
     display: flex;
     flex-direction: column;
@@ -949,7 +967,7 @@ body {
 
 #blink {
     display: inline-block;
-    padding-top: 20px;
+    padding-top: 15px;
     height: 3ch;
     width: 3ch;
     font-family: monospace;
@@ -1012,4 +1030,151 @@ body {
     color: #000000;
     border: 3px solid #000000;
     font-weight: 800;
+}
+
+.user-details-container{
+    height: 640px;
+    width: 650px;
+    box-shadow: 10px 8px 20px #3f3e3ec3;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+.user-details-container::-webkit-scrollbar {
+    margin-left: -40px;
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.user-details-container::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.user-details-container::-webkit-scrollbar-thumb:hover {
+    background-color: #000000;
+    cursor: grabbing;
+}
+
+.user-details-container::-webkit-scrollbar-track {
+    background-color: rgba(208, 206, 206, 0);
+    border-radius: 20px;
+}
+
+
+.details-form{
+    display: flex;
+    flex-direction: column;
+}
+.details-form label{
+    font-size: 16px;
+    font-weight: 600;
+    color: #494848;
+    margin-top: 10px;
+}
+.details-form input{
+    padding: 10px 5px;
+    border-radius: 5px;
+    border:2px solid #000000;
+}
+.details-form input::placeholder{
+    color: #494848;
+}
+.details-form select{
+    padding: 10px 5px;
+    border-radius: 5px;
+    border:2px solid #000000;
+}
+.button-contianer{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content:flex-end;
+}
+.submit-button{
+    margin-top: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 5px 20px;
+    border-radius: 30px;
+    border: 2px solid #000000;
+}
+.submit-button:hover{
+    background-color: #ffffff;
+    color: #000000;
+    border: 3px solid #000000;
+    font-weight: 800;
+}
+.resume-preview{
+    margin-top: 20px;
+    margin-left: 40px;
+    height: 600px;
+    width: 400px;
+    padding-top: 30px;
+   
+    border-radius: 20px;
+    background-color:#ffffff00;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sample-resume{
+    height: 450px;
+    width: 350px;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border: 3px solid #000000;
+    box-shadow: 10px 8px 20px #3f3e3ec3;
+}
+.sample-resume-name{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: -3px;
+}
+.sample-resume-details{
+    font-size: 8px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.sample-resume-details-head{
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.sample-resume-education-container{
+    height:40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.sample-resume-education-details{
+    display: flex;
+    justify-content: space-between;
+}
+#interDegree {
+    height: 30px;
+    width: 200px; /* Added width for better display */
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+option:hover{
+    cursor: pointer;
+  }
+
+.resume-preview-button{
+    background-color: #000000;
+    color: #ffffff;
+    border: 3px solid #000000;
+    font-weight: 700;
+    padding: 5px 20px;
+    border-radius: 30px;
+    box-shadow: 10px 8px 20px #3f3e3ec3;
 }

@@ -15,92 +15,389 @@
 </head>
 
 <body>
-    <div id="sectionDashboard" style="display: block;">
+    <div id="sectionDashboard">
         <div class="dashboard">
-            <div class="dashboard-menu">
-                <div class="dashboard-menu-tittle">
-                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
-                        class="dashboard-menu-tittle-image">
-                    <p class="dashboard-menu-tittle-name" id="tittle"></p>
-                </div>
-                <div class="dashboard-menu-userdetails" id="errors">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <p class="dashboard-menu-userdetails-name" id="username"></p>
-                </div>
-                <hr style="border: 1px solid #ccc; margin: 20px 0;" />
-                <div class="dashboard-menu-items">
-                    <div class="dashboard-menu-items-item">
-                        <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
-                            <div class="dashboard-menu-items-item-dropdown-toggle"
-                                onclick="toggleDropdown('dropdown1')">
-                                <span>Templates</span>
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                            <div class="dashboard-menu-items-item-dropdown-menu">
-                                <a href="#">Template 1</a>
-                                <a href="#">Template 2</a>
-                                <a href="#">Template 3</a>
-                                <a href="#">Template 4</a>
-                                <a href="#">Template 5</a>
-                            </div>
-                        </div>
+            <div class="dashboard-menu-container">
+                <div class="dashboard-menu">
+                    <div class="dashboard-menu-tittle">
+                        <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+                            class="dashboard-menu-tittle-image">
+                        <p class="dashboard-menu-tittle-name" id="tittle"></p>
                     </div>
-                    <div class="dashboard-menu-items-item">
-                        <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
-                            <div class="dashboard-menu-items-item-dropdown-toggle"
-                                onclick="toggleDropdown('dropdown2')">
-                                <span>Your Resumes</span>
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                            <div class="dashboard-menu-items-item-dropdown-menu">
-                                <a href="#">Resume 1</a>
-                                <a href="#">Resume 2</a>
-                                <a href="#">Resume 3</a>
-                            </div>
-                        </div>
+                    <div class="dashboard-menu-userdetails" id="errors">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <p class="dashboard-menu-userdetails-name" id="username"></p>
                     </div>
-                </div>
-                <div class="dashboard-menu-bottom">
                     <hr style="border: 1px solid #ccc; margin: 20px 0;" />
-                    <div>
-                        <i class="fa-solid fa-gear"></i>
-                        <a href="#sectionSettings">Settings</a>
+                    <div class="dashboard-menu-items">
+                        <div class="dashboard-menu-items-item">
+                            <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
+                                <div class="dashboard-menu-items-item-dropdown-toggle"
+                                    onclick="toggleDropdown('dropdown1')">
+                                    <span>Templates</span>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </div>
+                                <div class="dashboard-menu-items-item-dropdown-menu">
+                                    <a href="#">Template 1</a>
+                                    <a href="#">Template 2</a>
+                                    <a href="#">Template 3</a>
+                                    <a href="#">Template 4</a>
+                                    <a href="#">Template 5</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-menu-items-item">
+                            <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
+                                <div class="dashboard-menu-items-item-dropdown-toggle"
+                                    onclick="toggleDropdown('dropdown2')">
+                                    <span>Your Resumes</span>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </div>
+                                <div class="dashboard-menu-items-item-dropdown-menu">
+                                    <a href="#">Resume 1</a>
+                                    <a href="#">Resume 2</a>
+                                    <a href="#">Resume 3</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <i class="fa-solid fa-address-card"></i>
-                        <a href="#">Account</a>
+                    <div class="dashboard-menu-bottom">
+                        <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                        <div>
+                            <i class="fa-solid fa-gear"></i>
+                            <a href="#sectionSettings">Settings</a>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-address-card"></i>
+                            <a href="#">Account</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="dashboard-container">
-                <div class="create-resume-container">
-                    <p class="create-resume-container-tittle">Generate Your Resume</p>
-                    <div class="create-resume-container-options">
-                        <p class="create-resume-container-options-tittle">There are two ways to Generate Resume: </p>
-                        <div class="option-container">
-                            <div class="generate-resume-container">
-                                <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/resumemaker_aboutresume_image.png?raw=true"
-                                    class="generate-resume-container-image"></img>
-                                <p class="generate-resume-container-tittle">You can start from scratch !</p>
-                                <p class="generate-resume-container-description">We’ll help you create a new resume from
-                                    scratch to pro.</p>
-                                <!-- <a href="/generate/" class="generate-resume-container-button">Generate</a> -->
-                                <button class="generate-resume-container-button"
-                                    onclick="display('sectionLoader')">Generate</button>
+            <div class="dashboard-content">
+                <div id="sectionDashboardContainer" class="dashboard-container">
+                    <div class="create-resume-container">
+                        <p class="create-resume-container-tittle">Generate Your Resume</p>
+                        <div class="create-resume-container-options">
+                            <p class="create-resume-container-options-tittle">There are two ways to Generate Resume:
+                            </p>
+                            <div class="option-container">
+                                <div class="generate-resume-container">
+                                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/resumemaker_aboutresume_image.png?raw=true"
+                                        class="generate-resume-container-image"></img>
+                                    <p class="generate-resume-container-tittle">You can start from scratch !</p>
+                                    <p class="generate-resume-container-description">We’ll help you create a new resume
+                                        from
+                                        scratch to pro.</p>
+                                    <!-- <a href="/generate/" class="generate-resume-container-button">Generate</a> -->
+                                    <button class="generate-resume-container-button"
+                                        onclick="display('sectionLoader')">Generate</button>
+                                </div>
+                                <div class="generate-resume-container">
+                                    <p class="generate-resume-container-tittle">Upload your resume</p>
+                                    <p class="generate-resume-container-description">Edit the contents of your current
+                                        resume
+                                        into a fresh, new design.</p>
+                                    <p class="generate-resume-container-description"
+                                        style="font-size: 14px; margin-bottom:-10px">
+                                        This accepts only pdf or docs!
+                                    <div class="dropZone" id="dropZone">Drag and drop your file or Click to upload</div>
+                                    <input type="file" id="pdfFile" accept="application/pdf" hidden>
+                                    <span id="fileName"></span>
+                                    <label for="pdfFile" class="custom-file-upload">Upload PDF</label>
+                                    <input type="file" id="pdfFileBtn" accept="application/pdf" hidden>
+                                </div>
                             </div>
-                            <div class="generate-resume-container">
-                                <p class="generate-resume-container-tittle">Upload your resume</p>
-                                <p class="generate-resume-container-description">Edit the contents of your current
-                                    resume
-                                    into a fresh, new design.</p>
-                                <p class="generate-resume-container-description"
-                                    style="font-size: 14px; margin-bottom:-10px">
-                                    This accepts only pdf or docs!
-                                <div class="dropZone" id="dropZone">Drag and drop your file or Click to upload</div>
-                                <input type="file" id="pdfFile" accept="application/pdf" hidden>
-                                <span id="fileName"></span>
-                                <label for="pdfFile" class="custom-file-upload">Upload PDF</label>
-                                <input type="file" id="pdfFileBtn" accept="application/pdf" hidden>
+                        </div>
+                    </div>
+                </div>
+                <div id="sectionGenerateResume" class="dashboard-container" style="display: none;">
+                <!-- <div id="sectionGenerateResume" class="dashboard-container"> -->
+                    <div class="create-resume-container">
+                        <p class="create-resume-container-tittle" >Enter your details</p>
+                        <div class="d-flex flex-row justify-content-center">
+                            <div class="user-details-container">
+                                <form class="details-form">
+                                    <label for="fullname">Full name: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name"
+                                        required />
+                                    <label for="phonenumber">Phone Number: <span id="verified"><i
+                                                class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <input type="tel" id="phonenumber" name="phonenumber"
+                                        placeholder="Enter your phone number" required />
+                                    <label for="email">Email: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                                    <label for="job-role">Select Job Role: <i class="fa-solid fa-thumbs-up"
+                                            style="color: rgb(34, 203, 34);"></i> </label>
+                                    <select id="job-role" name="job-role">
+                                        <option value="" disabled selected>Select a role</option>
+                                        <option value="frontend">Frontend Developer</option>
+                                        <option value="backend">Backend Developer</option>
+                                        <option value="fullstack">Full Stack Developer</option>
+                                        <option value="designer">UI/UX Designer</option>
+                                        <option value="qa">QA Engineer</option>
+                                        <option value="pm">Project Manager</option>
+                                        <option value="devops">DevOps Engineer</option>
+                                        <option value="data">Data Analyst</option>
+                                    </select>
+                                    <label for="schoolname">School Name: <span id="verified"><i
+                                                class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <input type="text" id="schoolname" name="schoolname"
+                                        placeholder="Enter your school name" required />
+                                    <div class="d-flex flex-row justify-content-start">
+                                        <div class="d-flex flex-column justify-content-start">
+                                            <label for="schoolMarks">Marks: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="number" id="schoolMarks" name="marks"
+                                                placeholder="Enter your marks" style="height: 30px;" required />
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-start ml-2">
+                                            <label for="schoolYear">Year: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="number" id="schoolYear" name="year" min="1980" max="2060" step="1"
+                                                placeholder="YYYY" style="height: 30px;" required />
+                                        </div>
+                                    </div>
+                                    <label for="intermediateName" style="margin-top: 10px;">Intermediate/Diploma College
+                                        Name:
+                                        <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <input type="text" id="intermediateName" name="intermediateName"
+                                        placeholder="Enter your institute name" required />
+                                    <div class="d-flex flex-row justify-content-start">
+                                        <div class="d-flex flex-column justify-content-start" style="width:  250px;">
+                                            <label for="interDegree">Degree: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <select id="interDegree"
+                                                style="height: 30px; width: 100%; padding: 2px; font-size: 14px;"
+                                                name="interDegree">
+                                                <option value="" disabled selected>Select Your Degree</option>
+                                                <option value="intermediate">Intermediate</option>
+                                                <option value="diploma">Diploma</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-start"
+                                            style="width: 150px; margin-left: 10px;">
+                                            <label for="interCourse">Course: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="text" id="interCourse" name="intercourse"
+                                                placeholder=" Enter your Course" style="height: 30px;" required />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row justify-content-start">
+                                        <div class="d-flex flex-column justify-content-start">
+                                            <label for="interMarks">Marks: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="number" id="interMarks" name="intermarks"
+                                                placeholder="Enter your marks" style="height: 30px;" required />
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-start ml-2">
+                                            <label for="interYear">Year: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="number" id="interYear" name="year" min="1980" max="2060" step="1"
+                                                placeholder="YYYY" style="height: 30px;" required />
+                                        </div>
+                                    </div>
+    
+                                    <label for="collegeName" style="margin-top: 10px;">College Name:
+                                        <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <input type="text" id="collegeName" name="collegeName"
+                                        placeholder="Enter your institute name" required />
+                                    <div class="d-flex flex-row justify-content-start">
+                                        <div class="d-flex flex-column justify-content-start" style="width: 250px;">
+                                            <label for="collegeDegree">Degree: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <select id="collegeDegree"
+                                                style="height: 30px; width: 100%; padding: 5px; font-size: 14px;"
+                                                name="collegedegree">
+                                                <option value="" disabled selected>Select Your Degree</option>
+                                                <option value="ba">Bachelor of Arts (BA)</option>
+                                                <option value="bsc">Bachelor of Science (B.Sc)</option>
+                                                <option value="bcom">Bachelor of Commerce (B.Com)</option>
+                                                <option value="bba">Bachelor of Business Administration (BBA)</option>
+                                                <option value="bca">Bachelor of Computer Applications (BCA)</option>
+                                                <option value="btech">Bachelor of Technology (B.Tech)</option>
+                                                <option value="be">Bachelor of Engineering (BE)</option>
+                                                <option value="llb">Bachelor of Laws (LLB)</option>
+                                                <option value="bpharm">Bachelor of Pharmacy (B.Pharm)</option>
+                                                <option value="barch">Bachelor of Architecture (B.Arch)</option>
+                                                <option value="bds">Bachelor of Dental Surgery (BDS)</option>
+                                                <option value="mbbs">Bachelor of Medicine, Bachelor of Surgery (MBBS)
+                                                </option>
+                                                <option value="bfa">Bachelor of Fine Arts (BFA)</option>
+                                                <option value="bdes">Bachelor of Design (B.Des)</option>
+                                                <option value="bhm">Bachelor of Hotel Management (BHM)</option>
+                                                <option value="bped">Bachelor of Physical Education (B.P.Ed)</option>
+                                                <option value="bsw">Bachelor of Social Work (BSW)</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-start"
+                                            style="width: 150px; margin-left: 10px;">
+                                            <label for="collegeCourse">Course: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="text" id="collegeCourse" name="collegecourse"
+                                                placeholder=" Enter your Course" style="height: 30px;" required />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row justify-content-start">
+                                        <div class="d-flex flex-column justify-content-start">
+                                            <label for="collegeMarks">Marks: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="number" id="collegeMarks" name="marks"
+                                                placeholder="Enter your marks" style="height: 30px;" required />
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-start ml-2">
+                                            <label for="collegeYear">Year: <span id="verified"><i
+                                                        class="fa-solid fa-thumbs-up"
+                                                        style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <input type="number" id="collegeYear" name="year" min="1980" max="2060" step="1"
+                                                placeholder="YYYY" style="height: 30px;" required />
+                                        </div>
+                                    </div>
+                                    <div class="button-contianer">
+                                        <button type="submit" class="submit-button">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="resume-preview">
+                                <strong style="font-size: 20px;margin-bottom: 20px;">Sample resume</strong>
+                                <div class="sample-resume">
+                                    <p class="sample-resume-name" id="sampleResumeName">Sanjeevan Thangaraj</p>
+                                    <div class="d-flex flex-row justify-content-center" style="margin-bottom: -4px;">
+                                        <p class="sample-resume-details" id="sampleResumePhone"><span><strong>Phno:
+                                                </strong></span>9502965479</p>
+                                        <p class="sample-resume-details" id="sampleResumeEmail"><span><strong
+                                                    style="color: black; margin-left: 2px;">Email: </strong></span><a
+                                                href="#">sanjeevan1122003@gmail.com</a></p>
+                                    </div>
+                                    <p class="sample-resume-details text-center" id="samplelinkedin"><span><strong
+                                                style="color: black; margin-left: 2px;">LinkedIn: </strong></span><a
+                                            href="#">https://linkedin.com/</a>
+                                    <p class="sample-resume-details-head">Summary</p>
+    
+                                    <p class="sample-resume-details" style="font-size: 6px;">Dedicated web developer with
+                                        over
+                                        two years of experience in front-end development and an additional year
+                                        building user-friendly applications that balance aesthetic appeal with functional
+                                        depth.
+                                    </p>
+                                    <p class="sample-resume-details-head">Education</p>
+    
+                                    <div class="sample-resume-education-container" style="margin-bottom: 2px;">
+                                        <div class="sample-resume-education-details">
+                                            <div>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px; margin-bottom: -2px;">
+                                                    College Name</p>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px;  margin-bottom: -2px;">
+                                                    Course</p>
+                                            </div>
+                                            <div>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px;  margin-bottom: -2px;">
+                                                    year details</p>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px;  margin-bottom: -2px;">
+                                                    marks</p>
+                                            </div>
+                                        </div>
+                                        <div class="sample-resume-education-details">
+                                            <div>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px; margin-bottom: -2px;">
+                                                    Intermediate Name</p>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px; margin-bottom: -2px;">
+                                                    Course</p>
+                                            </div>
+                                            <div>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px; margin-bottom: -2px;">
+                                                    year details</p>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px; margin-bottom: -2px;">
+                                                    marks</p>
+                                            </div>
+                                        </div>
+                                        <div class="sample-resume-education-details">
+                                            <div>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px;  margin-bottom: -2px;">
+                                                    School Name</p>
+                                                <p class="sample-resume-details" style="font-size: 6px;">Course</p>
+                                            </div>
+                                            <div>
+                                                <p class="sample-resume-details"
+                                                    style="font-size: 6px; margin-bottom: -2px;">
+                                                    year details</p>
+                                                <p class="sample-resume-details" style="font-size: 6px;">marks</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="sample-resume-details-head">Skills</p>
+    
+                                    <p class="sample-resume-details" style="font-weight: 700;">Techinical skills:
+                                        <span class="sample-resume-details" style="font-size: 6px;">HTML, CSS, JavaScript,
+                                            ......</span>
+                                    </p>
+                                    <p class="sample-resume-details" style="font-weight: 700;">Professional skills:
+                                        <span class="sample-resume-details" style="font-size: 6px;">Communication, Teamwork,
+                                            Creative Thinking,.....</span>
+                                    </p>
+                                    <p class="sample-resume-details-head">Experience</p>
+    
+                                    <p class="sample-resume-details" style="font-size: 6px;">Freelance Front-End Developer |
+                                        Jan
+                                        2021 – Present
+                                        As a Front-End Developer, I have developed and maintained responsive websites using
+                                        HTML, CSS, and JavaScript.
+                                        <br>
+                                        Freelance Backend Developer | Jan 2022 – Present
+                                        In my role as a Backend Developer, I focused on developing robust backend
+                                        functionalities using Python and JavaScript.
+                                    </p>
+                                    <p class="sample-resume-details-head">Projects</p>
+    
+                                    <p class="sample-resume-details" style="font-size: 6px;">Portfolio Website | View
+                                        Project |
+                                        Aug 2024 – Sep 2024
+                                        Designed and developed a pererience using Flexbox for flexible layouts,
+                                        demonstrating
+                                        proficiency in responsive development.
+    
+                                        Clone Webpage | View Project | Oct 2024 – Nov 2024
+                                        Developed a clonve design techniques to ensure cross-device compatibility and
+                                        utilized
+                                        Flexbox to improve layout efficiency, resulting in an intuitive and
+                                        Resume Maker Website (In Development) | Dec 2024 – Present
+                                        Currently devel,eoji,</p>
+                                    <p class="sample-resume-details-head">Cretificates</p>
+    
+                                    <ul class="sample-resume-details">
+                                        <li>AWS Certification for hosting the static website (NXTWAVE)</li>
+                                    </ul>
+                                    <p class="sample-resume-details-head">Achivements</p>
+                                    <ul class="sample-resume-details">
+                                        <li>AWS Certification for hosting the static website (NXTWAVE)</li>
+                                    </ul>
+                                </div>
+                                <button class="resume-preview-button mt-4">Preview <i
+                                        class="fa-regular fa-eye"></i></button>
                             </div>
                         </div>
                     </div>
@@ -148,68 +445,6 @@
                 </div>
                 <button class="get-started-btn" id="getStartedBtn" style="display: none;"
                     onclick="display('sectionGenerateResume')">Get started !</button>
-            </div>
-        </div>
-    </div>
-    <div class="generate-resume" id="sectionGenerateResume" style="display: none;">
-        <div class="dashboard">
-            <div class="dashboard-menu">
-                <div class="dashboard-menu-tittle">
-                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
-                        class="dashboard-menu-tittle-image">
-                    <p class="dashboard-menu-tittle-name" id="tittle">Resume Maker</p>
-                </div>
-                <div class="dashboard-menu-userdetails" id="userData">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <p class="dashboard-menu-userdetails-name" id="username2"></p>
-                </div>
-                <hr style="border: 1px solid #ccc; margin: 20px 0;" />
-                <div class="dashboard-menu-items">
-                    <div class="dashboard-menu-items-item">
-                        <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
-                            <div class="dashboard-menu-items-item-dropdown-toggle"
-                                onclick="toggleDropdown('dropdown1')">
-                                <span>Templates</span>
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                            <div class="dashboard-menu-items-item-dropdown-menu">
-                                <a href="#">Template 1</a>
-                                <a href="#">Template 2</a>
-                                <a href="#">Template 3</a>
-                                <a href="#">Template 4</a>
-                                <a href="#">Template 5</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-menu-items-item">
-                        <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
-                            <div class="dashboard-menu-items-item-dropdown-toggle"
-                                onclick="toggleDropdown('dropdown2')">
-                                <span>Your Resumes</span>
-                                <i class="fa-solid fa-angle-right"></i>
-                            </div>
-                            <div class="dashboard-menu-items-item-dropdown-menu">
-                                <a href="#">Resume 1</a>
-                                <a href="#">Resume 2</a>
-                                <a href="#">Resume 3</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dashboard-menu-bottom">
-                    <hr style="border: 1px solid #ccc; margin: 20px 0;" />
-                    <div>
-                        <i class="fa-solid fa-gear"></i>
-                        <a href="#">Settings</a>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-address-card"></i>
-                        <a href="/logout/">Account</a>
-                    </div>
-                </div>
-            </div>
-            <div class="dashboard-container">
-
             </div>
         </div>
     </div>
