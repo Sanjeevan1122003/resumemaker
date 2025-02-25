@@ -1,25 +1,33 @@
-console.log("Js assessed");
-
-async function fetchUserData() {
-    try {
-        const response = await fetch("/userdata");
-        const user = await response.json();
-
-        if (response.ok) {
-            document.getElementById("name").innerText = user.firstname + " " + user.secondname;
-            document.getElementById("username").innerText = user.username;
-            document.getElementById("email").innerText = user.email;
-            document.getElementById("gender").innerText = user.gender;
+fetch("/userdetails")
+    .then(response => response.json())
+    .then(data => {
+        if (data.user) {
+            let user = data.user;
+            document.getElementById("username").innerHTML = user.username || "No user data found";
         } else {
-            document.getElementById("userData").innerHTML = `<p>Error: ${user.error}</p>`;
+            document.getElementById("errors").innerHTML = "No user data fetched please login"
         }
-    } catch (error) {
-        console.error("Error fetching user data:", error);
-        document.getElementById("userData").innerHTML = "<p>Error loading data.</p>";
-    }
-}
+    })
+    .catch(error => console.error("Error fetching user details:", error));
 
-fetchUserData();
+
+
+function typeText(element, text, time, callback) {
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            element.textContent = text.slice(0, index + 1) + "|";
+            index++;
+            setTimeout(type, time);
+        } else {
+            element.textContent = text;
+            if (callback) callback();
+        }
+    }
+
+    type();
+};
 
 const tittleEl = document.getElementById("tittle");
 typeText(tittleEl, "Resume Maker", 300);
@@ -101,4 +109,3 @@ function display(sectionId) {
     const selectedSection = document.getElementById(sectionId);
     selectedSection.style.display = 'block';
 }
-
