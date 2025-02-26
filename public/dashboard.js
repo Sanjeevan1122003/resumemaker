@@ -108,3 +108,108 @@ function display(sectionId) {
         document.querySelector(".dashboard-menu-container").style.display = "block";
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Toggle Soft Skills Dropdown
+    function toggleSoftSkillsDropdown() {
+        const dropdown = document.querySelector(".soft-skills-dropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    // Filter Soft Skills
+    function filterSoftOptions() {
+        const input = document.querySelector(".soft-skills-search").value.toLowerCase();
+        document.querySelectorAll("#soft-checkbox-list label").forEach(label => {
+            label.style.display = label.textContent.toLowerCase().includes(input) ? "block" : "none";
+        });
+    }
+
+    // Update Selected Soft Skills
+    function updateSoftSelectedOptions() {
+        const selectedOptionsDiv = document.querySelector(".soft-selected-options");
+        const checkboxes = document.querySelectorAll("#soft-checkbox-list input[type='checkbox']");
+        let selectedValues = [];
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedValues.push(`<span>${checkbox.parentElement.textContent.trim()} <span class="remove" onclick="removeSoftSelection('${checkbox.value}')">&times;</span></span>`);
+            }
+        });
+
+        selectedOptionsDiv.innerHTML = selectedValues.length > 0 ? selectedValues.join(" ") : "Select Soft Skills";
+    }
+
+    // Remove Soft Skill Selection
+    window.removeSoftSelection = function(value) {
+        document.querySelectorAll("#soft-checkbox-list input[type='checkbox']").forEach(checkbox => {
+            if (checkbox.value === value) {
+                checkbox.checked = false;
+            }
+        });
+        updateSoftSelectedOptions();
+    };
+
+    document.querySelectorAll("#soft-checkbox-list input[type='checkbox']").forEach(checkbox => {
+        checkbox.addEventListener("change", updateSoftSelectedOptions);
+    });
+
+    // Toggle Technical Skills Dropdown
+    function toggleTechnicalSkillsDropdown() {
+        const dropdown = document.querySelector(".technical-skills-dropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    // Filter Technical Skills
+    function filterTechnicalOptions() {
+        const input = document.querySelector(".technical-skills-search").value.toLowerCase();
+        document.querySelectorAll("#technical-checkbox-list label").forEach(label => {
+            label.style.display = label.textContent.toLowerCase().includes(input) ? "block" : "none";
+        });
+    }
+
+    // Update Selected Technical Skills
+    function updateTechnicalSelectedOptions() {
+        const selectedOptionsDiv = document.querySelector(".technical-selected-options");
+        const checkboxes = document.querySelectorAll("#technical-checkbox-list input[type='checkbox']");
+        let selectedValues = [];
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selectedValues.push(`<span>${checkbox.parentElement.textContent.trim()} <span class="remove" onclick="removeTechnicalSelection('${checkbox.value}')">&times;</span></span>`);
+            }
+        });
+
+        selectedOptionsDiv.innerHTML = selectedValues.length > 0 ? selectedValues.join(" ") : "Select Technical Skills";
+    }
+
+    // Remove Technical Skill Selection
+    window.removeTechnicalSelection = function(value) {
+        document.querySelectorAll("#technical-checkbox-list input[type='checkbox']").forEach(checkbox => {
+            if (checkbox.value === value) {
+                checkbox.checked = false;
+            }
+        });
+        updateTechnicalSelectedOptions();
+    };
+
+    document.querySelectorAll("#technical-checkbox-list input[type='checkbox']").forEach(checkbox => {
+        checkbox.addEventListener("change", updateTechnicalSelectedOptions);
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function (event) {
+        const softDropdown = document.querySelector(".soft-skills-dropdown");
+        const technicalDropdown = document.querySelector(".technical-skills-dropdown");
+
+        if (!event.target.closest(".soft-dropdown-container")) {
+            softDropdown.style.display = "none";
+        }
+        if (!event.target.closest(".technical-dropdown-container")) {
+            technicalDropdown.style.display = "none";
+        }
+    });
+
+    // Expose functions to global scope for onclick in HTML
+    window.toggleSoftSkillsDropdown = toggleSoftSkillsDropdown;
+    window.toggleTechnicalSkillsDropdown = toggleTechnicalSkillsDropdown;
+});

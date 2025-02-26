@@ -114,11 +114,12 @@
                 <div id="sectionGenerateResume" class="dashboard-container" style="display: none;">
                 <!-- <div id="sectionGenerateResume" class="dashboard-container"> -->
                     <div class="create-resume-container">
-                        <p class="create-resume-container-tittle" >Enter your details</p>
+                        <p class="create-resume-container-tittle">Enter your details</p>
                         <div class="d-flex flex-row justify-content-center">
                             <div class="user-details-container">
                                 <form class="details-form">
-                                    <label for="fullname">Full name: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                    <label for="fullname">Full name: <span id="verified"><i
+                                                class="fa-solid fa-thumbs-up"
                                                 style="color: rgb(34, 203, 34);"></i></span></label>
                                     <input type="text" id="fullname" name="fullname" placeholder="Enter your full name"
                                         required />
@@ -129,7 +130,8 @@
                                         placeholder="Enter your phone number" required />
                                     <label for="email">Email: <span id="verified"><i class="fa-solid fa-thumbs-up"
                                                 style="color: rgb(34, 203, 34);"></i></span></label>
-                                    <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                                    <input type="email" id="email" name="email" placeholder="Enter your email"
+                                        required />
                                     <label for="job-role">Select Job Role: <i class="fa-solid fa-thumbs-up"
                                             style="color: rgb(34, 203, 34);"></i> </label>
                                     <select id="job-role" name="job-role">
@@ -160,8 +162,8 @@
                                             <label for="schoolYear">Year: <span id="verified"><i
                                                         class="fa-solid fa-thumbs-up"
                                                         style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="number" id="schoolYear" name="year" min="1980" max="2060" step="1"
-                                                placeholder="YYYY" style="height: 30px;" required />
+                                            <input type="number" id="schoolYear" name="year" min="1980" max="2060"
+                                                step="1" placeholder="YYYY" style="height: 30px;" required />
                                         </div>
                                     </div>
                                     <label for="intermediateName" style="margin-top: 10px;">Intermediate/Diploma College
@@ -204,11 +206,11 @@
                                             <label for="interYear">Year: <span id="verified"><i
                                                         class="fa-solid fa-thumbs-up"
                                                         style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="number" id="interYear" name="year" min="1980" max="2060" step="1"
-                                                placeholder="YYYY" style="height: 30px;" required />
+                                            <input type="number" id="interYear" name="year" min="1980" max="2060"
+                                                step="1" placeholder="YYYY" style="height: 30px;" required />
                                         </div>
                                     </div>
-    
+
                                     <label for="collegeName" style="margin-top: 10px;">College Name:
                                         <span id="verified"><i class="fa-solid fa-thumbs-up"
                                                 style="color: rgb(34, 203, 34);"></i></span></label>
@@ -264,140 +266,153 @@
                                             <label for="collegeYear">Year: <span id="verified"><i
                                                         class="fa-solid fa-thumbs-up"
                                                         style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="number" id="collegeYear" name="year" min="1980" max="2060" step="1"
-                                                placeholder="YYYY" style="height: 30px;" required />
+                                            <input type="number" id="collegeYear" name="year" min="1980" max="2060"
+                                                step="1" placeholder="YYYY" style="height: 30px;" required />
+                                        </div>
+                                    </div>
+                                    <label for="softSkills">Soft skills: <span id="verified"><i
+                                                class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <div class="dropdown-container soft-dropdown-container">
+                                        <div class="dropdown-header" onclick="toggleSoftSkillsDropdown()">
+                                            <div class="selected-options soft-selected-options">Select Soft Skills</div>
+                                        </div>
+                                        <div class="dropdown-content soft-skills-dropdown">
+                                            <input type="text" class="search-box soft-skills-search"
+                                                onkeyup="filterSoftOptions()" placeholder="Search skills...">
+                                            <div id="soft-checkbox-list">
+                                                <label><input type="checkbox" value="communication">
+                                                    Communication</label>
+                                                <label><input type="checkbox" value="leadership"> Leadership</label>
+                                                <label><input type="checkbox" value="teamwork"> Teamwork</label>
+                                                <label><input type="checkbox" value="problem-solving">
+                                                    Problem-Solving</label>
+                                                <label><input type="checkbox" value="adaptability"> Adaptability</label>
+                                                <label><input type="checkbox" value="creativity"> Creativity</label>
+                                                <label><input type="checkbox" value="time-management"> Time
+                                                    Management</label>
+                                                <label><input type="checkbox" value="critical-thinking"> Critical
+                                                    Thinking</label>
+                                                <label><input type="checkbox" value="emotional-intelligence"> Emotional
+                                                    Intelligence</label>
+                                                <label><input type="checkbox" value="decision-making"> Decision
+                                                    Making</label>
+                                                <label><input type="checkbox" value="work-ethic"> Work Ethic</label>
+                                                <label><input type="checkbox" value="conflict-resolution"> Conflict
+                                                    Resolution</label>
+                                                <label><input type="checkbox" value="negotiation"> Negotiation</label>
+                                                <label><input type="checkbox" value="interpersonal-skills">
+                                                    Interpersonal Skills</label>
+                                                <label><input type="checkbox" value="active-listening"> Active
+                                                    Listening</label>
+                                                <label><input type="checkbox" value="stress-management"> Stress
+                                                    Management</label>
+                                                <label><input type="checkbox" value="self-motivation">
+                                                    Self-Motivation</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label for="technicalSkills">Technical Skills: <span id="verified"><i
+                                                class="fa-solid fa-thumbs-up"
+                                                style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <div class="dropdown-container technical-dropdown-container">
+                                        <div class="dropdown-header" onclick="toggleTechnicalSkillsDropdown()">
+                                            <div class="selected-options technical-selected-options">Select Technical
+                                                Skills</div>
+                                        </div>
+                                        <div class="dropdown-content technical-skills-dropdown">
+                                            <input type="text" class="search-box technical-skills-search"
+                                                onkeyup="filterTechnicalOptions()" placeholder="Search skills...">
+                                            <div id="technical-checkbox-list">
+                                                <label><input type="checkbox" value="python"> Python</label>
+                                                <label><input type="checkbox" value="java"> Java</label>
+                                                <label><input type="checkbox" value="c"> C</label>
+                                                <label><input type="checkbox" value="c++"> C++</label>
+                                                <label><input type="checkbox" value="javascript"> JavaScript</label>
+                                                <label><input type="checkbox" value="typescript"> TypeScript</label>
+                                                <label><input type="checkbox" value="ruby"> Ruby</label>
+                                                <label><input type="checkbox" value="php"> PHP</label>
+                                                <label><input type="checkbox" value="swift"> Swift</label>
+                                                <label><input type="checkbox" value="go"> Go</label>
+                                                <label><input type="checkbox" value="rust"> Rust</label>
+                                                <label><input type="checkbox" value="kotlin"> Kotlin</label>
+                                                <label><input type="checkbox" value="r"> R</label>
+                                                <label><input type="checkbox" value="reactjs"> React.js</label>
+                                                <label><input type="checkbox" value="nodejs"> Node.js</label>
+                                                <label><input type="checkbox" value="angular"> Angular</label>
+                                                <label><input type="checkbox" value="vuejs"> Vue.js</label>
+                                                <label><input type="checkbox" value="django"> Django</label>
+                                                <label><input type="checkbox" value="flask"> Flask</label>
+                                                <label><input type="checkbox" value="perl"> Perl</label>
+                                                <label><input type="checkbox" value="scala"> Scala</label>
+                                                <label><input type="checkbox" value="programming"> Programming</label>
+                                                <label><input type="checkbox" value="web-development"> Web
+                                                    Development</label>
+                                                <label><input type="checkbox" value="software-engineering"> Software
+                                                    Engineering</label>
+                                                <label><input type="checkbox" value="database-management"> Database
+                                                    Management</label>
+                                                <label><input type="checkbox" value="network-security"> Network
+                                                    Security</label>
+                                                <label><input type="checkbox" value="cloud-computing"> Cloud
+                                                    Computing</label>
+                                                <label><input type="checkbox" value="machine-learning"> Machine
+                                                    Learning</label>
+                                                <label><input type="checkbox" value="data-analysis"> Data
+                                                    Analysis</label>
+                                                <label><input type="checkbox" value="cybersecurity">
+                                                    Cybersecurity</label>
+                                                <label><input type="checkbox" value="technical-writing"> Technical
+                                                    Writing</label>
+                                                <label><input type="checkbox" value="ai-development"> AI
+                                                    Development</label>
+                                                <label><input type="checkbox" value="devops"> DevOps</label>
+                                                <label><input type="checkbox" value="robotics"> Robotics</label>
+                                                <label><input type="checkbox" value="mechanical-design"> Mechanical
+                                                    Design</label>
+                                                <label><input type="checkbox" value="electrical-engineering"> Electrical
+                                                    Engineering</label>
+                                                <label><input type="checkbox" value="biotechnology">
+                                                    Biotechnology</label>
+                                                <label><input type="checkbox" value="chemical-engineering"> Chemical
+                                                    Engineering</label>
+                                                <label><input type="checkbox" value="graphic-design"> Graphic
+                                                    Design</label>
+                                                <label><input type="checkbox" value="video-editing"> Video
+                                                    Editing</label>
+                                                <label><input type="checkbox" value="3d-modeling"> 3D Modeling</label>
+                                                <label><input type="checkbox" value="ui-ux-design"> UI/UX Design</label>
+                                                <label><input type="checkbox" value="blockchain-development"> Blockchain
+                                                    Development</label>
+                                                <label><input type="checkbox" value="mobile-app-development"> Mobile App
+                                                    Development</label>
+                                                <label><input type="checkbox" value="embedded-systems"> Embedded
+                                                    Systems</label>
+                                                <label><input type="checkbox" value="digital-marketing"> Digital
+                                                    Marketing</label>
+                                                <label><input type="checkbox" value="seo-optimization"> SEO
+                                                    Optimization</label>
+                                                <label><input type="checkbox" value="automation-testing"> Automation
+                                                    Testing</label>
+                                                <label><input type="checkbox" value="cad-design"> CAD Design</label>
+                                                <label><input type="checkbox" value="pharmaceutical-research">
+                                                    Pharmaceutical Research</label>
+                                                <label><input type="checkbox" value="supply-chain-management"> Supply
+                                                    Chain Management</label>
+                                                <label><input type="checkbox" value="electronics-repair"> Electronics
+                                                    Repair</label>
+                                                <label><input type="checkbox" value="welding"> Welding</label>
+                                                <label><input type="checkbox" value="automotive-repair"> Automotive
+                                                    Repair</label>
+                                                <label><input type="checkbox" value="construction-management">
+                                                    Construction Management</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="button-contianer">
                                         <button type="submit" class="submit-button">Submit</button>
                                     </div>
                                 </form>
-                            </div>
-                            <div class="resume-preview">
-                                <strong style="font-size: 20px;margin-bottom: 20px;">Sample resume</strong>
-                                <div class="sample-resume">
-                                    <p class="sample-resume-name" id="sampleResumeName">Sanjeevan Thangaraj</p>
-                                    <div class="d-flex flex-row justify-content-center" style="margin-bottom: -4px;">
-                                        <p class="sample-resume-details" id="sampleResumePhone"><span><strong>Phno:
-                                                </strong></span>9502965479</p>
-                                        <p class="sample-resume-details" id="sampleResumeEmail"><span><strong
-                                                    style="color: black; margin-left: 2px;">Email: </strong></span><a
-                                                href="#">sanjeevan1122003@gmail.com</a></p>
-                                    </div>
-                                    <p class="sample-resume-details text-center" id="samplelinkedin"><span><strong
-                                                style="color: black; margin-left: 2px;">LinkedIn: </strong></span><a
-                                            href="#">https://linkedin.com/</a>
-                                    <p class="sample-resume-details-head">Summary</p>
-    
-                                    <p class="sample-resume-details" style="font-size: 6px;">Dedicated web developer with
-                                        over
-                                        two years of experience in front-end development and an additional year
-                                        building user-friendly applications that balance aesthetic appeal with functional
-                                        depth.
-                                    </p>
-                                    <p class="sample-resume-details-head">Education</p>
-    
-                                    <div class="sample-resume-education-container" style="margin-bottom: 2px;">
-                                        <div class="sample-resume-education-details">
-                                            <div>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px; margin-bottom: -2px;">
-                                                    College Name</p>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px;  margin-bottom: -2px;">
-                                                    Course</p>
-                                            </div>
-                                            <div>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px;  margin-bottom: -2px;">
-                                                    year details</p>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px;  margin-bottom: -2px;">
-                                                    marks</p>
-                                            </div>
-                                        </div>
-                                        <div class="sample-resume-education-details">
-                                            <div>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px; margin-bottom: -2px;">
-                                                    Intermediate Name</p>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px; margin-bottom: -2px;">
-                                                    Course</p>
-                                            </div>
-                                            <div>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px; margin-bottom: -2px;">
-                                                    year details</p>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px; margin-bottom: -2px;">
-                                                    marks</p>
-                                            </div>
-                                        </div>
-                                        <div class="sample-resume-education-details">
-                                            <div>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px;  margin-bottom: -2px;">
-                                                    School Name</p>
-                                                <p class="sample-resume-details" style="font-size: 6px;">Course</p>
-                                            </div>
-                                            <div>
-                                                <p class="sample-resume-details"
-                                                    style="font-size: 6px; margin-bottom: -2px;">
-                                                    year details</p>
-                                                <p class="sample-resume-details" style="font-size: 6px;">marks</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="sample-resume-details-head">Skills</p>
-    
-                                    <p class="sample-resume-details" style="font-weight: 700;">Techinical skills:
-                                        <span class="sample-resume-details" style="font-size: 6px;">HTML, CSS, JavaScript,
-                                            ......</span>
-                                    </p>
-                                    <p class="sample-resume-details" style="font-weight: 700;">Professional skills:
-                                        <span class="sample-resume-details" style="font-size: 6px;">Communication, Teamwork,
-                                            Creative Thinking,.....</span>
-                                    </p>
-                                    <p class="sample-resume-details-head">Experience</p>
-    
-                                    <p class="sample-resume-details" style="font-size: 6px;">Freelance Front-End Developer |
-                                        Jan
-                                        2021 – Present
-                                        As a Front-End Developer, I have developed and maintained responsive websites using
-                                        HTML, CSS, and JavaScript.
-                                        <br>
-                                        Freelance Backend Developer | Jan 2022 – Present
-                                        In my role as a Backend Developer, I focused on developing robust backend
-                                        functionalities using Python and JavaScript.
-                                    </p>
-                                    <p class="sample-resume-details-head">Projects</p>
-    
-                                    <p class="sample-resume-details" style="font-size: 6px;">Portfolio Website | View
-                                        Project |
-                                        Aug 2024 – Sep 2024
-                                        Designed and developed a pererience using Flexbox for flexible layouts,
-                                        demonstrating
-                                        proficiency in responsive development.
-    
-                                        Clone Webpage | View Project | Oct 2024 – Nov 2024
-                                        Developed a clonve design techniques to ensure cross-device compatibility and
-                                        utilized
-                                        Flexbox to improve layout efficiency, resulting in an intuitive and
-                                        Resume Maker Website (In Development) | Dec 2024 – Present
-                                        Currently devel,eoji,</p>
-                                    <p class="sample-resume-details-head">Cretificates</p>
-    
-                                    <ul class="sample-resume-details">
-                                        <li>AWS Certification for hosting the static website (NXTWAVE)</li>
-                                    </ul>
-                                    <p class="sample-resume-details-head">Achivements</p>
-                                    <ul class="sample-resume-details">
-                                        <li>AWS Certification for hosting the static website (NXTWAVE)</li>
-                                    </ul>
-                                </div>
-                                <button class="resume-preview-button mt-4">Preview <i
-                                        class="fa-regular fa-eye"></i></button>
                             </div>
                         </div>
                     </div>

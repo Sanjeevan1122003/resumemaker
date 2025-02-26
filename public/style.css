@@ -1034,7 +1034,7 @@ body {
 
 .user-details-container{
     height: 640px;
-    width: 650px;
+    width: 800px;
     box-shadow: 10px 8px 20px #3f3e3ec3;
     padding: 30px;
     border-radius: 20px;
@@ -1072,22 +1072,27 @@ body {
 .details-form label{
     font-size: 16px;
     font-weight: 600;
-    color: #494848;
+    color: #000000;
     margin-top: 10px;
 }
 .details-form input{
     padding: 10px 5px;
     border-radius: 5px;
     border:2px solid #000000;
+    color: #000000;
+    font-weight: 600;
 }
 .details-form input::placeholder{
-    color: #494848;
+    color: #5b5b5b;
 }
 .details-form select{
     padding: 10px 5px;
     border-radius: 5px;
     border:2px solid #000000;
+    color: #000000;
+    font-weight: 600;
 }
+
 .button-contianer{
     margin-top: 30px;
     width: 100%;
@@ -1109,72 +1114,73 @@ body {
     border: 3px solid #000000;
     font-weight: 800;
 }
-.resume-preview{
-    margin-top: 20px;
-    margin-left: 40px;
-    height: 600px;
-    width: 400px;
-    padding-top: 30px;
-   
-    border-radius: 20px;
-    background-color:#ffffff00;
+.dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-header {
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    background-color: #fff;
+    min-height: 30px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border:2px solid #000000;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #000000;
+    background: white;
+    z-index: 1000;
+}
+
+.dropdown-content label {
+    display: block;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.dropdown-content input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 2px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+}
+
+.selected-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    min-height: 20px;
+    color: #000000;
+}
+
+.selected-options span {
+    background-color: #000000;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 14px;
+    display: inline-flex;
     align-items: center;
 }
-.sample-resume{
-    height: 450px;
-    width: 350px;
-    background-color: #ffffff;
-    padding: 5px 10px;
-    border: 3px solid #000000;
-    box-shadow: 10px 8px 20px #3f3e3ec3;
-}
-.sample-resume-name{
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: -3px;
-}
-.sample-resume-details{
-    font-size: 8px;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-.sample-resume-details-head{
-    font-size: 10px;
-    font-weight: 700;
-    margin-bottom: 0;
-}
-.sample-resume-education-container{
-    height:40px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.sample-resume-education-details{
-    display: flex;
-    justify-content: space-between;
-}
-#interDegree {
-    height: 30px;
-    width: 200px; /* Added width for better display */
-    padding: 5px;
-    font-size: 14px;
-    font-weight: 700;
-  }
 
-option:hover{
+.selected-options span .remove {
+    margin-left: 5px;
     cursor: pointer;
-  }
-
-.resume-preview-button{
-    background-color: #000000;
-    color: #ffffff;
-    border: 3px solid #000000;
-    font-weight: 700;
-    padding: 5px 20px;
-    border-radius: 30px;
-    box-shadow: 10px 8px 20px #3f3e3ec3;
+    font-weight: bold;
 }
