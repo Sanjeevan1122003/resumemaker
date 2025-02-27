@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Remove Soft Skill Selection
-    window.removeSoftSelection = function(value) {
+    window.removeSoftSelection = function (value) {
         document.querySelectorAll("#soft-checkbox-list input[type='checkbox']").forEach(checkbox => {
             if (checkbox.value === value) {
                 checkbox.checked = false;
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Remove Technical Skill Selection
-    window.removeTechnicalSelection = function(value) {
+    window.removeTechnicalSelection = function (value) {
         document.querySelectorAll("#technical-checkbox-list input[type='checkbox']").forEach(checkbox => {
             if (checkbox.value === value) {
                 checkbox.checked = false;
@@ -213,3 +213,77 @@ document.addEventListener("DOMContentLoaded", function () {
     window.toggleSoftSkillsDropdown = toggleSoftSkillsDropdown;
     window.toggleTechnicalSkillsDropdown = toggleTechnicalSkillsDropdown;
 });
+
+// Function to update numbers dynamically
+function updateNumbers(containerClass, labelPrefix) {
+    const entries = document.getElementsByClassName(containerClass);
+    for (let i = 0; i < entries.length; i++) {
+        const label = entries[i].querySelector("label");
+        label.innerHTML = `${labelPrefix} ${i + 2}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span>`;
+    }
+}
+
+// Function to add an entry
+function addEntry(buttonId, containerId, containerClass, labelPrefix, templateGenerator) {
+    document.getElementById(buttonId).addEventListener("click", function () {
+        const container = document.getElementById(containerId);
+        const entryCount = container.getElementsByClassName(containerClass).length + 1;
+
+        const entryDiv = document.createElement("div");
+        entryDiv.classList.add(containerClass, "d-flex", "flex-column", "justify-content-start");
+        entryDiv.innerHTML = templateGenerator(entryCount);
+
+        container.appendChild(entryDiv);
+
+        // Update numbers
+        updateNumbers(containerClass, labelPrefix);
+
+        // Add event listener to the remove button
+        entryDiv.querySelector(".submit-button").addEventListener("click", function () {
+            entryDiv.remove();
+            updateNumbers(containerClass, labelPrefix);
+        });
+    });
+}
+
+// Project Section
+addEntry("addProjectButton", "projectsContainer", "project-entry", "Project", (count) => `
+    <label style="font-size: 14px; font-weight: 700; color: black;">Project ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <input type="text" id="projectName${count}" name="projectName${count}" placeholder="Enter your project name" required/><br>
+    <input type="text" id="projectLink${count}" name="projectLink${count}" placeholder="Enter your project link" required/><br>
+    <textarea id="projectDescription${count}" name="projectDescription${count}" placeholder="Enter your project description" required></textarea>
+    <button type="button" class="submit-button">Remove</button>
+`);
+
+// Certificate Section
+addEntry("addCertificateButton", "certificatesContainer", "certificate-entry", "Certificate", (count) => `
+    <label style="font-size: 14px; font-weight: 700; color: black;">Certificate ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <input type="text" id="certificateName${count}" name="certificateName${count}" placeholder="Enter your certificate name" required/><br>
+    <input type="text" id="certificateLink${count}" name="certificateLink${count}" placeholder="Enter your certificate link" required/><br>
+    <textarea id="certificateDescription${count}" name="certificateDescription${count}" placeholder="Enter your certificate description" required></textarea>
+    <button type="button" class="submit-button">Remove</button>
+`);
+
+// Experience Section
+addEntry("addExperienceButton", "experienceContainer", "experience-entry", "Experience", (count) => `
+    <label style="font-size: 14px; font-weight: 700; color: black;">Experience ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <input type="text" id="experienceTitle${count}" name="experienceTitle${count}" placeholder="Enter your experience title" required/><br>
+    <input type="text" id="experienceCompany${count}" name="experienceCompany${count}" placeholder="Enter your experience company name" required/><br>
+    <input type="text" id="experienceJobRole${count}" name="experienceJobRole${count}" placeholder="Enter your experience job role" required/><br>
+    <div class="d-flex flex-row justify-content-start mb-4">
+        <label class="mr-2">Enter Start date:</label>
+        <input type="date" id="experienceStartDate${count}" class="mr-4" name="experienceStartDate${count}" required /><br>
+        <label class="mr-2">Enter End date:</label>
+        <input type="date" id="experienceEndDate${count}" name="experienceEndDate${count}" required /><br>
+    </div>
+    <textarea id="experienceDescription${count}" name="experienceDescription${count}" placeholder="Enter your experience description" required></textarea>
+    <button type="button" class="submit-button">Remove</button>
+`);
+
+// Achievement Section
+addEntry("addAchievementButton", "achievementsContainer", "achievement-entry", "Achievement", (count) => `
+    <label style="font-size: 14px; font-weight: 700; color: black;">Achievement ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <input type="text" id="achievement${count}" name="achievement${count}" placeholder="Enter your achievement" required/><br>
+    <button type="button" class="submit-button">Remove</button>
+`);
+

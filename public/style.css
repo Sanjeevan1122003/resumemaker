@@ -791,11 +791,13 @@ body {
         opacity: 1;
     }
 }
-.dashboard-content{
+
+.dashboard-content {
     overflow-y: scroll;
     height: 100vh;
     flex-grow: 1;
 }
+
 .dashboard-container {
     flex-grow: 1;
     background-color: #ffffff;
@@ -1032,16 +1034,20 @@ body {
     font-weight: 800;
 }
 
-.user-details-container{
-    height: 640px;
-    width: 800px;
-    box-shadow: 10px 8px 20px #3f3e3ec3;
-    padding: 30px;
+.user-details-content {
     border-radius: 20px;
+    box-shadow: 10px 8px 20px #3f3e3ec3;
+}
+
+.user-details-container {
+    height: 600px;
+    width: 800px;
+    padding: 0px 20px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
+
 .user-details-container::-webkit-scrollbar {
     margin-left: -40px;
     width: 10px;
@@ -1065,41 +1071,55 @@ body {
 }
 
 
-.details-form{
+.details-form {
     display: flex;
     flex-direction: column;
 }
-.details-form label{
+
+.details-form label {
     font-size: 16px;
     font-weight: 600;
     color: #000000;
     margin-top: 10px;
 }
-.details-form input{
+
+.details-form input {
     padding: 10px 5px;
     border-radius: 5px;
-    border:2px solid #000000;
-    color: #000000;
-    font-weight: 600;
-}
-.details-form input::placeholder{
-    color: #5b5b5b;
-}
-.details-form select{
-    padding: 10px 5px;
-    border-radius: 5px;
-    border:2px solid #000000;
+    border: 2px solid #000000;
     color: #000000;
     font-weight: 600;
 }
 
-.button-contianer{
+.details-form input::placeholder {
+    color: #5b5b5b;
+}
+
+.details-form select {
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: 600;
+}
+
+.details-form textarea {
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.button-contianer {
     margin-top: 30px;
     width: 100%;
     display: flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
 }
-.submit-button{
+
+.submit-button {
     margin-top: 20px;
     background-color: #000000;
     color: #ffffff;
@@ -1108,12 +1128,14 @@ body {
     border-radius: 30px;
     border: 2px solid #000000;
 }
-.submit-button:hover{
+
+.submit-button:hover {
     background-color: #ffffff;
     color: #000000;
     border: 3px solid #000000;
     font-weight: 800;
 }
+
 .dropdown-container {
     position: relative;
     width: 100%;
@@ -1130,7 +1152,7 @@ body {
     align-items: center;
     padding: 10px 5px;
     border-radius: 5px;
-    border:2px solid #000000;
+    border: 2px solid #000000;
 }
 
 .dropdown-content {
