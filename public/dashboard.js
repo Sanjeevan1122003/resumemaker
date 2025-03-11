@@ -227,7 +227,7 @@ function updateNumbers(containerClass, labelPrefix) {
 function addEntry(buttonId, containerId, containerClass, labelPrefix, templateGenerator) {
     document.getElementById(buttonId).addEventListener("click", function () {
         const container = document.getElementById(containerId);
-        const entryCount = container.getElementsByClassName(containerClass).length + 1;
+        const entryCount = container.getElementsByClassName(containerClass).length + (1 + 1);
 
         const entryDiv = document.createElement("div");
         entryDiv.classList.add(containerClass, "d-flex", "flex-column", "justify-content-start");
@@ -235,8 +235,8 @@ function addEntry(buttonId, containerId, containerClass, labelPrefix, templateGe
 
         container.appendChild(entryDiv);
 
-        // Update numbers
-        updateNumbers(containerClass, labelPrefix);
+        // Attach input monitoring for checkmark visibility
+        monitorInputs(entryDiv);
 
         // Add event listener to the remove button
         entryDiv.querySelector(".submit-button").addEventListener("click", function () {
@@ -246,9 +246,49 @@ function addEntry(buttonId, containerId, containerClass, labelPrefix, templateGe
     });
 }
 
+function monitorInputs(entryDiv) {
+    const inputs = entryDiv.querySelectorAll("input, textarea");
+
+    // Get the individual checkmark inside this specific entryDiv
+    const checkmark = entryDiv.querySelector("span[id$='Verified']");
+
+    // Find the parent container (Projects, Certificates, etc.)
+    const container = entryDiv.closest(".container"); // Adjust the class if necessary
+    const mainCheckMark = container ? container.querySelector("span[id='projectsVerified']") : null;
+
+    if (checkmark) {
+        checkmark.style.display = "none"; // Hide checkmark initially
+
+        function updateCheckmark() {
+            // Check if all inputs in this entry are filled
+            let allFilled = Array.from(inputs).every(inp => inp.value.trim() !== "");
+            checkmark.style.display = allFilled ? "inline" : "none";
+
+            // Check if all project sections within the container are completed
+            if (mainCheckMark) {
+                const allProjectEntries = container.querySelectorAll(".entry-class"); // Adjust class if necessary
+                const allChecked = Array.from(allProjectEntries).every(entry =>
+                    entry.querySelector("span[id$='Verified']").style.display === "inline"
+                );
+
+                // Show main checkmark only if all projects are verified
+                mainCheckMark.style.display = allChecked ? "inline" : "none";
+            }
+        }
+
+        // Attach event listeners to all inputs
+        inputs.forEach(input => {
+            input.addEventListener("input", updateCheckmark);
+        });
+
+        // Initial check in case inputs are pre-filled
+        updateCheckmark();
+    }
+}
+
 // Project Section
 addEntry("addProjectButton", "projectsContainer", "project-entry", "Project", (count) => `
-    <label style="font-size: 14px; font-weight: 700; color: black;">Project ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <label style="font-size: 14px; font-weight: 700; color: black;">Project ${count}: <span id="project${count}Verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
     <input type="text" id="projectName${count}" name="projectName${count}" placeholder="Enter your project name" required/><br>
     <input type="text" id="projectLink${count}" name="projectLink${count}" placeholder="Enter your project link" required/><br>
     <textarea id="projectDescription${count}" name="projectDescription${count}" placeholder="Enter your project description" required></textarea>
@@ -257,7 +297,7 @@ addEntry("addProjectButton", "projectsContainer", "project-entry", "Project", (c
 
 // Certificate Section
 addEntry("addCertificateButton", "certificatesContainer", "certificate-entry", "Certificate", (count) => `
-    <label style="font-size: 14px; font-weight: 700; color: black;">Certificate ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <label style="font-size: 14px; font-weight: 700; color: black;">Certificate ${count}: <span id="certificate${count}Verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
     <input type="text" id="certificateName${count}" name="certificateName${count}" placeholder="Enter your certificate name" required/><br>
     <input type="text" id="certificateLink${count}" name="certificateLink${count}" placeholder="Enter your certificate link" required/><br>
     <textarea id="certificateDescription${count}" name="certificateDescription${count}" placeholder="Enter your certificate description" required></textarea>
@@ -266,7 +306,7 @@ addEntry("addCertificateButton", "certificatesContainer", "certificate-entry", "
 
 // Experience Section
 addEntry("addExperienceButton", "experienceContainer", "experience-entry", "Experience", (count) => `
-    <label style="font-size: 14px; font-weight: 700; color: black;">Experience ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <label style="font-size: 14px; font-weight: 700; color: black;">Experience ${count}: <span id="experience${count}Verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
     <input type="text" id="experienceTitle${count}" name="experienceTitle${count}" placeholder="Enter your experience title" required/><br>
     <input type="text" id="experienceCompany${count}" name="experienceCompany${count}" placeholder="Enter your experience company name" required/><br>
     <input type="text" id="experienceJobRole${count}" name="experienceJobRole${count}" placeholder="Enter your experience job role" required/><br>
@@ -282,8 +322,267 @@ addEntry("addExperienceButton", "experienceContainer", "experience-entry", "Expe
 
 // Achievement Section
 addEntry("addAchievementButton", "achievementsContainer", "achievement-entry", "Achievement", (count) => `
-    <label style="font-size: 14px; font-weight: 700; color: black;">Achievement ${count}: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+    <label style="font-size: 14px; font-weight: 700; color: black;">Achievement ${count}: <span id="achievement${count}Verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
     <input type="text" id="achievement${count}" name="achievement${count}" placeholder="Enter your achievement" required/><br>
     <button type="button" class="submit-button">Remove</button>
 `);
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const fields = [
+        { inputId: "fullname", spanId: "fullnameVerified" },
+        { inputId: "phonenumber", spanId: "phoneVerified" },
+        { inputId: "email", spanId: "emailVerified" },
+        { inputId: "jobrole", spanId: "jobRoleVerified" },
+        { inputId: "schoolname", spanId: "schoolVerified" },
+        { inputId: "schoolMarks", spanId: "schoolMarksVerified" },
+        { inputId: "schoolYear", spanId: "schoolYearVerified" },
+        { inputId: "intermediateName", spanId: "intermediateVerified" },
+        { inputId: "interDegree", spanId: "interDegreeVerified" },
+        { inputId: "interCourse", spanId: "interCourseVerified" },
+        { inputId: "interMarks", spanId: "interMarksVerified" },
+        { inputId: "interYear", spanId: "interYearVerified" },
+        { inputId: "collegeName", spanId: "collegeNameVerified" },
+        { inputId: "collegeDegree", spanId: "collegeDegreeVerified" },
+        { inputId: "collegeCourse", spanId: "collegeCourseVerified" },
+        { inputId: "collegeMarks", spanId: "collegeMarksVerified" },
+        { inputId: "collegeYear", spanId: "collegeYearVerified" },
+        { inputId: "linkedinLink", spanId: "linkedinLinkVerified" }
+    ];
+
+    let typingTimers = {};
+    const typingDelay = 500;
+
+    // Function to handle text-based input fields
+    fields.forEach(field => {
+        let inputElement = document.getElementById(field.inputId);
+        let spanElement = document.getElementById(field.spanId);
+
+        if (inputElement && spanElement) {
+            spanElement.style.display = "none"; // Initially hidden
+
+            inputElement.addEventListener("input", function () {
+                spanElement.style.display = "none";
+                clearTimeout(typingTimers[field.inputId]);
+
+                typingTimers[field.inputId] = setTimeout(() => {
+                    if (inputElement.value.trim() !== "") {
+                        spanElement.style.display = "inline";
+                    }
+                }, typingDelay);
+            });
+        }
+    });
+
+    // Function to monitor skill divs for changes
+    function monitorSkillDivs(divId) {
+        let divElement = document.getElementById(divId);
+        let spanElement = document.getElementById(`${divId}Verified`);
+
+        if (divElement && spanElement) {
+            spanElement.style.display = "none"; // Initially hidden
+
+            const observer = new MutationObserver(() => {
+                if (divElement.children.length > 0) {
+                    spanElement.style.display = "inline"; // Show checkmark if at least one skill exists
+                } else {
+                    spanElement.style.display = "none"; // Hide checkmark if empty
+                }
+            });
+
+            observer.observe(divElement, { childList: true, subtree: true });
+        }
+    }
+
+    // Monitor the soft skills and technical skills divs
+    monitorSkillDivs("softSkills");
+    monitorSkillDivs("technicalSkills");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function updateVerificationStatus(containerId, verificationId) {
+        const container = document.getElementById(containerId);
+        const verificationSpan = document.getElementById(verificationId);
+
+        if (!container || !verificationSpan) return;
+
+        const inputs = container.querySelectorAll("input, textarea");
+
+        function checkInputs() {
+            let isFilled = Array.from(inputs).some(input => input.value.trim() !== "");
+            verificationSpan.style.display = isFilled ? "inline" : "none";
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener("input", checkInputs);
+        });
+
+        checkInputs(); // Initial check in case of pre-filled values
+    }
+
+    updateVerificationStatus("projectsContainer", "projectsVerified");
+    updateVerificationStatus("certificatesContainer", "certificatesVerified");
+    updateVerificationStatus("experienceContainer", "experienceVerified");
+    updateVerificationStatus("achievementsContainer", "achievementsVerified");
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function monitorInputs(entryDiv, mainCheckmarkId) {
+        const inputs = entryDiv.querySelectorAll("input, textarea");
+        const checkmark = entryDiv.querySelector("span[id$='Verified']"); // Specific checkmark for the entry
+        const mainCheckmark = document.getElementById(mainCheckmarkId); // Main checkmark
+
+        if (checkmark) {
+            checkmark.style.display = "none"; // Hide checkmark initially
+
+            // Function to check if all inputs are filled
+            function updateCheckmark() {
+                let allFilled = Array.from(inputs).every(inp => inp.value.trim() !== "");
+                checkmark.style.display = allFilled ? "inline" : "none";
+
+                // Check if all project sections inside the main container are completed
+                const allProjectCheckmarks = document.querySelectorAll("#projectsContainer span[id$='Verified']");
+                let allProjectsFilled = Array.from(allProjectCheckmarks).every(span => span.style.display === "inline");
+
+                // Show the main projects checkmark only if all project checkmarks are visible
+                if (mainCheckmark) {
+                    mainCheckmark.style.display = allProjectsFilled ? "inline" : "none";
+                }
+            }
+
+            // Attach event listeners to all inputs
+            inputs.forEach(input => {
+                input.addEventListener("input", updateCheckmark);
+            });
+
+            // Initial check in case inputs are pre-filled
+            updateCheckmark();
+        }
+    }
+
+    // Monitor each individual project entry
+    document.querySelectorAll("#projectsContainer > label").forEach(projectEntry => {
+        monitorInputs(projectEntry.parentElement, "projectsVerified");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function monitorInputs(entryDiv, mainCheckmarkId) {
+        const inputs = entryDiv.querySelectorAll("input, textarea");
+        const checkmark = entryDiv.querySelector("span[id$='Verified']"); // Specific checkmark for the entry
+        const mainCheckmark = document.getElementById(mainCheckmarkId); // Main checkmark
+
+        if (checkmark) {
+            checkmark.style.display = "none"; // Hide checkmark initially
+
+            // Function to check if all inputs are filled
+            function updateCheckmark() {
+                let allFilled = Array.from(inputs).every(inp => inp.value.trim() !== "");
+                checkmark.style.display = allFilled ? "inline" : "none";
+
+                // Check if all project sections inside the main container are completed
+                const allProjectCheckmarks = document.querySelectorAll("#certificatesContainer span[id$='Verified']");
+                let allProjectsFilled = Array.from(allProjectCheckmarks).every(span => span.style.display === "inline");
+
+                // Show the main projects checkmark only if all project checkmarks are visible
+                if (mainCheckmark) {
+                    mainCheckmark.style.display = allProjectsFilled ? "inline" : "none";
+                }
+            }
+
+            // Attach event listeners to all inputs
+            inputs.forEach(input => {
+                input.addEventListener("input", updateCheckmark);
+            });
+
+            // Initial check in case inputs are pre-filled
+            updateCheckmark();
+        }
+    }
+
+    // Monitor each individual project entry
+    document.querySelectorAll("#certificatesContainer > label").forEach(projectEntry => {
+        monitorInputs(projectEntry.parentElement, "certificatesVerified");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function monitorInputs(entryDiv, mainCheckmarkId) {
+        const inputs = entryDiv.querySelectorAll("input, textarea");
+        const checkmark = entryDiv.querySelector("span[id$='Verified']"); // Specific checkmark for the entry
+        const mainCheckmark = document.getElementById(mainCheckmarkId); // Main checkmark
+
+        if (checkmark) {
+            checkmark.style.display = "none"; // Hide checkmark initially
+
+            // Function to check if all inputs are filled
+            function updateCheckmark() {
+                let allFilled = Array.from(inputs).every(inp => inp.value.trim() !== "");
+                checkmark.style.display = allFilled ? "inline" : "none";
+
+                // Check if all project sections inside the main container are completed
+                const allProjectCheckmarks = document.querySelectorAll("#experienceContainer span[id$='Verified']");
+                let allProjectsFilled = Array.from(allProjectCheckmarks).every(span => span.style.display === "inline");
+
+                // Show the main projects checkmark only if all project checkmarks are visible
+                if (mainCheckmark) {
+                    mainCheckmark.style.display = allProjectsFilled ? "inline" : "none";
+                }
+            }
+
+            // Attach event listeners to all inputs
+            inputs.forEach(input => {
+                input.addEventListener("input", updateCheckmark);
+            });
+
+            // Initial check in case inputs are pre-filled
+            updateCheckmark();
+        }
+    }
+
+    // Monitor each individual project entry
+    document.querySelectorAll("#experienceContainer > label").forEach(projectEntry => {
+        monitorInputs(projectEntry.parentElement, "experienceVerified");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    function monitorInputs(entryDiv, mainCheckmarkId) {
+        const inputs = entryDiv.querySelectorAll("input, textarea");
+        const checkmark = entryDiv.querySelector("span[id$='Verified']"); // Specific checkmark for the entry
+        const mainCheckmark = document.getElementById(mainCheckmarkId); // Main checkmark
+
+        if (checkmark) {
+            checkmark.style.display = "none"; // Hide checkmark initially
+
+            // Function to check if all inputs are filled
+            function updateCheckmark() {
+                let allFilled = Array.from(inputs).every(inp => inp.value.trim() !== "");
+                checkmark.style.display = allFilled ? "inline" : "none";
+
+                // Check if all project sections inside the main container are completed
+                const allProjectCheckmarks = document.querySelectorAll("#achievementsContainer span[id$='Verified']");
+                let allProjectsFilled = Array.from(allProjectCheckmarks).every(span => span.style.display === "inline");
+
+                // Show the main projects checkmark only if all project checkmarks are visible
+                if (mainCheckmark) {
+                    mainCheckmark.style.display = allProjectsFilled ? "inline" : "none";
+                }
+            }
+
+            // Attach event listeners to all inputs
+            inputs.forEach(input => {
+                input.addEventListener("input", updateCheckmark);
+            });
+
+            // Initial check in case inputs are pre-filled
+            updateCheckmark();
+        }
+    }
+
+    // Monitor each individual project entry
+    document.querySelectorAll("#achievementsContainer > label").forEach(projectEntry => {
+        monitorInputs(projectEntry.parentElement, "achievementsVerified");
+    });
+});
 

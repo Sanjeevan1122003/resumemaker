@@ -119,23 +119,24 @@
                             <div class="pl-2 pt-4 pb-4 user-details-content">
                                 <div class="user-details-container">
                                     <form class="details-form">
-                                        <label for="fullname" style="margin-top: -4px;">Full name: <span id="verified"><i
+                                        <label for="fullname" style="margin-top: -4px;">Full name: <span id="fullnameVerified"><i
                                                     class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34); display: none;"></i></span></label>
+                                                    style="color: rgb(34, 203, 34); "></i></span></label>
                                         <input type="text" id="fullname" name="fullname" placeholder="Enter your full name"
                                             required />
-                                        <label for="phonenumber">Phone Number: <span id="verified"><i
+                                        <label for="phonenumber">Phone Number: <span id="phoneVerified"><i
                                                     class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <input type="tel" id="phonenumber" name="phonenumber"
                                             placeholder="Enter your phone number" required />
-                                        <label for="email">Email: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                        <label for="email">Email: <span id="emailVerified"><i class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <input type="email" id="email" name="email" placeholder="Enter your email"
                                             required />
-                                        <label for="job-role">Select Job Role: <i class="fa-solid fa-thumbs-up"
-                                                style="color: rgb(34, 203, 34);"></i> </label>
-                                        <select id="job-role" name="job-role">
+                                        <label for="jobrole">Select Job Role:<span id="jobRoleVerified"><i
+                                            class="fa-solid fa-thumbs-up"
+                                            style="color: rgb(34, 203, 34);"></i></span> </label>
+                                        <select id="jobrole" name="job-role">
                                             <option value="" disabled selected>Select a role</option>
                                             <option value="frontend">Frontend Developer</option>
                                             <option value="backend">Backend Developer</option>
@@ -146,21 +147,21 @@
                                             <option value="devops">DevOps Engineer</option>
                                             <option value="data">Data Analyst</option>
                                         </select>
-                                        <label for="schoolname">School Name: <span id="verified"><i
+                                        <label for="schoolname">School Name: <span id="schoolVerified"><i
                                                     class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <input type="text" id="schoolname" name="schoolname"
                                             placeholder="Enter your school name" required />
                                         <div class="d-flex flex-row justify-content-start">
                                             <div class="d-flex flex-column justify-content-start">
-                                                <label for="schoolMarks">Marks: <span id="verified"><i
+                                                <label for="schoolMarks">Marks: <span id="schoolMarksVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="number" id="schoolMarks" name="marks"
                                                     placeholder="Enter your marks" style="height: 30px;" required />
                                             </div>
                                             <div class="d-flex flex-column justify-content-start ml-2">
-                                                <label for="schoolYear">Year (completed): <span id="verified"><i
+                                                <label for="schoolYear">Year (completed): <span id="schoolYearVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="number" id="schoolYear" name="year" min="1980" max="2060"
@@ -169,13 +170,13 @@
                                         </div>
                                         <label for="intermediateName" style="margin-top: 10px;">Intermediate/Diploma College
                                             Name:
-                                            <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                            <span id="intermediateVerified"><i class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <input type="text" id="intermediateName" name="intermediateName"
                                             placeholder="Enter your institute name" required />
                                         <div class="d-flex flex-row justify-content-start">
                                             <div class="d-flex flex-column justify-content-start" style="width:  250px;">
-                                                <label for="interDegree">Degree: <span id="verified"><i
+                                                <label for="interDegree">Degree: <span id="interDegreeVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <select id="interDegree"
@@ -188,7 +189,7 @@
                                             </div>
                                             <div class="d-flex flex-column justify-content-start"
                                                 style="width: 150px; margin-left: 10px;">
-                                                <label for="interCourse">Course: <span id="verified"><i
+                                                <label for="interCourse">Course: <span id="interCourseVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="text" id="interCourse" name="intercourse"
@@ -197,14 +198,14 @@
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
                                             <div class="d-flex flex-column justify-content-start">
-                                                <label for="interMarks">Marks: <span id="verified"><i
+                                                <label for="interMarks">Marks: <span id="interMarksVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="number" id="interMarks" name="intermarks"
                                                     placeholder="Enter your marks" style="height: 30px;" required />
                                             </div>
                                             <div class="d-flex flex-column justify-content-start ml-2">
-                                                <label for="interYear">Year (completed): <span id="verified"><i
+                                                <label for="interYear">Year (completed): <span id="interYearVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="number" id="interYear" name="year" min="1980" max="2060"
@@ -213,13 +214,13 @@
                                         </div>
     
                                         <label for="collegeName" style="margin-top: 10px;">College Name:
-                                            <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                            <span id="collegeNameVerified"><i class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <input type="text" id="collegeName" name="collegeName"
                                             placeholder="Enter your institute name" required />
                                         <div class="d-flex flex-row justify-content-start">
                                             <div class="d-flex flex-column justify-content-start" style="width: 250px;">
-                                                <label for="collegeDegree">Degree: <span id="verified"><i
+                                                <label for="collegeDegree">Degree: <span id="collegeDegreeVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <select id="collegeDegree"
@@ -248,7 +249,7 @@
                                             </div>
                                             <div class="d-flex flex-column justify-content-start"
                                                 style="width: 150px; margin-left: 10px;">
-                                                <label for="collegeCourse">Course: <span id="verified"><i
+                                                <label for="collegeCourse">Course: <span id="collegeCourseVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="text" id="collegeCourse" name="collegecourse"
@@ -257,26 +258,26 @@
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
                                             <div class="d-flex flex-column justify-content-start">
-                                                <label for="collegeMarks">Marks: <span id="verified"><i
+                                                <label for="collegeMarks">Marks: <span id="collegeMarksVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="number" id="collegeMarks" name="marks"
                                                     placeholder="Enter your marks" style="height: 30px;" required />
                                             </div>
                                             <div class="d-flex flex-column justify-content-start ml-2">
-                                                <label for="collegeYear">Year (completed): <span id="verified"><i
+                                                <label for="collegeYear">Year (completed): <span id="collegeYearVerified"><i
                                                             class="fa-solid fa-thumbs-up"
                                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                                 <input type="number" id="collegeYear" name="year" min="1980" max="2060"
                                                     step="1" placeholder="YYYY" style="height: 30px;" required />
                                             </div>
                                         </div>
-                                        <label for="softSkills">Soft skills: <span id="verified"><i
+                                        <label for="softSkills">Soft skills: <span id="softSkillsVerified"><i
                                                     class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <div class="dropdown-container soft-dropdown-container">
                                             <div class="dropdown-header" onclick="toggleSoftSkillsDropdown()">
-                                                <div class="selected-options soft-selected-options">Select Soft Skills</div>
+                                                <div class="selected-options soft-selected-options" id="softSkills">Select Soft Skills</div>
                                             </div>
                                             <div class="dropdown-content soft-skills-dropdown">
                                                 <input type="text" class="search-box soft-skills-search"
@@ -313,13 +314,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <label for="technicalSkills">Technical Skills: <span id="verified"><i
+                                        <label for="technicalSkills">Technical Skills: <span id="technicalSkillsVerified"><i
                                                     class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <div class="dropdown-container technical-dropdown-container">
                                             <div class="dropdown-header" onclick="toggleTechnicalSkillsDropdown()">
-                                                <div class="selected-options technical-selected-options">Select Technical
-                                                    Skills</div>
+                                                <div class="selected-options technical-selected-options" id="technicalSkills">Select Technical Skills</div>
                                             </div>
                                             <div class="dropdown-content technical-skills-dropdown">
                                                 <input type="text" class="search-box technical-skills-search"
@@ -410,15 +410,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <label for="linkdeinLink">Linkedin link: <span id="verified"><i
+                                        <label for="linkdeinLink">Linkedin link: <span id="linkedinLinkVerified"><i
                                                     class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <input type="text" id="linkedinLink" name="linkedinLink"
                                             placeholder="Enter your linkedin link" required />
-                                        <label for="projects">Projects: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                        <label for="projects">Projects: <span id="projectsVerified"><i class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <div id="projectsContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Project1: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                            <label style="font-size: 14px; font-weight: 700; color: black;">Project1: <span id="project1Verified"><i class="fa-solid fa-thumbs-up"
                                                         style="color: rgb(34, 203, 34);"></i></span></label>
                                             <input type="text" id="projectName1" name="projectName"
                                                 placeholder="Enter your project name" required /><br>
@@ -429,26 +429,26 @@
                                         </div>
                                         <button type="button" id="addProjectButton" class="submit-button">Add
                                             Project</button>
-                                        <label for="cretificates">Cerficates: <span id="verified"><i
+                                        <label for="cretificates">Cerficates: <span id="certificatesVerified"><i
                                                     class="fa-solid fa-thumbs-up"
                                                     style="color: rgb(34, 203, 34);"></i></span></label>
                                         <div id="certificatesContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Certificate1: <span id="verified"><i class="fa-solid fa-thumbs-up"
+                                            <label style="font-size: 14px; font-weight: 700; color: black;">Certificate1: <span id="certificate1Verified"><i class="fa-solid fa-thumbs-up"
                                                         style="color: rgb(34, 203, 34);"></i></span></label>
                                             <input type="text" id="certificateName1" name="certificateName"
                                                 placeholder="Enter your certificate name" required /><br>
                                             <input type="text" id="certificateLink1" name="certificateLink"
-                                                placeholder="Enter your certificate link" required /><br>
+                                                placeholder="Enter your certificate link(google drive link)" required /><br>
                                             <textarea id="certificateDescription1" name="certificateDescription"
                                                 placeholder="Enter your certificate description" required></textarea>
                                         </div>
                                         <button type="button" id="addCertificateButton" class="submit-button">Add
                                             certificate</button>
-                                        <label for="experince">Experince(job): <span id="verified"><i
+                                        <label for="experince">Experince(job): <span id="experienceVerified"><i
                                             class="fa-solid fa-thumbs-up"
                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                         <div id="experienceContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Experience1: <span id="verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <label style="font-size: 14px; font-weight: 700; color: black;">Experience1: <span id="experience1Verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
                                             <input type="text" id="experienceTitle1" name="experienceTitle" placeholder="Enter your experience title" required /><br>
                                             <input type="text" id="experienceCompany1" name="experienceCompany" placeholder="Enter your experience company name" required /><br>
                                             <input type="text" id="experienceJobRole1" name="experienceJobRole" placeholder="Enter your experience job role" required /><br>
@@ -461,11 +461,11 @@
                                             <textarea id="experienceDescription1" name="experienceDescription" placeholder="Enter your experience description" required></textarea>
                                         </div>
                                         <button type="button" id="addExperienceButton" class="submit-button">Add Experience</button>
-                                        <label for="achievement">Achievements: <span id="verified"><i
+                                        <label for="achievement">Achievements: <span id="achievementsVerified"><i
                                             class="fa-solid fa-thumbs-up"
                                             style="color: rgb(34, 203, 34);"></i></span></label>
                                         <div id="achievementsContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Achievement1: <span id="verified"><i
+                                            <label style="font-size: 14px; font-weight: 700; color: black;">Achievement1: <span id="achievement1Verified"><i
                                                 class="fa-solid fa-thumbs-up"
                                                 style="color: rgb(34, 203, 34);"></i></span></label>
                                             <input type="text" id="achievement1" name="achievement1" placeholder="Enter your achievement" required/>
