@@ -61,7 +61,7 @@ app.post("/usersignup/", async (req, res) => {
   const { firstname, secondname, username, gender, email, password } = req.body;
   const hashedPassword = await argon2.hash(password);
 
-  const checkQuery = "SELECT * FROM users_credentials WHERE email = $2";
+  const checkQuery = "SELECT * FROM users_credentials WHERE email = $1";
   db.query(checkQuery, [email], (err, results) => {
     if (err) {
       console.error("Error checking existing user:", err);
