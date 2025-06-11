@@ -47,7 +47,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
     const modal = document.getElementById("loginModal");
     const spinner = document.getElementById("spinner");
-    const modalMessage = document.getElementById("modalMessage");
+    const modalMessage = document.getElementById("my-modalMessage");
 
     // Show modal + spinner, clear message
     modal.style.display = "block";
@@ -81,7 +81,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 });
 
 function showModal(type, message) {
-    const modalMessage = document.getElementById("modalMessage");
+    const modalMessage = document.getElementById("my-modalMessage");
     const modalButton = document.getElementById("signUpbutton");
 
 
