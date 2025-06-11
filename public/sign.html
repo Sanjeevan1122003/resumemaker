@@ -45,7 +45,7 @@
                 </div>
                 <div class="sign-card-from">
                     <p class="signup-card-from-tittle">Sign Up</p>
-                    <form id="signupForm" class="signup-form" method="post" action="/usersignup/"
+                    <form id="signupForm" class="signup-form" method="post" action="/usersignup"
                         enctype="application/x-www-form-urlencoded">
                         <div class="signup-card-from-name-container">
                             <input type="text" id="firstName" name="firstname" placeholder="First Name"
@@ -75,6 +75,13 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div id="signupModal" class="my-modal">
+            <div class="my-modal-content">
+                <div id="signupSpinner" class="spinner" style="display: none;"></div>
+                <p id="signupModalMessage"></p>
+                <a href="/login" class="signup-card-button btn" id="loginBtn" style="display: none; height: auto; padding: 3px;">Login</a>
             </div>
         </div>
     </div>

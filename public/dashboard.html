@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/9af4e0e813.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Maker</title>
@@ -16,6 +17,10 @@
 
 <body>
     <div id="sectionDashboard">
+        <div class="mobile-container">
+            <h5>This site won't work in the small devices <br>
+                so please use Laptop Or Computer 🤗</h5>
+        </div>
         <div class="dashboard">
             <div class="dashboard-menu-container">
                 <div class="dashboard-menu">
@@ -89,9 +94,8 @@
                                     <p class="generate-resume-container-description">We’ll help you create a new resume
                                         from
                                         scratch to pro.</p>
-                                    <!-- <a href="/generate/" class="generate-resume-container-button">Generate</a> -->
                                     <button class="generate-resume-container-button"
-                                        onclick="display('sectionLoader')">Generate</button>
+                                        onclick="display('sectionLoader1')">Generate</button>
                                 </div>
                                 <div class="generate-resume-container">
                                     <p class="generate-resume-container-tittle">Upload your resume</p>
@@ -112,370 +116,413 @@
                     </div>
                 </div>
                 <div id="sectionGenerateResume" class="dashboard-container" style="display: none;">
-                <!-- <div id="sectionGenerateResume" class="dashboard-container"> -->
+                    <!-- <div id="sectionGenerateResume" class="dashboard-container"> -->
                     <div class="create-resume-container">
                         <p class="create-resume-container-tittle">Enter your details</p>
                         <div class="d-flex flex-row justify-content-center">
                             <div class="pl-2 pt-4 pb-4 user-details-content">
                                 <div class="user-details-container">
-                                    <form class="details-form">
-                                        <label for="fullname" style="margin-top: -4px;">Full name: <span id="fullnameVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34); "></i></span></label>
-                                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name"
-                                            required />
-                                        <label for="phonenumber">Phone Number: <span id="phoneVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                    <form class="details-form" id="detailsFrom">
+                                        <label for="fullname" style="margin-top: -4px;">Full name<span
+                                                style="color:red;">*</span>:</label>
+                                        <input type="text" id="fullname" name="fullname"
+                                            placeholder="Enter your full name" required />
+                                        <label for="phonenumber">Phone Number<span style="color:red;">*</span>:</label>
                                         <input type="tel" id="phonenumber" name="phonenumber"
                                             placeholder="Enter your phone number" required />
-                                        <label for="email">Email: <span id="emailVerified"><i class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                        <label for="email">Email<span style="color:red;">*</span>:</label>
                                         <input type="email" id="email" name="email" placeholder="Enter your email"
                                             required />
-                                        <label for="jobrole">Select Job Role:<span id="jobRoleVerified"><i
-                                            class="fa-solid fa-thumbs-up"
-                                            style="color: rgb(34, 203, 34);"></i></span> </label>
-                                        <select id="jobrole" name="job-role">
-                                            <option value="" disabled selected>Select a role</option>
-                                            <option value="frontend">Frontend Developer</option>
-                                            <option value="backend">Backend Developer</option>
-                                            <option value="fullstack">Full Stack Developer</option>
-                                            <option value="designer">UI/UX Designer</option>
-                                            <option value="qa">QA Engineer</option>
-                                            <option value="pm">Project Manager</option>
-                                            <option value="devops">DevOps Engineer</option>
-                                            <option value="data">Data Analyst</option>
-                                        </select>
-                                        <label for="schoolname">School Name: <span id="schoolVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                        <label for="jobrole">Job Role<span style="color:red;">*</span>:</label>
+                                        <div class="search-wrapper dropdown" style="width: 100%;">
+                                            <input type="text" id="jobrole" placeholder="Search for job role"
+                                                autocomplete="off" required />
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <div id="jobroleDropdown"></div>
+                                        </div>
+                                        <label for="schoolname">School Name<span style="color:red;">*</span>:</label>
                                         <input type="text" id="schoolname" name="schoolname"
                                             placeholder="Enter your school name" required />
+                                        <label for="schoolDegree">SSC/CBSE<span style="color:red;">*</span>:</label>
+                                        <select id="schoolDegree"
+                                            style="height: 30px; width: 100%; padding: 2px; font-size: 14px;"
+                                            name="schoolDegree">
+                                            <option value="" disabled selected>Select SSC/CBSE</option>
+                                            <option value="Secondary School Certificate (SSC)">SSC</option>
+                                            <option value="Central Board of Secondary Education (CBSE)">CBSE</option>
+                                        </select>
                                         <div class="d-flex flex-row justify-content-start">
-                                            <div class="d-flex flex-column justify-content-start">
-                                                <label for="schoolMarks">Marks: <span id="schoolMarksVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                                <input type="number" id="schoolMarks" name="marks"
+                                            <div class="d-flex flex-column justify-content-start mr-4">
+                                                <label for="schoolMarks">Score (mention CGPA/Marks)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="schoolMarks" name="schoolMarks"
                                                     placeholder="Enter your marks" style="height: 30px;" required />
                                             </div>
-                                            <div class="d-flex flex-column justify-content-start ml-2">
-                                                <label for="schoolYear">Year (completed): <span id="schoolYearVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                                <input type="number" id="schoolYear" name="year" min="1980" max="2060"
-                                                    step="1" placeholder="YYYY" style="height: 30px;" required />
+                                            <div class="d-flex flex-column justify-content-start ml-4">
+                                                <label for="schoolYear">Year (completed)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="number" id="schoolYear" name="schoolYear" min="1980"
+                                                    max="2060" step="1" placeholder="YYYY" style="height: 30px;"
+                                                    required />
                                             </div>
                                         </div>
-                                        <label for="intermediateName" style="margin-top: 10px;">Intermediate/Diploma College
-                                            Name:
-                                            <span id="intermediateVerified"><i class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                        <label for="intermediateName" style="margin-top: 10px;">Intermediate/Diploma
+                                            College
+                                            Name<span style="color:red;">*</span>:</label>
                                         <input type="text" id="intermediateName" name="intermediateName"
                                             placeholder="Enter your institute name" required />
                                         <div class="d-flex flex-row justify-content-start">
-                                            <div class="d-flex flex-column justify-content-start" style="width:  250px;">
-                                                <label for="interDegree">Degree: <span id="interDegreeVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
+                                            <div class="d-flex flex-column justify-content-start"
+                                                style="width:  250px;">
+                                                <label for="interDegree">Degree<span
+                                                        style="color:red;">*</span>:</label>
                                                 <select id="interDegree"
                                                     style="height: 30px; width: 100%; padding: 2px; font-size: 14px;"
                                                     name="interDegree">
                                                     <option value="" disabled selected>Select Your Degree</option>
-                                                    <option value="intermediate">Intermediate</option>
-                                                    <option value="diploma">Diploma</option>
+                                                    <option value="Intermediate">Intermediate</option>
+                                                    <option value="Diploma">Diploma</option>
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column justify-content-start"
                                                 style="width: 150px; margin-left: 10px;">
-                                                <label for="interCourse">Course: <span id="interCourseVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
+                                                <label for="interCourse">Course<span
+                                                        style="color:red;">*</span>:</label>
                                                 <input type="text" id="interCourse" name="intercourse"
                                                     placeholder=" Enter your Course" style="height: 30px;" required />
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
-                                            <div class="d-flex flex-column justify-content-start">
-                                                <label for="interMarks">Marks: <span id="interMarksVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                                <input type="number" id="interMarks" name="intermarks"
+                                            <div class="d-flex flex-column justify-content-start mr-4">
+                                                <label for="interMarks">Score (mention CGPA/Marks)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="interMarks" name="intermarks"
                                                     placeholder="Enter your marks" style="height: 30px;" required />
                                             </div>
-                                            <div class="d-flex flex-column justify-content-start ml-2">
-                                                <label for="interYear">Year (completed): <span id="interYearVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                                <input type="number" id="interYear" name="year" min="1980" max="2060"
-                                                    step="1" placeholder="YYYY" style="height: 30px;" required />
+                                            <div class="d-flex flex-column justify-content-start ml-4">
+                                                <label for="interYear">Year (completed)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="number" id="interYear" name="interYear" min="1980"
+                                                    max="2060" step="1" placeholder="YYYY" style="height: 30px;"
+                                                    required />
                                             </div>
                                         </div>
-    
-                                        <label for="collegeName" style="margin-top: 10px;">College Name:
-                                            <span id="collegeNameVerified"><i class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+
+                                        <label for="collegeName" style="margin-top: 10px;">College Name<span
+                                                style="color:red;">*</span>:</label>
                                         <input type="text" id="collegeName" name="collegeName"
                                             placeholder="Enter your institute name" required />
                                         <div class="d-flex flex-row justify-content-start">
                                             <div class="d-flex flex-column justify-content-start" style="width: 250px;">
-                                                <label for="collegeDegree">Degree: <span id="collegeDegreeVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
+                                                <label for="collegeDegree">Degree<span
+                                                        style="color:red;">*</span>:</label>
                                                 <select id="collegeDegree"
-                                                    style="height: 30px; width: 100%; padding: 5px; font-size: 14px;"
+                                                    style="height: 30px; width: 100%; padding: 3px; font-size: 14px;"
                                                     name="collegedegree">
                                                     <option value="" disabled selected>Select Your Degree</option>
-                                                    <option value="ba">Bachelor of Arts (BA)</option>
-                                                    <option value="bsc">Bachelor of Science (B.Sc)</option>
-                                                    <option value="bcom">Bachelor of Commerce (B.Com)</option>
-                                                    <option value="bba">Bachelor of Business Administration (BBA)</option>
-                                                    <option value="bca">Bachelor of Computer Applications (BCA)</option>
-                                                    <option value="btech">Bachelor of Technology (B.Tech)</option>
-                                                    <option value="be">Bachelor of Engineering (BE)</option>
-                                                    <option value="llb">Bachelor of Laws (LLB)</option>
-                                                    <option value="bpharm">Bachelor of Pharmacy (B.Pharm)</option>
-                                                    <option value="barch">Bachelor of Architecture (B.Arch)</option>
-                                                    <option value="bds">Bachelor of Dental Surgery (BDS)</option>
-                                                    <option value="mbbs">Bachelor of Medicine, Bachelor of Surgery (MBBS)
+                                                    <option value="BA">Bachelor of Arts (BA)</option>
+                                                    <option value="BSc">Bachelor of Science (BSc)</option>
+                                                    <option value="BCom">Bachelor of Commerce (BCom)</option>
+                                                    <option value="BBA">Bachelor of Business Administration (BBA)
                                                     </option>
-                                                    <option value="bfa">Bachelor of Fine Arts (BFA)</option>
-                                                    <option value="bdes">Bachelor of Design (B.Des)</option>
-                                                    <option value="bhm">Bachelor of Hotel Management (BHM)</option>
-                                                    <option value="bped">Bachelor of Physical Education (B.P.Ed)</option>
-                                                    <option value="bsw">Bachelor of Social Work (BSW)</option>
+                                                    <option value="BCA">Bachelor of Computer Applications (BCA)</option>
+                                                    <option value="BTech">Bachelor of Technology (BTech)</option>
+                                                    <option value="BE">Bachelor of Engineering (BE)</option>
+                                                    <option value="LLB">Bachelor of Laws (LLB)</option>
+                                                    <option value="BPharm">Bachelor of Pharmacy (BPharm)</option>
+                                                    <option value="BArch">Bachelor of Architecture (BArch)</option>
+                                                    <option value="BDS">Bachelor of Dental Surgery (BDS)</option>
+                                                    <option value="MBBS">Bachelor of Medicine, Bachelor of Surgery
+                                                        (MBBS)</option>
+                                                    <option value="BFA">Bachelor of Fine Arts (BFA)</option>
+                                                    <option value="BDes">Bachelor of Design (BDes)</option>
+                                                    <option value="BHM">Bachelor of Hotel Management (BHM)</option>
+                                                    <option value="BPEd">Bachelor of Physical Education (BPEd)
+                                                    </option>
+                                                    <option value="BSW">Bachelor of Social Work (BSW)</option>
+
                                                 </select>
                                             </div>
                                             <div class="d-flex flex-column justify-content-start"
                                                 style="width: 150px; margin-left: 10px;">
-                                                <label for="collegeCourse">Course: <span id="collegeCourseVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
+                                                <label for="collegeCourse">Course<span
+                                                        style="color:red;">*</span>:</label>
                                                 <input type="text" id="collegeCourse" name="collegecourse"
                                                     placeholder=" Enter your Course" style="height: 30px;" required />
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row justify-content-start">
-                                            <div class="d-flex flex-column justify-content-start">
-                                                <label for="collegeMarks">Marks: <span id="collegeMarksVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                                <input type="number" id="collegeMarks" name="marks"
+                                            <div class="d-flex flex-column justify-content-start mr-4">
+                                                <label for="collegeMarks">Score (mention CGPA/Marks)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="collegeMarks" name="collegeMarks"
                                                     placeholder="Enter your marks" style="height: 30px;" required />
                                             </div>
-                                            <div class="d-flex flex-column justify-content-start ml-2">
-                                                <label for="collegeYear">Year (completed): <span id="collegeYearVerified"><i
-                                                            class="fa-solid fa-thumbs-up"
-                                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                                <input type="number" id="collegeYear" name="year" min="1980" max="2060"
-                                                    step="1" placeholder="YYYY" style="height: 30px;" required />
+                                            <div class="d-flex flex-column justify-content-start ml-4">
+                                                <label for="collegeYear">Year (completed)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="number" id="collegeYear" name="collegeYear" min="1980"
+                                                    max="2060" step="1" placeholder="YYYY" style="height: 30px;"
+                                                    required />
                                             </div>
                                         </div>
-                                        <label for="softSkills">Soft skills: <span id="softSkillsVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                        <label for="softSkills">Soft skills<span style="color:red;">*</span>:</label>
                                         <div class="dropdown-container soft-dropdown-container">
                                             <div class="dropdown-header" onclick="toggleSoftSkillsDropdown()">
-                                                <div class="selected-options soft-selected-options" id="softSkills">Select Soft Skills</div>
+                                                <div class="selected-options soft-selected-options" id="softSkills">
+                                                    Select Soft Skills
+                                                </div>
                                             </div>
-                                            <div class="dropdown-content soft-skills-dropdown">
+                                            <div class="dropdown-content soft-skills-dropdown" style="display:none;">
                                                 <input type="text" class="search-box soft-skills-search"
-                                                    onkeyup="filterSoftOptions()" placeholder="Search skills...">
+                                                    onkeyup="filterSoftOptions()" placeholder="Search skills..." />
                                                 <div id="soft-checkbox-list">
-                                                    <label><input type="checkbox" value="communication">
+                                                    <label><input type="checkbox" value="Communication">
                                                         Communication</label>
-                                                    <label><input type="checkbox" value="leadership"> Leadership</label>
-                                                    <label><input type="checkbox" value="teamwork"> Teamwork</label>
-                                                    <label><input type="checkbox" value="problem-solving">
+                                                    <label><input type="checkbox" value="Leadership"> Leadership</label>
+                                                    <label><input type="checkbox" value="Teamwork"> Teamwork</label>
+                                                    <label><input type="checkbox" value="Problem-Solving">
                                                         Problem-Solving</label>
-                                                    <label><input type="checkbox" value="adaptability"> Adaptability</label>
-                                                    <label><input type="checkbox" value="creativity"> Creativity</label>
-                                                    <label><input type="checkbox" value="time-management"> Time
+                                                    <label><input type="checkbox" value="Adaptability">
+                                                        Adaptability</label>
+                                                    <label><input type="checkbox" value="Creativity"> Creativity</label>
+                                                    <label><input type="checkbox" value="Time Management"> Time
                                                         Management</label>
-                                                    <label><input type="checkbox" value="critical-thinking"> Critical
+                                                    <label><input type="checkbox" value="Critical Thinking"> Critical
                                                         Thinking</label>
-                                                    <label><input type="checkbox" value="emotional-intelligence"> Emotional
-                                                        Intelligence</label>
-                                                    <label><input type="checkbox" value="decision-making"> Decision
+                                                    <label><input type="checkbox" value="Emotional Intelligence">
+                                                        Emotional Intelligence</label>
+                                                    <label><input type="checkbox" value="Decision Making"> Decision
                                                         Making</label>
-                                                    <label><input type="checkbox" value="work-ethic"> Work Ethic</label>
-                                                    <label><input type="checkbox" value="conflict-resolution"> Conflict
+                                                    <label><input type="checkbox" value="Work Ethic"> Work Ethic</label>
+                                                    <label><input type="checkbox" value="Conflict Resolution"> Conflict
                                                         Resolution</label>
-                                                    <label><input type="checkbox" value="negotiation"> Negotiation</label>
-                                                    <label><input type="checkbox" value="interpersonal-skills">
+                                                    <label><input type="checkbox" value="Negotiation">
+                                                        Negotiation</label>
+                                                    <label><input type="checkbox" value="Interpersonal Skills">
                                                         Interpersonal Skills</label>
-                                                    <label><input type="checkbox" value="active-listening"> Active
+                                                    <label><input type="checkbox" value="Active Listening"> Active
                                                         Listening</label>
-                                                    <label><input type="checkbox" value="stress-management"> Stress
+                                                    <label><input type="checkbox" value="Stress Management"> Stress
                                                         Management</label>
-                                                    <label><input type="checkbox" value="self-motivation">
+                                                    <label><input type="checkbox" value="Self-Motivation">
                                                         Self-Motivation</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <label for="technicalSkills">Technical Skills: <span id="technicalSkillsVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                        <label for="technicalSkills">Technical Skills<span
+                                                style="color:red;">*</span>:</label>
                                         <div class="dropdown-container technical-dropdown-container">
                                             <div class="dropdown-header" onclick="toggleTechnicalSkillsDropdown()">
-                                                <div class="selected-options technical-selected-options" id="technicalSkills">Select Technical Skills</div>
+                                                <div class="selected-options technical-selected-options"
+                                                    id="technicalSkills">
+                                                    Select Technical Skills
+                                                </div>
                                             </div>
-                                            <div class="dropdown-content technical-skills-dropdown">
+                                            <div class="dropdown-content technical-skills-dropdown"
+                                                style="display:none;">
                                                 <input type="text" class="search-box technical-skills-search"
-                                                    onkeyup="filterTechnicalOptions()" placeholder="Search skills...">
+                                                    onkeyup="filterTechnicalOptions()"
+                                                    placeholder="Search technical skills..." />
                                                 <div id="technical-checkbox-list">
-                                                    <label><input type="checkbox" value="python"> Python</label>
-                                                    <label><input type="checkbox" value="java"> Java</label>
-                                                    <label><input type="checkbox" value="c"> C</label>
-                                                    <label><input type="checkbox" value="c++"> C++</label>
-                                                    <label><input type="checkbox" value="javascript"> JavaScript</label>
-                                                    <label><input type="checkbox" value="typescript"> TypeScript</label>
-                                                    <label><input type="checkbox" value="ruby"> Ruby</label>
-                                                    <label><input type="checkbox" value="php"> PHP</label>
-                                                    <label><input type="checkbox" value="swift"> Swift</label>
-                                                    <label><input type="checkbox" value="go"> Go</label>
-                                                    <label><input type="checkbox" value="rust"> Rust</label>
-                                                    <label><input type="checkbox" value="kotlin"> Kotlin</label>
-                                                    <label><input type="checkbox" value="r"> R</label>
-                                                    <label><input type="checkbox" value="reactjs"> React.js</label>
-                                                    <label><input type="checkbox" value="nodejs"> Node.js</label>
-                                                    <label><input type="checkbox" value="angular"> Angular</label>
-                                                    <label><input type="checkbox" value="vuejs"> Vue.js</label>
-                                                    <label><input type="checkbox" value="django"> Django</label>
-                                                    <label><input type="checkbox" value="flask"> Flask</label>
-                                                    <label><input type="checkbox" value="perl"> Perl</label>
-                                                    <label><input type="checkbox" value="scala"> Scala</label>
-                                                    <label><input type="checkbox" value="programming"> Programming</label>
-                                                    <label><input type="checkbox" value="web-development"> Web
+                                                    <label><input type="checkbox" value="Python"> Python</label>
+                                                    <label><input type="checkbox" value="Java"> Java</label>
+                                                    <label><input type="checkbox" value="C"> C</label>
+                                                    <label><input type="checkbox" value="C++"> C++</label>
+                                                    <label><input type="checkbox" value="JavaScript"> JavaScript</label>
+                                                    <label><input type="checkbox" value="TypeScript"> TypeScript</label>
+                                                    <label><input type="checkbox" value="Ruby"> Ruby</label>
+                                                    <label><input type="checkbox" value="PHP"> PHP</label>
+                                                    <label><input type="checkbox" value="Swift"> Swift</label>
+                                                    <label><input type="checkbox" value="Go"> Go</label>
+                                                    <label><input type="checkbox" value="Rust"> Rust</label>
+                                                    <label><input type="checkbox" value="Kotlin"> Kotlin</label>
+                                                    <label><input type="checkbox" value="R"> R</label>
+                                                    <label><input type="checkbox" value="React.js"> React.js</label>
+                                                    <label><input type="checkbox" value="Node.js"> Node.js</label>
+                                                    <label><input type="checkbox" value="Express.js"> Express.js</label>
+                                                    <label><input type="checkbox" value="Angular"> Angular</label>
+                                                    <label><input type="checkbox" value="Vue.js"> Vue.js</label>
+                                                    <label><input type="checkbox" value="Django"> Django</label>
+                                                    <label><input type="checkbox" value="Flask"> Flask</label>
+                                                    <label><input type="checkbox" value="Perl"> Perl</label>
+                                                    <label><input type="checkbox" value="Scala"> Scala</label>
+                                                    <label><input type="checkbox" value="Shell Scripting"> Shell
+                                                        Scripting</label>
+                                                    <label><input type="checkbox" value="HTML"> HTML</label>
+                                                    <label><input type="checkbox" value="CSS"> CSS</label>
+                                                    <label><input type="checkbox" value="SQL"> SQL</label>
+                                                    <label><input type="checkbox" value="NoSQL"> NoSQL</label>
+                                                    <label><input type="checkbox" value="MATLAB"> MATLAB</label>
+                                                    <label><input type="checkbox" value="Assembly"> Assembly</label>
+                                                    <label><input type="checkbox" value="Elixir"> Elixir</label>
+                                                    <label><input type="checkbox" value="Haskell"> Haskell</label>
+                                                    <label><input type="checkbox" value="Programming">
+                                                        Programming</label>
+                                                    <label><input type="checkbox" value="Web Development"> Web
                                                         Development</label>
-                                                    <label><input type="checkbox" value="software-engineering"> Software
+                                                    <label><input type="checkbox" value="Software Engineering"> Software
                                                         Engineering</label>
-                                                    <label><input type="checkbox" value="database-management"> Database
+                                                    <label><input type="checkbox" value="Database Management"> Database
                                                         Management</label>
-                                                    <label><input type="checkbox" value="network-security"> Network
+                                                    <label><input type="checkbox" value="Network Security"> Network
                                                         Security</label>
-                                                    <label><input type="checkbox" value="cloud-computing"> Cloud
+                                                    <label><input type="checkbox" value="Cloud Computing"> Cloud
                                                         Computing</label>
-                                                    <label><input type="checkbox" value="machine-learning"> Machine
+                                                    <label><input type="checkbox" value="Machine Learning"> Machine
                                                         Learning</label>
-                                                    <label><input type="checkbox" value="data-analysis"> Data
+                                                    <label><input type="checkbox" value="Data Analysis"> Data
                                                         Analysis</label>
-                                                    <label><input type="checkbox" value="cybersecurity">
+                                                    <label><input type="checkbox" value="Cybersecurity">
                                                         Cybersecurity</label>
-                                                    <label><input type="checkbox" value="technical-writing"> Technical
+                                                    <label><input type="checkbox" value="Technical Writing"> Technical
                                                         Writing</label>
-                                                    <label><input type="checkbox" value="ai-development"> AI
+                                                    <label><input type="checkbox" value="AI Development"> AI
                                                         Development</label>
-                                                    <label><input type="checkbox" value="devops"> DevOps</label>
-                                                    <label><input type="checkbox" value="robotics"> Robotics</label>
-                                                    <label><input type="checkbox" value="mechanical-design"> Mechanical
+                                                    <label><input type="checkbox" value="DevOps"> DevOps</label>
+                                                    <label><input type="checkbox" value="Robotics"> Robotics</label>
+                                                    <label><input type="checkbox" value="Mechanical Design"> Mechanical
                                                         Design</label>
-                                                    <label><input type="checkbox" value="electrical-engineering"> Electrical
-                                                        Engineering</label>
-                                                    <label><input type="checkbox" value="biotechnology">
+                                                    <label><input type="checkbox" value="Electrical Engineering">
+                                                        Electrical Engineering</label>
+                                                    <label><input type="checkbox" value="Biotechnology">
                                                         Biotechnology</label>
-                                                    <label><input type="checkbox" value="chemical-engineering"> Chemical
+                                                    <label><input type="checkbox" value="Chemical Engineering"> Chemical
                                                         Engineering</label>
-                                                    <label><input type="checkbox" value="graphic-design"> Graphic
+                                                    <label><input type="checkbox" value="Graphic Design"> Graphic
                                                         Design</label>
-                                                    <label><input type="checkbox" value="video-editing"> Video
+                                                    <label><input type="checkbox" value="Video Editing"> Video
                                                         Editing</label>
-                                                    <label><input type="checkbox" value="3d-modeling"> 3D Modeling</label>
-                                                    <label><input type="checkbox" value="ui-ux-design"> UI/UX Design</label>
-                                                    <label><input type="checkbox" value="blockchain-development"> Blockchain
-                                                        Development</label>
-                                                    <label><input type="checkbox" value="mobile-app-development"> Mobile App
-                                                        Development</label>
-                                                    <label><input type="checkbox" value="embedded-systems"> Embedded
+                                                    <label><input type="checkbox" value="3D Modeling"> 3D
+                                                        Modeling</label>
+                                                    <label><input type="checkbox" value="UI/UX Design"> UI/UX
+                                                        Design</label>
+                                                    <label><input type="checkbox" value="Blockchain Development">
+                                                        Blockchain Development</label>
+                                                    <label><input type="checkbox" value="Mobile App Development"> Mobile
+                                                        App Development</label>
+                                                    <label><input type="checkbox" value="Embedded Systems"> Embedded
                                                         Systems</label>
-                                                    <label><input type="checkbox" value="digital-marketing"> Digital
+                                                    <label><input type="checkbox" value="Digital Marketing"> Digital
                                                         Marketing</label>
-                                                    <label><input type="checkbox" value="seo-optimization"> SEO
+                                                    <label><input type="checkbox" value="SEO Optimization"> SEO
                                                         Optimization</label>
-                                                    <label><input type="checkbox" value="automation-testing"> Automation
+                                                    <label><input type="checkbox" value="Automation Testing"> Automation
                                                         Testing</label>
-                                                    <label><input type="checkbox" value="cad-design"> CAD Design</label>
-                                                    <label><input type="checkbox" value="pharmaceutical-research">
+                                                    <label><input type="checkbox" value="CAD Design"> CAD Design</label>
+                                                    <label><input type="checkbox" value="Pharmaceutical Research">
                                                         Pharmaceutical Research</label>
-                                                    <label><input type="checkbox" value="supply-chain-management"> Supply
-                                                        Chain Management</label>
-                                                    <label><input type="checkbox" value="electronics-repair"> Electronics
+                                                    <label><input type="checkbox" value="Supply Chain Management">
+                                                        Supply Chain Management</label>
+                                                    <label><input type="checkbox" value="Electronics Repair">
+                                                        Electronics Repair</label>
+                                                    <label><input type="checkbox" value="Welding"> Welding</label>
+                                                    <label><input type="checkbox" value="Automotive Repair"> Automotive
                                                         Repair</label>
-                                                    <label><input type="checkbox" value="welding"> Welding</label>
-                                                    <label><input type="checkbox" value="automotive-repair"> Automotive
-                                                        Repair</label>
-                                                    <label><input type="checkbox" value="construction-management">
+                                                    <label><input type="checkbox" value="Construction Management">
                                                         Construction Management</label>
+
                                                 </div>
                                             </div>
                                         </div>
-                                        <label for="linkdeinLink">Linkedin link: <span id="linkedinLinkVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
+                                        <label for="linkdeinLink">Linkedin link<span
+                                                style="color:red;">*</span>:</label>
                                         <input type="text" id="linkedinLink" name="linkedinLink"
                                             placeholder="Enter your linkedin link" required />
-                                        <label for="projects">Projects: <span id="projectsVerified"><i class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
-                                        <div id="projectsContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Project1: <span id="project1Verified"><i class="fa-solid fa-thumbs-up"
-                                                        style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="text" id="projectName1" name="projectName"
-                                                placeholder="Enter your project name" required /><br>
-                                            <input type="text" id="projectLink1" name="projectLink"
-                                                placeholder="Enter your project link" required /><br>
-                                            <textarea id="projectDescription1" name="projectDescription"
-                                                placeholder="Enter your project description" required></textarea>
-                                        </div>
-                                        <button type="button" id="addProjectButton" class="submit-button">Add
-                                            Project</button>
-                                        <label for="cretificates">Cerficates: <span id="certificatesVerified"><i
-                                                    class="fa-solid fa-thumbs-up"
-                                                    style="color: rgb(34, 203, 34);"></i></span></label>
-                                        <div id="certificatesContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Certificate1: <span id="certificate1Verified"><i class="fa-solid fa-thumbs-up"
-                                                        style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="text" id="certificateName1" name="certificateName"
-                                                placeholder="Enter your certificate name" required /><br>
-                                            <input type="text" id="certificateLink1" name="certificateLink"
-                                                placeholder="Enter your certificate link(google drive link)" required /><br>
-                                            <textarea id="certificateDescription1" name="certificateDescription"
-                                                placeholder="Enter your certificate description" required></textarea>
-                                        </div>
-                                        <button type="button" id="addCertificateButton" class="submit-button">Add
-                                            certificate</button>
-                                        <label for="experince">Experince(job): <span id="experienceVerified"><i
-                                            class="fa-solid fa-thumbs-up"
-                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                        <div id="experienceContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Experience1: <span id="experience1Verified"><i class="fa-solid fa-thumbs-up" style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="text" id="experienceTitle1" name="experienceTitle" placeholder="Enter your experience title" required /><br>
-                                            <input type="text" id="experienceCompany1" name="experienceCompany" placeholder="Enter your experience company name" required /><br>
-                                            <input type="text" id="experienceJobRole1" name="experienceJobRole" placeholder="Enter your experience job role" required /><br>
-                                            <div class="d-flex flex-row justify-content-start mb-4">
-                                                <label class="mr-2">Enter Start date:</label>
-                                                <input type="date" id="experienceStartDate1" class="mr-4" name="experienceStartDate" placeholder="Enter your experience start date" required /><br>
-                                                <label class="mr-2">Enter End date:</label>
-                                            <input type="date" id="experienceEndDate1" name="experienceEndDate" placeholder=" Enter your experience end date" required /><br>
+                                        <label for="projects">Projects<span style="color:red;">*</span>:</label>
+                                        <div id="projectsContainer">
+                                            <div class="project-entry d-flex flex-column justify-content-start">
+                                                <label>Project1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="projects[0][name]" placeholder="Project name"
+                                                    required><br>
+                                                <input type="text" name="projects[0][link]" placeholder="Project link"
+                                                    required><br>
+                                                <textarea name="projects[0][description]"
+                                                    placeholder="Project description" required></textarea>
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
                                             </div>
-                                            <textarea id="experienceDescription1" name="experienceDescription" placeholder="Enter your experience description" required></textarea>
                                         </div>
-                                        <button type="button" id="addExperienceButton" class="submit-button">Add Experience</button>
-                                        <label for="achievement">Achievements: <span id="achievementsVerified"><i
-                                            class="fa-solid fa-thumbs-up"
-                                            style="color: rgb(34, 203, 34);"></i></span></label>
-                                        <div id="achievementsContainer" class="d-flex flex-column justify-content-start">
-                                            <label style="font-size: 14px; font-weight: 700; color: black;">Achievement1: <span id="achievement1Verified"><i
-                                                class="fa-solid fa-thumbs-up"
-                                                style="color: rgb(34, 203, 34);"></i></span></label>
-                                            <input type="text" id="achievement1" name="achievement1" placeholder="Enter your achievement" required/>
+                                        <button type="button" id="addProjectButton" class="form-button">Add
+                                            Project</button>
+
+                                        <label for="certificates">Certificates<span style="color:red;">*</span>:
+                                        </label>
+                                        <div id="certificatesContainer"
+                                            class="d-flex flex-column justify-content-start">
+                                            <div class="certificate-entry d-flex flex-column justify-content-start">
+                                                <label>Certificate1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="certificates[0][name]"
+                                                    placeholder="Certificate name" required /><br>
+                                                <input type="text" name="certificates[0][link]"
+                                                    placeholder="Certificate link" required />
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
                                         </div>
-                                        <button type="button" id="addAchievementButton" class="submit-button">Add Achievement</button>
-                                        
+                                        <button type="button" id="addCertificateButton" class="form-button">Add
+                                            Certificate</button>
+
+                                        <label for="experince">Experince(job)<span style="color:red;">*</span>:</label>
+                                        <div class="experincesContainer">
+                                            <div class="experience-entry d-flex flex-column justify-content-start">
+                                                <label style="font-size: 14px; font-weight: 700; color: black;">
+                                                    Experience1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="experiences[0][title]" placeholder="Job Title"
+                                                    required /><br>
+                                                <input type="text" name="experiences[0][company]" placeholder="Company"
+                                                    required /><br>
+                                                <input type="text" name="experiences[0][jobRole]" placeholder="Job Role"
+                                                    required /><br>
+                                                <div class="d-flex flex-row justify-content-start mb-4">
+                                                    <label class="mr-2">Start date<span
+                                                            style="color:red;">*</span>:</label>
+                                                    <input type="date" id="experienceStartDate1" class="mr-4"
+                                                        name="experiences[0][startDate]" required /><br>
+                                                    <label class="mr-2">End date<span
+                                                            style="color:red;">*</span>:</label>
+                                                    <input type="date" id="experienceEndDate1"
+                                                        name="experiences[0][endDate]" required /><br>
+                                                </div>
+                                                <textarea name="experiences[0][description]" placeholder="Description"
+                                                    required></textarea>
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addExperinceButton" class="form-button">Add
+                                            Experince</button>
+
+                                        <label for="achievement">Achievements<span style="color:red;">*</span>:</label>
+                                        <div id="achievementsContainer"
+                                            class="d-flex flex-column justify-content-start">
+                                            <div class="achievement-entry d-flex flex-column justify-content-start">
+                                                <label style="font-size: 14px; font-weight: 700; color: black;">
+                                                    Achievement1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="achievements[0]" placeholder="Achievement"
+                                                    required />
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addAchievementButton" class="form-button">Add
+                                            Achievement</button>
+
                                         <div class="button-contianer">
-                                            <button type="submit" class="submit-button">Submit</button>
+                                            <button type="submit" class="form-button">Submit</button>
                                         </div>
                                     </form>
+                                    <div id="formModal" class="my-modal" style="display: none;">
+                                        <div class="my-modal-content">
+                                            <div id="form-spinner" class="spinner" style="display: none;"></div>
+                                            <div class="my-modal-message-content" id="formMessageContent"
+                                                style="display: none;">
+                                                <p id="fromMessage"></p>
+                                                <button id="formButton" style="display: none;" class="get-started-btn"
+                                                    onclick="display('sectionLoader2')">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -484,7 +531,69 @@
             </div>
         </div>
     </div>
-    <div id="sectionLoader" style="display: none;">
+    <div id="sectionTemplets" class="section-templets" style="display: none;">
+        <div class="resume-content">
+            <div class="slide-button-container"><button onclick="showPreviousResume()"><i
+                        class="fa-solid fa-circle-chevron-left"></i></button></div>
+            <div class="resume-templates-container">
+                <div id="resumeSlider" class="resume-slider">
+                    <div id="spinner" class="spinner" style="display: none;"></div>
+                    <div class="resume-template" style="display: block;">
+                        <div id="resume-1">
+
+                        </div>
+                    </div>
+                    <div class="resume-template" style="display: none;">
+                        <div id="resume-2">
+
+                        </div>
+                    </div>
+                    <div class="resume-template" style="display: none;">
+                        <div id="resume-3">
+
+                        </div>
+                    </div>
+                    <div class="resume-template" style="display: none;">
+                        <div id="resume-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="filenameModal" tabindex="-1" role="dialog" aria-labelledby="filenameModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Resume Filename</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="filenameInput">Filename (e.g John_Doe_resume)<span
+                                    style="color: rgb(226, 8, 8);">*</span>:</label>
+                            <input type="text" id="filenameInput" class="form-control"
+                                placeholder="e.g. John_Doe_resume" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn" style="background-color: black; color: #ffffff;"
+                                onclick="downloadResumePDF()">Download!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" style="background-color: rgb(255, 255, 255); color: #000000;"
+                onclick="openFilenameModal()">Download!</button>
+
+            <div class="slide-button-container"><button onclick="showNextResume()"><i
+                        class="fa-solid fa-circle-chevron-right"></i></button></div>
+        </div>
+    </div>
+    <div id="sectionLoader1" style="display: none;">
         <div class="generate-loader">
             <div class="loader">
                 <p class="loader-tittle">Your Workspace is loading<span id="blink"></span></p>
@@ -527,7 +636,57 @@
             </div>
         </div>
     </div>
+    <div id="sectionLoader2" style="display: none;">
+        <div class="generate-loader">
+            <div class="loader">
+                <p class="loader-tittle">Your Templates loading<span id="blink"></span></p>
+                <div class="loader-content">
+                    <div id="load1" style="display: none;">
+                        <div class="loader-description">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick1"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Extracting your data</p>
+                        </div>
+                    </div>
+                    <div id="load2" style="display: none;">
+                        <div class="loader-description" id="load2">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick2"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Adding data to templates</p>
+                        </div>
+                    </div>
+                    <div id="load3" style="display: none;">
+                        <div class="loader-description" id="load3">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick3"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Designing your resumes</p>
+                        </div>
+                    </div>
+                    <div id="load4" style="display: none;">
+                        <div class="loader-description" id="load4">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick4"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Finalizing your resumes</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="get-started-btn" id="chooseTemplatesBtn" style="display: none;"
+                    onclick="display('sectionTemplets')"> Choose templates !</button>
+            </div>
+        </div>
+    </div>
     <script src="dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </body>
 
 </html>

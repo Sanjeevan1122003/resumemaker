@@ -35,12 +35,13 @@
         <div class="login-card">
             <div class="login-card-from">
                 <p class="login-card-from-tittle">Login</p>
-                <form class="login-card-from-form" action="/userlogin/" method="post">
+                <form id="loginForm" class="login-card-from-form" action="/userlogin" method="post">
                     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
                     <div class="password-container">
                         <input type="password" id="password" name="password" placeholder="Enter password" required> <i
                             class="fas fa-file-zipper icon" id="toggle-password"></i><br><br>
                     </div><br><br><br>
+                    <p id="message"></p>
                     <p class="note"><span>Note:</span> The information that you provide will be used to Login your
                         account in resume
                         maker.</p>
@@ -57,6 +58,13 @@
                     <p id="loginPosterDescription"></p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="loginModal" class="my-modal">
+        <div class="my-modal-content">
+            <div id="spinner" class="spinner" style="display: none;"></div>
+            <p id="my-modalMessage"></p>
+            <a href="/signup" class="login-card-button btn" id="signUpbutton" style="display: none; height: auto; padding: 3px;">Sign Up</a>
         </div>
     </div>
     <script src="login.js"></script>
