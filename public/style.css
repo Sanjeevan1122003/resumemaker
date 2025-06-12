@@ -21,11 +21,6 @@ body {
     margin-top: -50px;
 }
 
-.welcome-page-image {
-    width: 200px;
-    height: 200px
-}
-
 .welcome-page-tittle {
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -1578,9 +1573,48 @@ body {
 @media (max-width: 768px) {
     .mobile-container {
         display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 100svh;
+        width: 100svw;
+        padding: 30px;
+        background-color: #ffffff;
+        color: #000000;
+        font-size: 18px;
+        font-weight: 700;
     }
 
     .dashboard {
         display: none;
+    }
+
+    .my-modal{
+        height: 100svh;
+        width: 100svw;
+        padding: 20px;
+        padding-top: 220px;
+    }
+
+    .my-modal-content {
+        height: 180px;
+        width: 100%;
+    }
+
+    .my-modal-content p {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .my-modal-message-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 }

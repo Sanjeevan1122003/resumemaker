@@ -53,7 +53,7 @@ if (welcomTittleEl && welcomePageGetstartedButton && welcomePageImageContainer) 
             "src",
             "https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
         );
-        welcomePageImage.style.width = "400px";
+        welcomePageImage.style.width = "100%";
         welcomePageImage.style.height = "200px";
         welcomePageImage.style.marginTop = "-50px";
         welcomePageImageContainer.appendChild(welcomePageImage);
