@@ -47,26 +47,22 @@
                     <p class="signup-card-from-tittle">Sign Up</p>
                     <form id="signupForm" class="signup-form" method="post" action="/usersignup"
                         enctype="application/x-www-form-urlencoded">
-                        <div class="signup-card-from-name-container">
-                            <input type="text" id="firstName" name="firstname" placeholder="First Name"
-                                required><br><br>
-                            <input type="text" id="secondname" name="secondname" placeholder="secondname"
-                                required><br><br>
-                        </div>
-                        <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+                        <input type="text" id="firstName" name="firstname" placeholder="First Name" required>
+                        <input type="text" id="secondname" name="secondname" placeholder="secondname" required>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
                         <div class="signup-card-from-gender-container">
-                            <label for="gender">Gender:</label><br>
+                            <label for="gender">Gender:</label>
                             <div>
                                 <input type="radio" id="male" name="gender" value="male" required>
                                 <label for="male" class="pl-2 pr-5">Male</label>
                                 <input type="radio" id="female" name="gender" value="female" required>
-                                <label for="female" class="pl-2">Female</label><br><br>
+                                <label for="female" class="pl-2">Female</label>
                             </div>
                         </div>
-                        <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
                         <div class="password-container">
                             <input type="password" id="password" name="password" placeholder="Enter password" required>
-                            <i class="fas fa-file-zipper icon" id="toggle-password"></i><br><br>
+                            <i class="fas fa-file-zipper icon" id="toggle-password"></i>
                         </div>
                         <p class="note"><span>Note:</span> The information that you provide will be used to create your
                             account in resume maker.</p>
@@ -81,7 +77,8 @@
             <div class="my-modal-content">
                 <div id="signupSpinner" class="spinner" style="display: none;"></div>
                 <p id="signupModalMessage"></p>
-                <a href="/login" class="signup-card-button btn" id="loginBtn" style="display: none; height: auto; padding: 3px;">Login</a>
+                <a href="/login" class="signup-card-button btn" id="loginBtn"
+                    style="display: none; height: auto; padding: 3px;">Login</a>
             </div>
         </div>
     </div>
