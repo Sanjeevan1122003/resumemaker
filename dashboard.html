@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/9af4e0e813.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Maker</title>
+    <link rel="icon"
+        href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+        sizes="32x32" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="sectionDashboard">
+        <div class="mobile-container">
+            <p>This site won't work in the small devices <br>
+                so please use Laptop Or Computer 🤗</p>
+        </div>
+        <div class="dashboard">
+            <div class="dashboard-menu-container">
+                <div class="dashboard-menu">
+                    <div class="dashboard-menu-tittle">
+                        <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+                            class="dashboard-menu-tittle-image">
+                        <p class="dashboard-menu-tittle-name" id="tittle"></p>
+                    </div>
+                    <div class="dashboard-menu-userdetails" id="errors">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <p class="dashboard-menu-userdetails-name" id="username"></p>
+                    </div>
+                    <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                    <div class="dashboard-menu-items">
+                        <div class="dashboard-menu-items-item">
+                            <div class="dashboard-menu-items-item-dropdown" id="dropdown1">
+                                <div class="dashboard-menu-items-item-dropdown-toggle"
+                                    onclick="toggleDropdown('dropdown1')">
+                                    <span>Templates</span>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </div>
+                                <div class="dashboard-menu-items-item-dropdown-menu">
+                                    <a href="#">Template 1</a>
+                                    <a href="#">Template 2</a>
+                                    <a href="#">Template 3</a>
+                                    <a href="#">Template 4</a>
+                                    <a href="#">Template 5</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-menu-items-item">
+                            <div class="dashboard-menu-items-item-dropdown" id="dropdown2">
+                                <div class="dashboard-menu-items-item-dropdown-toggle"
+                                    onclick="toggleDropdown('dropdown2')">
+                                    <span>Your Resumes</span>
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </div>
+                                <div class="dashboard-menu-items-item-dropdown-menu">
+                                    <a href="#">Resume 1</a>
+                                    <a href="#">Resume 2</a>
+                                    <a href="#">Resume 3</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-menu-bottom">
+                        <hr style="border: 1px solid #ccc; margin: 20px 0;" />
+                        <div>
+                            <i class="fa-solid fa-gear"></i>
+                            <a href="#sectionSettings">Settings</a>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-address-card"></i>
+                            <a href="#">Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <div id="sectionDashboardContainer" class="dashboard-container">
+                    <div class="create-resume-container">
+                        <p class="create-resume-container-tittle">Generate Your Resume</p>
+                        <div class="create-resume-container-options">
+                            <p class="create-resume-container-options-tittle">There are two ways to Generate Resume:
+                            </p>
+                            <div class="option-container">
+                                <div class="generate-resume-container">
+                                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/resumemaker_aboutresume_image.png?raw=true"
+                                        class="generate-resume-container-image"></img>
+                                    <p class="generate-resume-container-tittle">You can start from scratch !</p>
+                                    <p class="generate-resume-container-description">We’ll help you create a new resume
+                                        from
+                                        scratch to pro.</p>
+                                    <button class="generate-resume-container-button"
+                                        onclick="display('sectionLoader1')">Generate</button>
+                                </div>
+                                <div class="generate-resume-container">
+                                    <p class="generate-resume-container-tittle">Upload your resume</p>
+                                    <p class="generate-resume-container-description">Edit the contents of your current
+                                        resume
+                                        into a fresh, new design.</p>
+                                    <p class="generate-resume-container-description"
+                                        style="font-size: 14px; margin-bottom:-10px">
+                                        This accepts only pdf or docs!
+                                    <div class="dropZone" id="dropZone">Drag and drop your file or Click to upload</div>
+                                    <input type="file" id="pdfFile" accept="application/pdf" hidden>
+                                    <span id="fileName"></span>
+                                    <label for="pdfFile" class="custom-file-upload">Upload PDF</label>
+                                    <input type="file" id="pdfFileBtn" accept="application/pdf" hidden>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sectionGenerateResume" class="dashboard-container" style="display: none;">
+                    <!-- <div id="sectionGenerateResume" class="dashboard-container"> -->
+                    <div class="create-resume-container">
+                        <p class="create-resume-container-tittle">Enter your details</p>
+                        <div class="d-flex flex-row justify-content-center">
+                            <div class="pl-2 pt-4 pb-4 user-details-content">
+                                <div class="user-details-container">
+                                    <form class="details-form" id="detailsFrom">
+                                        <label for="fullname" style="margin-top: -4px;">Full name<span
+                                                style="color:red;">*</span>:</label>
+                                        <input type="text" id="fullname" name="fullname"
+                                            placeholder="Enter your full name" required />
+                                        <label for="phonenumber">Phone Number<span style="color:red;">*</span>:</label>
+                                        <input type="tel" id="phonenumber" name="phonenumber"
+                                            placeholder="Enter your phone number" required />
+                                        <label for="email">Email<span style="color:red;">*</span>:</label>
+                                        <input type="email" id="email" name="email" placeholder="Enter your email"
+                                            required />
+                                        <label for="jobrole">Job Role<span style="color:red;">*</span>:</label>
+                                        <div class="search-wrapper dropdown" style="width: 100%;">
+                                            <input type="text" id="jobrole" placeholder="Search for job role"
+                                                autocomplete="off" required />
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            <div id="jobroleDropdown"></div>
+                                        </div>
+                                        <label for="schoolname">School Name<span style="color:red;">*</span>:</label>
+                                        <input type="text" id="schoolname" name="schoolname"
+                                            placeholder="Enter your school name" required />
+                                        <label for="schoolDegree">SSC/CBSE<span style="color:red;">*</span>:</label>
+                                        <select id="schoolDegree"
+                                            style="height: 30px; width: 100%; padding: 2px; font-size: 14px;"
+                                            name="schoolDegree">
+                                            <option value="" disabled selected>Select SSC/CBSE</option>
+                                            <option value="Secondary School Certificate (SSC)">SSC</option>
+                                            <option value="Central Board of Secondary Education (CBSE)">CBSE</option>
+                                        </select>
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <div class="d-flex flex-column justify-content-start mr-4">
+                                                <label for="schoolMarks">Score (mention CGPA/Marks)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="schoolMarks" name="schoolMarks"
+                                                    placeholder="Enter your marks" style="height: 30px;" required />
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-start ml-4">
+                                                <label for="schoolYear">Year (completed)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="number" id="schoolYear" name="schoolYear" min="1980"
+                                                    max="2060" step="1" placeholder="YYYY" style="height: 30px;"
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <label for="intermediateName" style="margin-top: 10px;">Intermediate/Diploma
+                                            College
+                                            Name<span style="color:red;">*</span>:</label>
+                                        <input type="text" id="intermediateName" name="intermediateName"
+                                            placeholder="Enter your institute name" required />
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <div class="d-flex flex-column justify-content-start"
+                                                style="width:  250px;">
+                                                <label for="interDegree">Degree<span
+                                                        style="color:red;">*</span>:</label>
+                                                <select id="interDegree"
+                                                    style="height: 30px; width: 100%; padding: 2px; font-size: 14px;"
+                                                    name="interDegree">
+                                                    <option value="" disabled selected>Select Your Degree</option>
+                                                    <option value="Intermediate">Intermediate</option>
+                                                    <option value="Diploma">Diploma</option>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-start"
+                                                style="width: 150px; margin-left: 10px;">
+                                                <label for="interCourse">Course<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="interCourse" name="intercourse"
+                                                    placeholder=" Enter your Course" style="height: 30px;" required />
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <div class="d-flex flex-column justify-content-start mr-4">
+                                                <label for="interMarks">Score (mention CGPA/Marks)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="interMarks" name="intermarks"
+                                                    placeholder="Enter your marks" style="height: 30px;" required />
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-start ml-4">
+                                                <label for="interYear">Year (completed)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="number" id="interYear" name="interYear" min="1980"
+                                                    max="2060" step="1" placeholder="YYYY" style="height: 30px;"
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        <label for="collegeName" style="margin-top: 10px;">College Name<span
+                                                style="color:red;">*</span>:</label>
+                                        <input type="text" id="collegeName" name="collegeName"
+                                            placeholder="Enter your institute name" required />
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <div class="d-flex flex-column justify-content-start" style="width: 250px;">
+                                                <label for="collegeDegree">Degree<span
+                                                        style="color:red;">*</span>:</label>
+                                                <select id="collegeDegree"
+                                                    style="height: 30px; width: 100%; padding: 3px; font-size: 14px;"
+                                                    name="collegedegree">
+                                                    <option value="" disabled selected>Select Your Degree</option>
+                                                    <option value="BA">Bachelor of Arts (BA)</option>
+                                                    <option value="BSc">Bachelor of Science (BSc)</option>
+                                                    <option value="BCom">Bachelor of Commerce (BCom)</option>
+                                                    <option value="BBA">Bachelor of Business Administration (BBA)
+                                                    </option>
+                                                    <option value="BCA">Bachelor of Computer Applications (BCA)</option>
+                                                    <option value="BTech">Bachelor of Technology (BTech)</option>
+                                                    <option value="BE">Bachelor of Engineering (BE)</option>
+                                                    <option value="LLB">Bachelor of Laws (LLB)</option>
+                                                    <option value="BPharm">Bachelor of Pharmacy (BPharm)</option>
+                                                    <option value="BArch">Bachelor of Architecture (BArch)</option>
+                                                    <option value="BDS">Bachelor of Dental Surgery (BDS)</option>
+                                                    <option value="MBBS">Bachelor of Medicine, Bachelor of Surgery
+                                                        (MBBS)</option>
+                                                    <option value="BFA">Bachelor of Fine Arts (BFA)</option>
+                                                    <option value="BDes">Bachelor of Design (BDes)</option>
+                                                    <option value="BHM">Bachelor of Hotel Management (BHM)</option>
+                                                    <option value="BPEd">Bachelor of Physical Education (BPEd)
+                                                    </option>
+                                                    <option value="BSW">Bachelor of Social Work (BSW)</option>
+
+                                                </select>
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-start"
+                                                style="width: 150px; margin-left: 10px;">
+                                                <label for="collegeCourse">Course<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="collegeCourse" name="collegecourse"
+                                                    placeholder=" Enter your Course" style="height: 30px;" required />
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-start">
+                                            <div class="d-flex flex-column justify-content-start mr-4">
+                                                <label for="collegeMarks">Score (mention CGPA/Marks)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="text" id="collegeMarks" name="collegeMarks"
+                                                    placeholder="Enter your marks" style="height: 30px;" required />
+                                            </div>
+                                            <div class="d-flex flex-column justify-content-start ml-4">
+                                                <label for="collegeYear">Year (completed)<span
+                                                        style="color:red;">*</span>:</label>
+                                                <input type="number" id="collegeYear" name="collegeYear" min="1980"
+                                                    max="2060" step="1" placeholder="YYYY" style="height: 30px;"
+                                                    required />
+                                            </div>
+                                        </div>
+                                        <label for="softSkills">Soft skills<span style="color:red;">*</span>:</label>
+                                        <div class="dropdown-container soft-dropdown-container">
+                                            <div class="dropdown-header" onclick="toggleSoftSkillsDropdown()">
+                                                <div class="selected-options soft-selected-options" id="softSkills">
+                                                    Select Soft Skills
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-content soft-skills-dropdown" style="display:none;">
+                                                <input type="text" class="search-box soft-skills-search"
+                                                    onkeyup="filterSoftOptions()" placeholder="Search skills..." />
+                                                <div id="soft-checkbox-list">
+                                                    <label><input type="checkbox" value="Communication">
+                                                        Communication</label>
+                                                    <label><input type="checkbox" value="Leadership"> Leadership</label>
+                                                    <label><input type="checkbox" value="Teamwork"> Teamwork</label>
+                                                    <label><input type="checkbox" value="Problem-Solving">
+                                                        Problem-Solving</label>
+                                                    <label><input type="checkbox" value="Adaptability">
+                                                        Adaptability</label>
+                                                    <label><input type="checkbox" value="Creativity"> Creativity</label>
+                                                    <label><input type="checkbox" value="Time Management"> Time
+                                                        Management</label>
+                                                    <label><input type="checkbox" value="Critical Thinking"> Critical
+                                                        Thinking</label>
+                                                    <label><input type="checkbox" value="Emotional Intelligence">
+                                                        Emotional Intelligence</label>
+                                                    <label><input type="checkbox" value="Decision Making"> Decision
+                                                        Making</label>
+                                                    <label><input type="checkbox" value="Work Ethic"> Work Ethic</label>
+                                                    <label><input type="checkbox" value="Conflict Resolution"> Conflict
+                                                        Resolution</label>
+                                                    <label><input type="checkbox" value="Negotiation">
+                                                        Negotiation</label>
+                                                    <label><input type="checkbox" value="Interpersonal Skills">
+                                                        Interpersonal Skills</label>
+                                                    <label><input type="checkbox" value="Active Listening"> Active
+                                                        Listening</label>
+                                                    <label><input type="checkbox" value="Stress Management"> Stress
+                                                        Management</label>
+                                                    <label><input type="checkbox" value="Self-Motivation">
+                                                        Self-Motivation</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <label for="technicalSkills">Technical Skills<span
+                                                style="color:red;">*</span>:</label>
+                                        <div class="dropdown-container technical-dropdown-container">
+                                            <div class="dropdown-header" onclick="toggleTechnicalSkillsDropdown()">
+                                                <div class="selected-options technical-selected-options"
+                                                    id="technicalSkills">
+                                                    Select Technical Skills
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-content technical-skills-dropdown"
+                                                style="display:none;">
+                                                <input type="text" class="search-box technical-skills-search"
+                                                    onkeyup="filterTechnicalOptions()"
+                                                    placeholder="Search technical skills..." />
+                                                <div id="technical-checkbox-list">
+                                                    <label><input type="checkbox" value="Python"> Python</label>
+                                                    <label><input type="checkbox" value="Java"> Java</label>
+                                                    <label><input type="checkbox" value="C"> C</label>
+                                                    <label><input type="checkbox" value="C++"> C++</label>
+                                                    <label><input type="checkbox" value="JavaScript"> JavaScript</label>
+                                                    <label><input type="checkbox" value="TypeScript"> TypeScript</label>
+                                                    <label><input type="checkbox" value="Ruby"> Ruby</label>
+                                                    <label><input type="checkbox" value="PHP"> PHP</label>
+                                                    <label><input type="checkbox" value="Swift"> Swift</label>
+                                                    <label><input type="checkbox" value="Go"> Go</label>
+                                                    <label><input type="checkbox" value="Rust"> Rust</label>
+                                                    <label><input type="checkbox" value="Kotlin"> Kotlin</label>
+                                                    <label><input type="checkbox" value="R"> R</label>
+                                                    <label><input type="checkbox" value="React.js"> React.js</label>
+                                                    <label><input type="checkbox" value="Node.js"> Node.js</label>
+                                                    <label><input type="checkbox" value="Express.js"> Express.js</label>
+                                                    <label><input type="checkbox" value="Angular"> Angular</label>
+                                                    <label><input type="checkbox" value="Vue.js"> Vue.js</label>
+                                                    <label><input type="checkbox" value="Django"> Django</label>
+                                                    <label><input type="checkbox" value="Flask"> Flask</label>
+                                                    <label><input type="checkbox" value="Perl"> Perl</label>
+                                                    <label><input type="checkbox" value="Scala"> Scala</label>
+                                                    <label><input type="checkbox" value="Shell Scripting"> Shell
+                                                        Scripting</label>
+                                                    <label><input type="checkbox" value="HTML"> HTML</label>
+                                                    <label><input type="checkbox" value="CSS"> CSS</label>
+                                                    <label><input type="checkbox" value="SQL"> SQL</label>
+                                                    <label><input type="checkbox" value="NoSQL"> NoSQL</label>
+                                                    <label><input type="checkbox" value="MATLAB"> MATLAB</label>
+                                                    <label><input type="checkbox" value="Assembly"> Assembly</label>
+                                                    <label><input type="checkbox" value="Elixir"> Elixir</label>
+                                                    <label><input type="checkbox" value="Haskell"> Haskell</label>
+                                                    <label><input type="checkbox" value="Programming">
+                                                        Programming</label>
+                                                    <label><input type="checkbox" value="Web Development"> Web
+                                                        Development</label>
+                                                    <label><input type="checkbox" value="Software Engineering"> Software
+                                                        Engineering</label>
+                                                    <label><input type="checkbox" value="Database Management"> Database
+                                                        Management</label>
+                                                    <label><input type="checkbox" value="Network Security"> Network
+                                                        Security</label>
+                                                    <label><input type="checkbox" value="Cloud Computing"> Cloud
+                                                        Computing</label>
+                                                    <label><input type="checkbox" value="Machine Learning"> Machine
+                                                        Learning</label>
+                                                    <label><input type="checkbox" value="Data Analysis"> Data
+                                                        Analysis</label>
+                                                    <label><input type="checkbox" value="Cybersecurity">
+                                                        Cybersecurity</label>
+                                                    <label><input type="checkbox" value="Technical Writing"> Technical
+                                                        Writing</label>
+                                                    <label><input type="checkbox" value="AI Development"> AI
+                                                        Development</label>
+                                                    <label><input type="checkbox" value="DevOps"> DevOps</label>
+                                                    <label><input type="checkbox" value="Robotics"> Robotics</label>
+                                                    <label><input type="checkbox" value="Mechanical Design"> Mechanical
+                                                        Design</label>
+                                                    <label><input type="checkbox" value="Electrical Engineering">
+                                                        Electrical Engineering</label>
+                                                    <label><input type="checkbox" value="Biotechnology">
+                                                        Biotechnology</label>
+                                                    <label><input type="checkbox" value="Chemical Engineering"> Chemical
+                                                        Engineering</label>
+                                                    <label><input type="checkbox" value="Graphic Design"> Graphic
+                                                        Design</label>
+                                                    <label><input type="checkbox" value="Video Editing"> Video
+                                                        Editing</label>
+                                                    <label><input type="checkbox" value="3D Modeling"> 3D
+                                                        Modeling</label>
+                                                    <label><input type="checkbox" value="UI/UX Design"> UI/UX
+                                                        Design</label>
+                                                    <label><input type="checkbox" value="Blockchain Development">
+                                                        Blockchain Development</label>
+                                                    <label><input type="checkbox" value="Mobile App Development"> Mobile
+                                                        App Development</label>
+                                                    <label><input type="checkbox" value="Embedded Systems"> Embedded
+                                                        Systems</label>
+                                                    <label><input type="checkbox" value="Digital Marketing"> Digital
+                                                        Marketing</label>
+                                                    <label><input type="checkbox" value="SEO Optimization"> SEO
+                                                        Optimization</label>
+                                                    <label><input type="checkbox" value="Automation Testing"> Automation
+                                                        Testing</label>
+                                                    <label><input type="checkbox" value="CAD Design"> CAD Design</label>
+                                                    <label><input type="checkbox" value="Pharmaceutical Research">
+                                                        Pharmaceutical Research</label>
+                                                    <label><input type="checkbox" value="Supply Chain Management">
+                                                        Supply Chain Management</label>
+                                                    <label><input type="checkbox" value="Electronics Repair">
+                                                        Electronics Repair</label>
+                                                    <label><input type="checkbox" value="Welding"> Welding</label>
+                                                    <label><input type="checkbox" value="Automotive Repair"> Automotive
+                                                        Repair</label>
+                                                    <label><input type="checkbox" value="Construction Management">
+                                                        Construction Management</label>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <label for="linkdeinLink">Linkedin link<span
+                                                style="color:red;">*</span>:</label>
+                                        <input type="text" id="linkedinLink" name="linkedinLink"
+                                            placeholder="Enter your linkedin link" required />
+                                        <label for="projects">Projects<span style="color:red;">*</span>:</label>
+                                        <div id="projectsContainer">
+                                            <div class="project-entry d-flex flex-column justify-content-start">
+                                                <label>Project1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="projects[0][name]" placeholder="Project name"
+                                                    required><br>
+                                                <input type="text" name="projects[0][link]" placeholder="Project link"
+                                                    required><br>
+                                                <textarea name="projects[0][description]"
+                                                    placeholder="Project description" required></textarea>
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addProjectButton" class="form-button">Add
+                                            Project</button>
+
+                                        <label for="certificates">Certificates<span style="color:red;">*</span>:
+                                        </label>
+                                        <div id="certificatesContainer"
+                                            class="d-flex flex-column justify-content-start">
+                                            <div class="certificate-entry d-flex flex-column justify-content-start">
+                                                <label>Certificate1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="certificates[0][name]"
+                                                    placeholder="Certificate name" required /><br>
+                                                <input type="text" name="certificates[0][link]"
+                                                    placeholder="Certificate link" required />
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addCertificateButton" class="form-button">Add
+                                            Certificate</button>
+
+                                        <label for="experince">Experince(job)<span style="color:red;">*</span>:</label>
+                                        <div class="experincesContainer">
+                                            <div class="experience-entry d-flex flex-column justify-content-start">
+                                                <label style="font-size: 14px; font-weight: 700; color: black;">
+                                                    Experience1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="experiences[0][title]" placeholder="Job Title"
+                                                    required /><br>
+                                                <input type="text" name="experiences[0][company]" placeholder="Company"
+                                                    required /><br>
+                                                <input type="text" name="experiences[0][jobRole]" placeholder="Job Role"
+                                                    required /><br>
+                                                <div class="d-flex flex-row justify-content-start mb-4">
+                                                    <label class="mr-2">Start date<span
+                                                            style="color:red;">*</span>:</label>
+                                                    <input type="date" id="experienceStartDate1" class="mr-4"
+                                                        name="experiences[0][startDate]" required /><br>
+                                                    <label class="mr-2">End date<span
+                                                            style="color:red;">*</span>:</label>
+                                                    <input type="date" id="experienceEndDate1"
+                                                        name="experiences[0][endDate]" required /><br>
+                                                </div>
+                                                <textarea name="experiences[0][description]" placeholder="Description"
+                                                    required></textarea>
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addExperinceButton" class="form-button">Add
+                                            Experince</button>
+
+                                        <label for="achievement">Achievements<span style="color:red;">*</span>:</label>
+                                        <div id="achievementsContainer"
+                                            class="d-flex flex-column justify-content-start">
+                                            <div class="achievement-entry d-flex flex-column justify-content-start">
+                                                <label style="font-size: 14px; font-weight: 700; color: black;">
+                                                    Achievement1<span style="color:red;">*</span>:</label>
+                                                <input type="text" name="achievements[0]" placeholder="Achievement"
+                                                    required />
+                                                <button type="button"
+                                                    class="remove-entry btn form-button">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" id="addAchievementButton" class="form-button">Add
+                                            Achievement</button>
+
+                                        <div class="button-contianer">
+                                            <button type="submit" class="form-button">Submit</button>
+                                        </div>
+                                    </form>
+                                    <div id="formModal" class="my-modal" style="display: none;">
+                                        <div class="my-modal-content">
+                                            <div id="form-spinner" class="spinner" style="display: none;"></div>
+                                            <div class="my-modal-message-content" id="formMessageContent"
+                                                style="display: none;">
+                                                <p id="fromMessage"></p>
+                                                <button id="formButton" style="display: none;" class="get-started-btn"
+                                                    onclick="display('sectionLoader2')">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sectionTemplets" class="section-templets" style="display: none;">
+        <div class="resume-content">
+            <div class="slide-button-container"><button onclick="showPreviousResume()"><i
+                        class="fa-solid fa-circle-chevron-left"></i></button></div>
+            <div class="resume-templates-container">
+                <div id="resumeSlider" class="resume-slider">
+                    <div id="spinner" class="spinner" style="display: none;"></div>
+                    <div class="resume-template" style="display: block;">
+                        <div id="resume-1">
+
+                        </div>
+                    </div>
+                    <div class="resume-template" style="display: none;">
+                        <div id="resume-2">
+
+                        </div>
+                    </div>
+                    <div class="resume-template" style="display: none;">
+                        <div id="resume-3">
+
+                        </div>
+                    </div>
+                    <div class="resume-template" style="display: none;">
+                        <div id="resume-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="filenameModal" tabindex="-1" role="dialog" aria-labelledby="filenameModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Resume Filename</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="filenameInput">Filename (e.g John_Doe_resume)<span
+                                    style="color: rgb(226, 8, 8);">*</span>:</label>
+                            <input type="text" id="filenameInput" class="form-control"
+                                placeholder="e.g. John_Doe_resume" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn" style="background-color: black; color: #ffffff;"
+                                onclick="downloadResumePDF()">Download!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" style="background-color: rgb(255, 255, 255); color: #000000;"
+                onclick="openFilenameModal()">Download!</button>
+
+            <div class="slide-button-container"><button onclick="showNextResume()"><i
+                        class="fa-solid fa-circle-chevron-right"></i></button></div>
+        </div>
+    </div>
+    <div id="sectionLoader1" style="display: none;">
+        <div class="generate-loader">
+            <div class="loader">
+                <p class="loader-tittle">Your Workspace is loading<span id="blink"></span></p>
+                <div class="loader-constent">
+                    <div id="load1" style="display: none;">
+                        <div class="loader-description">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick1"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line">Creating your database</p>
+                        </div>
+                    </div>
+                    <div id="load2" style="display: none;">
+                        <div class="loader-description" id="load2">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick2"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Choosing your template</p>
+                        </div>
+                    </div>
+                    <div id="load3" style="display: none;">
+                        <div class="loader-description" id="load3">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick3"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Designing your resume</p>
+                        </div>
+                    </div>
+                    <div id="load4" style="display: none;">
+                        <div class="loader-description" id="load4">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick4"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Finalizing your resume</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="get-started-btn" id="getStartedBtn" style="display: none;"
+                    onclick="display('sectionGenerateResume')">Get started !</button>
+            </div>
+        </div>
+    </div>
+    <div id="sectionLoader2" style="display: none;">
+        <div class="generate-loader">
+            <div class="loader">
+                <p class="loader-tittle">Your Templates loading<span id="blink"></span></p>
+                <div class="loader-content">
+                    <div id="load1" style="display: none;">
+                        <div class="loader-description">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick1"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Extracting your data</p>
+                        </div>
+                    </div>
+                    <div id="load2" style="display: none;">
+                        <div class="loader-description" id="load2">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick2"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Adding data to templates</p>
+                        </div>
+                    </div>
+                    <div id="load3" style="display: none;">
+                        <div class="loader-description" id="load3">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick3"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Designing your resumes</p>
+                        </div>
+                    </div>
+                    <div id="load4" style="display: none;">
+                        <div class="loader-description" id="load4">
+                            <div class="loader-tick">
+                                <div class="tick" id="tick4"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <p class="loader-description-line"> Finalizing your resumes</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="get-started-btn" id="chooseTemplatesBtn" style="display: none;"
+                    onclick="display('sectionTemplets')"> Choose templates !</button>
+            </div>
+        </div>
+    </div>
+    <script src="dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</body>
+
+</html>

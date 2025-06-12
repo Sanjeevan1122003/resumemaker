@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9af4e0e813.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Maker</title>
+    <link rel="icon"
+        src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+        sizes="25x25" type="image/png">
+    <link rel="icon"
+        href="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+        sizes="32x32" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="signupPage">
+    <div id="sectionSignUp" style="display: block;">
+        <div class="signup-container">
+            <div class="signup-card">
+                <div class="signup-card-poster">
+                    <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
+                        class="signup-card-poster-image">
+                    <div class="signup-card-poster-description">
+                        <p><span id="signupPosterTittle" style="font-size: 20px; font-weight: 700;"></span><br>
+                        </p>
+                        <p id="signupPosterDescription"></p>
+                    </div>
+                </div>
+                <div class="sign-card-from">
+                    <p class="signup-card-from-tittle">Sign Up</p>
+                    <form id="signupForm" class="signup-form" method="post" action="/usersignup"
+                        enctype="application/x-www-form-urlencoded">
+                        <input type="text" id="firstName" name="firstname" placeholder="First Name" required>
+                        <input type="text" id="secondname" name="secondname" placeholder="secondname" required>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                        <div class="signup-card-from-gender-container">
+                            <label for="gender">Gender:</label>
+                            <div>
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male" class="pl-2 pr-5">Male</label>
+                                <input type="radio" id="female" name="gender" value="female" required>
+                                <label for="female" class="pl-2">Female</label>
+                            </div>
+                        </div>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <div class="password-container">
+                            <input type="password" id="password" name="password" placeholder="Enter password" required>
+                            <i class="fas fa-file-zipper icon" id="toggle-password"></i>
+                        </div>
+                        <p class="note"><span>Note:</span> The information that you provide will be used to create your
+                            account in resume maker.</p>
+                        <div class="d-flex flex-row justify-content-center">
+                            <button type="submit" class="signup-card-button btn">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="signupModal" class="my-modal">
+            <div class="my-modal-content">
+                <div id="signupSpinner" class="spinner" style="display: none;"></div>
+                <p id="signupModalMessage"></p>
+                <a href="/login" class="signup-card-button btn" id="loginBtn"
+                    style="display: none; height: auto; padding: 3px;">Login</a>
+            </div>
+        </div>
+    </div>
+    <script src="sign.js"></script>
+</body>
+
+</html>
