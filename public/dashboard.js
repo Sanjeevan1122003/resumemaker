@@ -530,24 +530,24 @@ const templates = {
     </div>
 
     <div class="d-flex flex-row justify-content-start">
+        <div class="resume-section mb-2">
+            <h5 class="spl-head" style="margin-top:-25px;"><strong>Certificates</strong></h5>
+            <div class="resume-section-bigdata">
+                <ul class="resume-section-bigdata-title-card">
+            ${resumeData.certificates?.map(certificate => `
+                  <li><strong><a href="${certificate.link}" target="_blank">${certificate.name}</a></strong></li>
+            `).join('') || ' '}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-start">
         <div class="resume-section">
             <h5 class="spl-head"><strong>Achievements</strong></h5>
             <ul>
                 ${resumeData.achievements?.map(achievement => `<li>${achievement}</li>`).join('') || ' '}
             </ul>
-        </div>
-    </div>
-
-    <div class="d-flex flex-row justify-content-start">
-        <div class="resume-section mb-2">
-            <h5 class="spl-head" style="margin-top:-25px;"><strong>Certificates</strong></h5>
-            ${resumeData.certificates?.map(certificate => `
-                <div class="resume-section-bigdata">
-                    <ul class="resume-section-bigdata-title-card">
-                        <li><strong><a href="${certificate.link}" target="_blank">${certificate.name}</a></strong></li>
-                    </ul>
-                </div>
-            `).join('') || ' '}
         </div>
     </div>
 
@@ -945,11 +945,10 @@ async function fetchResumeData() {
         try {
             const response = await fetch('/resumetemplates');
             if (!response.ok) {
-                throw new Error("Failed to fetch resume templates");
+                throw new Error("Failed to fetch resume templates.");
             }
             const data = await response.json();
             const resumeData = data;
-            console.log("Fetched resumeData:", resumeData);
 
             if (resumeData) {
                 const resumetemplate1 = templates.template1(resumeData);
@@ -963,8 +962,7 @@ async function fetchResumeData() {
                 document.getElementById('resume-4').innerHTML = resumetemplate4;
             }
         } catch (error) {
-            console.error("Error fetching resume data:", error);
-            alert("Failed to fetch resume templates.");
+            alert("No data found!");
         }
     } finally {
         spinner.style.display = "none";
@@ -1138,11 +1136,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function openFilenameModal() {
-    // Clear any previous input
     document.getElementById('filenameInput').value = '';
-    $('#filenameModal').modal('show');
+    document.getElementById("myModalFilename").style.display = "flex"; // <- use "flex" here
 }
 
+const myModalCloseBtn = document.getElementById("myModalFilenameClose");
+myModalCloseBtn.addEventListener("click", function () {
+    document.getElementById("myModalFilename").style.display = "none";
+});
 
 function downloadResumePDF() {
     const userInput = document.getElementById('filenameInput').value.trim();
@@ -1170,7 +1171,7 @@ function downloadResumePDF() {
     };
 
     // Hide modal before download
-    $('#filenameModal').modal('hide');
+    document.getElementById("myModalFilename").style.display = "none";
 
     html2pdf().set(opt).from(element).save();
 }

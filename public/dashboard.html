@@ -515,7 +515,7 @@
                                     <div id="formModal" class="my-modal" style="display: none;">
                                         <div class="my-modal-content">
                                             <div id="form-spinner" class="spinner" style="display: none;"></div>
-                                            <div class="my-modal-message-content" id="formMessageContent"
+                                            <div class="my-modal-message-content d-flex flex-column justify-content-center" id="formMessageContent"
                                                 style="display: none;">
                                                 <p id="fromMessage"></p>
                                                 <button id="formButton" style="display: none;" class="get-started-btn"
@@ -536,11 +536,165 @@
             <div class="slide-button-container"><button onclick="showPreviousResume()"><i
                         class="fa-solid fa-circle-chevron-left"></i></button></div>
             <div class="resume-templates-container">
+                <div class="resume-templates-container-top">
+                    <h5 style="color: #ffffff;">Resume Preview</h5>
+                    <button class="btn"
+                        style="background-color: rgb(255, 255, 255); color: #000000; font-weight: 700; height: 30px; padding: 3px 14px;"
+                        onclick="openFilenameModal()">Choose this!</button>
+                </div>
                 <div id="resumeSlider" class="resume-slider">
                     <div id="spinner" class="spinner" style="display: none;"></div>
                     <div class="resume-template" style="display: block;">
                         <div id="resume-1">
+                            <!-- <div class="resume-container" style="font-family: Arial, sans-serif;">
+                                <div class="resume-header text-center">
+                                    <h1 id="name">Tony Stark</h1>
+                                    <p style="margin-top: -10px;">
+                                        <strong>Email:</strong> <a href="mailto:tony.stark@starkindustries.com"
+                                            target="_blank">tony.stark@starkindustries.com</a>
+                                        <strong> Phone:</strong> +91 98765 43210
+                                    </p>
+                                    <p style="margin-top: -15px;">
+                                        <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/ironman"
+                                            target="_blank">https://linkedin.com/in/ironman</a>
+                                    </p>
+                                </div>
 
+                                <div class="resume-section">
+                                    <h5 style="margin-top: -6px;"><strong>Summary</strong></h5>
+                                    <p>
+                                        Dedicated Full Stack Developer seeking a challenging position in a reputed
+                                        organization where I can learn new skills,
+                                        expand my knowledge, and leverage my learnings to get an opportunity where I can
+                                        make the best of my potential
+                                        and contribute to both my and the organization's growth.
+                                    </p>
+                                </div>
+
+                                <div class="resume-section">
+                                    <h5><strong>Education</strong></h5>
+                                    <div class="education-container">
+                                        <div class="education-detail-container">
+                                            <div class="education-detail top-container">
+                                                <p>MIT, Massachusetts</p>
+                                                <p>2011</p>
+                                            </div>
+                                            <div class="education-detail">
+                                                <p>B.Tech (Mechanical Engineering)</p>
+                                                <p>9.6 CGPA</p>
+                                            </div>
+                                        </div>
+                                        <div class="education-detail-container">
+                                            <div class="education-detail top-container">
+                                                <p>Phillips Academy</p>
+                                                <p>2007</p>
+                                            </div>
+                                            <div class="education-detail">
+                                                <p>High School (Science)</p>
+                                                <p>95%</p>
+                                            </div>
+                                        </div>
+                                        <div class="education-detail-container">
+                                            <div class="education-detail top-container">
+                                                <p>Brooklyn Middle School</p>
+                                                <p>2005</p>
+                                            </div>
+                                            <div class="education-detail">
+                                                <p>Secondary School Certificate</p>
+                                                <p>9.2 CGPA</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-start">
+                                    <div class="resume-section">
+                                        <h5><strong>Experience</strong></h5>
+                                        <div class="resume-section-bigdata">
+                                            <div class="resume-section-bigdata-title-card">
+                                                <p><strong>CTO</strong></p>
+                                                <p><strong>2012 - Present</strong></p>
+                                            </div>
+                                            <p>In this my role is Lead Developer, built and managed Iron Man suits,
+                                                Jarvis, and various AI systems.</p>
+                                        </div>
+                                        <div class="resume-section-bigdata">
+                                            <div class="resume-section-bigdata-title-card">
+                                                <p><strong>Software Engineer Intern</strong></p>
+                                                <p><strong>2010 - 2011</strong></p>
+                                            </div>
+                                            <p>In this my role is Support Developer, contributed to early designs of
+                                                clean energy reactors and flight systems.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-start">
+                                    <div class="resume-section">
+                                        <h5 class="spl-head"><strong>Projects</strong></h5>
+                                        <div class="resume-section-bigdata">
+                                            <div class="resume-section-bigdata-title-card">
+                                                <p><strong>Jarvis AI Assistant</strong>
+                                                    (<a href="https://github.com/tony/jarvis"
+                                                        target="_blank">https://github.com/tony/jarvis</a>)
+                                                </p>
+                                            </div>
+                                            <p>Developed a personal AI system to manage home automation, scheduling, and
+                                                battle-mode alerts.</p>
+                                        </div>
+                                        <div class="resume-section-bigdata">
+                                            <div class="resume-section-bigdata-title-card">
+                                                <p><strong>Iron Suit Mk-5 Control Panel</strong>
+                                                    (<a href="https://github.com/tony/ironman-ui"
+                                                        target="_blank">https://github.com/tony/ironman-ui</a>)
+                                                </p>
+                                            </div>
+                                            <p>A React-powered dashboard to monitor vitals, weapons, and location of the
+                                                Iron Man suit in real-time.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-start">
+                                    <div class="resume-section">
+                                        <h5 class="spl-head"><strong>Achievements</strong></h5>
+                                        <ul>
+                                            <li>Time Magazine Person of the Year</li>
+                                            <li>Invented Arc Reactor for clean energy</li>
+                                            <li>Saved the world (multiple times)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-start">
+                                    <div class="resume-section mb-2">
+                                        <h5 class="spl-head" style="margin-top:-25px;"><strong>Certificates</strong>
+                                        </h5>
+                                        <div class="resume-section-bigdata">
+                                            <ul class="resume-section-bigdata-title-card">
+                                                <li><strong><a href="https://coursera.org/certificate/fullstack"
+                                                            target="_blank">Full Stack Developer - Coursera</a></strong>
+                                                </li>
+                                                <li><strong><a href="https://udemy.com/certificate/ai-master"
+                                                            target="_blank">AI Masterclass - Udemy</a></strong></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="resume-section d-flex flex-column justify-content-start">
+                                    <div class="skills-section">
+                                        <p style="padding-right: 5px; font-size: 16px;"><strong>Soft skills: </strong>
+                                        </p>
+                                        <p>Leadership, Problem Solving, Team Management, Innovation</p>
+                                    </div>
+                                    <div class="skills-section" style="margin-top: -7px;">
+                                        <p style="padding-right: 5px; font-size: 16px;"><strong>Technical skills:
+                                            </strong></p>
+                                        <p>JavaScript, React, Node.js, Python, AI/ML, Embedded Systems, C++, Git</p>
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="resume-template" style="display: none;">
@@ -560,35 +714,25 @@
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" id="filenameModal" tabindex="-1" role="dialog" aria-labelledby="filenameModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Resume Filename</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <label for="filenameInput">Filename (e.g John_Doe_resume)<span
-                                    style="color: rgb(226, 8, 8);">*</span>:</label>
-                            <input type="text" id="filenameInput" class="form-control"
-                                placeholder="e.g. John_Doe_resume" required>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn" style="background-color: black; color: #ffffff;"
-                                onclick="downloadResumePDF()">Download!</button>
-                        </div>
+            <div class="my-modal-filename" id="myModalFilename" style="display: none;">
+                <div class="my-modal-content-filename">
+                    <div>
+                        <p class="my-modal-content-filename-head">Filename:</p>
+                        <button class="close" id="myModalFilenameClose">
+                            <span style="color: black;">&times;</span>
+                        </button>
+                    </div>
+                    <div class="d-flex flex-column justify-content-start mr-4">
+                        <label for="filenameInput">Filename(e.g:Tony_Stark_Fullstack_Devop)<span
+                                style="color: rgb(201, 14, 14); font-weight: bold;">*</span>:</label>
+                        <input type="text" id="filenameInput" name="filename" placeholder="Enter filename" required>
+                    </div>
+                    <div class="my-modal-content-filename-button-container">
+                        <button type="button" class="btn btn-dark" style="background-color: black; color: #ffffff;"
+                            onclick="downloadResumePDF()">Download!</button>
                     </div>
                 </div>
             </div>
-
-            <button class="btn" style="background-color: rgb(255, 255, 255); color: #000000;"
-                onclick="openFilenameModal()">Download!</button>
-
             <div class="slide-button-container"><button onclick="showNextResume()"><i
                         class="fa-solid fa-circle-chevron-right"></i></button></div>
         </div>
