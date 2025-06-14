@@ -24,7 +24,7 @@
         <div class="dashboard">
             <div class="dashboard-menu-container">
                 <div class="dashboard-menu">
-                    <div class="dashboard-menu-tittle">
+                    <div class="dashboard-menu-tittle" onclick="display('sectionDashboardContainer')">
                         <img src="https://github.com/Sanjeevan1122003/resumemaker/blob/main/public/Resume-maker-logo.jpg?raw=true"
                             class="dashboard-menu-tittle-image">
                         <p class="dashboard-menu-tittle-name" id="tittle"></p>
@@ -68,14 +68,10 @@
                     </div>
                     <div class="dashboard-menu-bottom">
                         <hr style="border: 1px solid #ccc; margin: 20px 0;" />
-                        <div>
-                            <i class="fa-solid fa-gear"></i>
-                            <a href="#sectionSettings">Settings</a>
-                        </div>
-                        <div>
+                        <button type="button" onclick=" display('sectionAccount') ">
                             <i class="fa-solid fa-address-card"></i>
-                            <a href="#">Account</a>
-                        </div>
+                            Account
+                        </button>
                     </div>
                 </div>
             </div>
@@ -116,7 +112,6 @@
                     </div>
                 </div>
                 <div id="sectionGenerateResume" class="dashboard-container" style="display: none;">
-                    <!-- <div id="sectionGenerateResume" class="dashboard-container"> -->
                     <div class="create-resume-container">
                         <p class="create-resume-container-tittle">Enter your details</p>
                         <div class="d-flex flex-row justify-content-center">
@@ -515,8 +510,8 @@
                                     <div id="formModal" class="my-modal" style="display: none;">
                                         <div class="my-modal-content">
                                             <div id="form-spinner" class="spinner" style="display: none;"></div>
-                                            <div class="my-modal-message-content d-flex flex-column justify-content-center" id="formMessageContent"
-                                                style="display: none;">
+                                            <div class="my-modal-message-content d-flex flex-column justify-content-center"
+                                                id="formMessageContent" style="display: none;">
                                                 <p id="fromMessage"></p>
                                                 <button id="formButton" style="display: none;" class="get-started-btn"
                                                     onclick="display('sectionLoader2')">Next</button>
@@ -524,6 +519,58 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sectionAccount" class="dashboard-container" style="display: none;">
+                    <div class="create-resume-container">
+                        <p class="create-resume-container-tittle">User Account</p>
+                        <div class="user-details-content-acc">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor"
+                                class="bi bi-person-circle " viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                            </svg>
+                            <p class="user-acc-detials">Username: <span id="userName"></span></p>
+                            <p class="user-acc-detials">Firstname: <span id="firstName"></span></p>
+                            <p class="user-acc-detials">Secondname: <span id="secondName"></span></p>
+                            <p class="user-acc-detials">Email: <span id="emailAcc"></span></p>
+                            <p class="user-acc-detials">Gender: <span id="gender"></span></p>
+                            <button type="button" class="btn user-acc-detials-btn" onclick="updateModal()">Edit Profile</button>
+                        </div>
+                    </div>
+                    <div class="my-modal-filename" id="myModalUserdetails" style="display: none;">
+                        <div class="my-modal-content-filename" style="height: auto;">
+                            <div>
+                                <p class="my-modal-content-filename-head">Update Details:</p>
+                                <button class="close" id="myModalUserdetailsClose">
+                                    <span style="color: black;">&times;</span>
+                                </button>
+                            </div>
+                            <div class="d-flex flex-column justify-content-start mr-4">
+                                <form id="updateDetailsForm">
+                                    <div class="d-flex flex-column justify-content-start">
+                                        <label for="updateUserName">New username<span
+                                                style="color: rgb(201, 14, 14); font-weight: bold;">*</span>:</label>
+                                        <input type="text" id="updateUserName" name="updateUserName"
+                                            placeholder="Enter new username" class="mb-3" required>
+                                        <label for="updateFirstName">New first name<span
+                                                style="color: rgb(201, 14, 14); font-weight: bold;">*</span>:</label>
+                                        <input type="text" id="updateFirstName" name="updateFirstName"
+                                            placeholder="Enter new frist name" class="mb-3" required>
+                                        <label for="updateSecondName">New second name<span
+                                                style="color: rgb(201, 14, 14); font-weight: bold;">*</span>:</label>
+                                        <input type="text" id="updateSecondName" name="updateSecondName"
+                                            placeholder="Enter new second name" class="mb-3" required>
+                                    </div>
+                                    <div class="my-modal-content-filename-button-container">
+                                        <button type="submit" class="btn btn-dark"
+                                            style="background-color: black; color: #ffffff;"
+                                            >Submit</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

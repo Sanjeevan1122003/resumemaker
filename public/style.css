@@ -563,6 +563,10 @@ body {
     height: 60px;
 }
 
+.dashboard-menu-tittle:hover{
+    cursor: pointer;
+}
+
 .dashboard-menu-tittle-image {
     height: 30px;
     width: 40px;
@@ -664,31 +668,34 @@ body {
     width: 100%;
 }
 
-.dashboard-menu-bottom div {
+.dashboard-menu-bottom button {
     height: auto;
-    padding: 10px 0;
+    padding: 10px 20px;
     animation: moveRight 1s ease forwards;
+    background-color: transparent;
+    border: none;
+    color: #cccccc;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.dashboard-menu-bottom button:focus {
+    border: none;
+    outline: none;
 }
 
 .dashboard-menu-bottom i {
     color: #ccc;
     font-size: 18px;
+    margin-right: 10px;
 }
 
-.dashboard-menu-bottom i:hover {
+.dashboard-menu-bottom:hover button {
     color: #ffffff;
 }
 
-.dashboard-menu-bottom a {
-    color: #ccc;
-    font-size: 14px;
-    margin-left: 10px;
-    font-weight: 500;
-}
-
-.dashboard-menu-bottom a:hover {
+.dashboard-menu-bottom:hover button i {
     color: #ffffff;
-    text-decoration: none;
 }
 
 
@@ -1204,7 +1211,7 @@ body {
     border: none;
 }
 
-.slide-button-container button:focus{
+.slide-button-container button:focus {
     outline: none;
 }
 
@@ -1223,7 +1230,7 @@ body {
     background-color: #3f3e3eb8;
 }
 
-.resume-templates-container-top{
+.resume-templates-container-top {
     height: 45px;
     width: 100%;
     padding: 0px 20px;
@@ -1464,7 +1471,7 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.my-modal-content-head{
+.my-modal-content-head {
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
 }
@@ -1493,14 +1500,17 @@ body {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
     z-index: 9999;
 }
 
 .my-modal-content-filename {
     width: 600px;
-    max-width: 90%; /* Makes it responsive */
+    max-width: 90%;
+    /* Makes it responsive */
     height: 250px;
     background-color: #ffffff;
     display: flex;
@@ -1511,32 +1521,32 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.my-modal-content-filename-head{
+.my-modal-content-filename-head {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
     font-size: 30px;
 }
 
-.my-modal-content-filename label{
+.my-modal-content-filename label {
     font-family: 'Courier New', Courier, monospace;
     color: #000000;
     font-weight: 600;
     font-size: 16px;
 }
 
-.my-modal-content-filename input{
+.my-modal-content-filename input {
     height: 35px;
     border-radius: 5px;
     border: 3px solid #6e6e6e;
     padding-left: 10px;
 }
 
-.my-modal-content-filename input:focus{
+.my-modal-content-filename input:focus {
     border: 3px solid #000000;
     outline: none;
 }
 
-.my-modal-content-filename-button-container{
+.my-modal-content-filename-button-container {
     width: 100%;
     height: auto;
     display: flex;
@@ -1545,7 +1555,7 @@ body {
     padding: 30px 0px;
 }
 
-.my-modal-content-filename-button-container.btn:focus{
+.my-modal-content-filename-button-container.btn:focus {
     outline: none;
     border: 1px solid #00000000;
 }
@@ -1558,7 +1568,8 @@ body {
     cursor: pointer;
     color: #000000;
 }
-.close:focus{
+
+.close:focus {
     outline: none;
 }
 
@@ -1600,6 +1611,68 @@ body {
     display: none;
 }
 
+.user-acc-detials span {
+    margin-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+.user-details-content-acc {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: 0 8px 32px 0 rgba(63, 62, 62, 0.2);
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.user-acc-detials {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 12px 0;
+    color: #222;
+}
+
+.user-acc-detials span {
+    font-weight: 400;
+    color: #333;
+}
+
+.user-acc-detials-btn {
+    font-size: 15px;
+    margin-top: 20px;
+    background-color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    align-self: center;
+    color: #ffffff;
+}
+
+.user-acc-detials-btn:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+}
+
+.create-resume-container-tittle {
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 30px;
+    color: #111;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+
 @media (max-width: 768px) {
     .login-container {
         margin-top: -50px;
@@ -1618,7 +1691,8 @@ body {
     .login-card-poster {
         display: none;
     }
-     .signup-container {
+
+    .signup-container {
         padding: 30px;
         margin-top: -50px;
     }
@@ -1675,7 +1749,7 @@ body {
     .dashboard {
         display: none;
     }
-    
+
     .my-modal {
         height: 100svh;
         width: 100svw;

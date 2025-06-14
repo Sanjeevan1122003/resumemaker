@@ -4,6 +4,11 @@ fetch("/userdetails")
         if (data.user) {
             let user = data.user;
             document.getElementById("username").innerHTML = user.username || "No user data found";
+            document.getElementById("userName").innerHTML = user.username || "No user data found";
+            document.getElementById("firstName").innerHTML = user.firstname || "No user data found";
+            document.getElementById("secondName").innerHTML = user.secondname || "No user data found";
+            document.getElementById("gender").innerHTML = user.gender || "No user data found";
+            document.getElementById("emailAcc").innerHTML = user.email || "No user data found";
         } else {
             document.getElementById("errors").innerHTML = "No user data fetched please login"
         }
@@ -76,7 +81,8 @@ function display(sectionId) {
         "sectionLoader1",
         "sectionGenerateResume",
         "sectionTemplets",
-        "sectionLoader2"
+        "sectionLoader2",
+        "sectionAccount"
     ];
 
     allSections.forEach(id => {
@@ -1140,10 +1146,20 @@ function openFilenameModal() {
     document.getElementById("myModalFilename").style.display = "flex"; // <- use "flex" here
 }
 
+function updateModal(){
+    document.getElementById("myModalUserdetails").style.display = "flex";
+}
+
 const myModalCloseBtn = document.getElementById("myModalFilenameClose");
 myModalCloseBtn.addEventListener("click", function () {
     document.getElementById("myModalFilename").style.display = "none";
 });
+
+
+document.getElementById("myModalUserdetailsClose").addEventListener("click", function () {
+    document.getElementById("myModalUserdetails").style.display = "none";
+});
+
 
 function downloadResumePDF() {
     const userInput = document.getElementById('filenameInput').value.trim();
@@ -1175,3 +1191,44 @@ function downloadResumePDF() {
 
     html2pdf().set(opt).from(element).save();
 }
+
+
+document.getElementById("updateDetailsForm").addEventListener("submit", async function(event) {
+  event.preventDefault(); 
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData.entries());
+  try {
+    const response = await fetch("/updateDetails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      document.getElementById("myModalUserdetails").style.display="none"; // Or use Bootstrap JS: bootstrap.Modal.getInstance(modal).hide();
+
+      // ✅ Refresh user details
+      fetch("/userdetails")
+        .then(res => res.json())
+        .then(data => {
+          const user = data.user;
+          document.getElementById("username").innerHTML = user.username;
+          document.getElementById("userName").innerHTML = user.username;
+          document.getElementById("firstName").innerHTML = user.firstname;
+          document.getElementById("secondName").innerHTML = user.secondname;
+        });
+
+    } else {
+      alert("Error: " + result.error);
+    }
+
+  } catch (err) {
+    console.error("Error updating details:", err);
+    alert("Something went wrong.");
+  }
+});
+
