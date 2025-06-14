@@ -135,7 +135,7 @@ app.get("/dashboard", authenticate, (req, res) => {
 
 app.get("/userdetails", authenticate, (req, res) => {
   const email = req.email;
-  const query = "SELECT firstname, secondname, username, gender FROM users_credentials WHERE email = $1";
+  const query = "SELECT firstname, secondname, username, gender, email FROM users_credentials WHERE email = $1";
   db.query(query, [email], (err, results) => {
     if (err) {
       console.error("Error fetching user data:", err);
@@ -147,23 +147,6 @@ app.get("/userdetails", authenticate, (req, res) => {
     }
     const user = results.rows[0];
     res.json({ user });
-  });
-});
-
-app.get("/templates", authenticate, (req, res) => {
-  const templatesDir = path.join(__dirname, "templates");
-
-  fs.readdir(templatesDir, (err, files) => {
-    if (err) return res.status(500).json({ error: "Failed to load templates" });
-
-    const templates = files
-      .filter(file => file.endsWith(".html"))
-      .map(file => ({
-        name: file.replace(".html", ""),
-        path: `/templates/${file}`
-      }));
-
-    res.json(templates);
   });
 });
 
@@ -229,28 +212,50 @@ app.post('/resumedata', authenticate, async (req, res) => {
   }
 });
 
-
 // Route to get user form data
 app.get('/resumetemplates', authenticate, async (req, res) => {
   const email = req.email;
-
-  try {
-    const result = await db.query("SELECT * FROM user_details WHERE emailid = $1", [email]);
-    if (result.rows.length === 0) {
-      return res.status(404).json({ message: "No data found." });
-    }
-    const data = result.rows[result.rows.length - 1];
-    res.json(data);
-  } catch (err) {
-    console.error("Error fetching form data:", err);
-    res.status(500).send("Error fetching form data.");
+  const result = await db.query("SELECT * FROM user_details WHERE emailid = $1", [email]);
+  if (result.rows.length === 0) {
+    return res.status(404).json({ message: "No data found." });
   }
+  const data = result.rows[result.rows.length - 1];
+  res.json(data);
 });
+
+app.post("/updateDetails", authenticate, (req, res) => {
+  const email = req.email; // from the authenticate middleware
+  const { updateUserName, updateFirstName, updateSecondName } = req.body;
+
+  // Basic validation
+  if (!updateUserName || !updateFirstName || !updateSecondName) {
+    return res.status(400).json({ error: "All fields are required." });
+  }
+
+  const updateQuery = `
+    UPDATE users_credentials
+    SET username = $1, firstname = $2, secondname = $3
+    WHERE email = $4
+    RETURNING firstname, secondname, username, gender, email
+  `;
+
+  const values = [updateUserName, updateFirstName, updateSecondName, email];
+
+  db.query(updateQuery, values, (err, result) => {
+    if (err) {
+      console.error("Error updating user data:", err);
+      return res.status(500).json({ error: "Failed to update user details" });
+    }
+
+    res.json({ message: "User details updated successfully", user: result.rows[0] });
+  });
+});
+
 
 
 // ✅ Start Server
 // app.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}/`);
+//   console.log(`Server is running on http://localhost:3000/`);
 // });
 
 app.listen(PORT, () => {
